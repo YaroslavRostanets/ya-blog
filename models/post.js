@@ -1,23 +1,38 @@
 'use strict';
 const {
-  Model
+  Model, DataTypes
 } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Post extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+const withDateNoTz = require('sequelize-date-no-tz-postgres');
+const db = require('../config/database');
+const tzDataTypes = withDateNoTz(DataTypes);
+
+class Post extends Model {
+  static associate(models) {
+    console.log('as: ', models)
   }
-  Post.init({
-    title: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Post',
-  });
-  return Post;
-};
+}
+
+Post.init({
+  title: DataTypes.STRING,
+  body: DataTypes.TEXT,
+  img: DataTypes.STRING,
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  createdAt: {
+    allowNull: false,
+    type: tzDataTypes.DATE_NO_TZ,
+  },
+  updatedAt: {
+    allowNull: false,
+    type: tzDataTypes.DATE_NO_TZ,
+  }
+}, {
+  sequelize: db,
+  modelName: 'Post',
+});
+
+Post.sync({ alter: true })
+
+module.exports = Post;

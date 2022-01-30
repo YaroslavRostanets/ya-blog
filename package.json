@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "cross-env NODE_ENV=development nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "^1.19.1",
@@ -23,6 +23,7 @@
     "sequelize-date-no-tz-postgres": "^1.0.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5",
     "eslint": "^8.8.0",
     "eslint-plugin-node": "^11.1.0",
     "nodemon": "^2.0.15",

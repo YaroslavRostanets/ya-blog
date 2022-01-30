@@ -1,10 +1,14 @@
-const withDateNoTz = require('sequelize-date-no-tz-postgres');
 'use strict';
+const withDateNoTz = require('sequelize-date-no-tz-postgres');
+const db = require('../config/database');
+const Post = require('./post');
+console.log('p: ', Post)
+
 const {
-  Model
+  Model, DataTypes
 } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  const DataTypes = withDateNoTz(SequelizeDataTypes);
+
+const tzDataTypes = withDateNoTz(DataTypes);
 
   class User extends Model {
     /**
@@ -13,17 +17,36 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      console.log('m: ', models)
     }
   }
   User.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
-    createdAd: DataTypes.DATE_NO_TZ,
+    createdAt: {
+      allowNull: false,
+      type: tzDataTypes.DATE_NO_TZ,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: tzDataTypes.DATE_NO_TZ,
+    }
   }, {
-    sequelize,
+    sequelize: db,
     modelName: 'User',
   });
-  return User;
-};
+
+  User.hasMany(Post, {foreignKey: 'userId'});
+  Post.belongsTo(User, {foreignKey: 'userId'});
+  User.sync({ alter: true })
+  
+  
+
+  module.exports = User;
