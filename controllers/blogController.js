@@ -2,8 +2,9 @@ const Post = require('../models/post');
 const User = require('../models/user');
 
 const getList = async (req, res) => {
+    const perPage = 4;
     const title = 'Blog';
-    let page = 0;
+    let page = 1;
     let category = null;
     const params = Object.values(req.params).filter(i => i);
     console.log('P: ', params)
@@ -21,8 +22,8 @@ const getList = async (req, res) => {
     const list = await Post.findAll({
         attributes: ['title', 'body', 'img', 'createdAt'],
         order: [['id', 'DESC']],
-        limit: 4,
-        offset: page * 4,
+        limit: perPage,
+        offset: (page - 1) * perPage,
         raw: true,
         include: {
             model: User,
@@ -31,9 +32,19 @@ const getList = async (req, res) => {
           }
       });
 
+    const count = await Post.count()
+    console.log('count: ', count)
+
       res.render('blogList/index', {
           title,
-          list
+          list,
+          pagination: {
+              current: page,
+              perPage: perPage,
+              count: count,
+              pages: Math.ceil(count/perPage),
+              baseUrl: `/blog` + (category ? `/${category}` : '')
+          }
       });
 }
 
