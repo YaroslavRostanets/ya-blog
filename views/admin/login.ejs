@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin</title>
+  <link href="/stylesheets/bootstrap.css" rel="stylesheet"> 
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/stylesheets/login.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container bootstrap snippets bootdey">
+        <form method="post">
+            <div class="lc-block col-md-4 col-md-offset-4 toggled" id="l-login">
+                <div class="lcb-float"><i class="fa fa-users"></i></div>
+                <div class="form-group">
+                    <input type="text" 
+                    class="form-control" 
+                    name="login" 
+                    placeholder="Login"
+                    value="<%= login %>"
+                    />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password"/>
+                </div>
+                <div class="clearfix"></div>
+                <input type="submit" value="Sign In" class="btn btn-block btn-primary btn-float m-t-25"/>
+            </div>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+</body>
+</html>

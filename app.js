@@ -4,8 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 
 var app = express();
+
+app.use(session({ secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: new FileStore({path: './sessions'}),
+    cookie: { maxAge: 3600000,secure: false, httpOnly: true }
+  })
+);
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 

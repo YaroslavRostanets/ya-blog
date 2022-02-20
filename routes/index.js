@@ -1,4 +1,5 @@
 const blog = require('./blog');
+const admin = require('./admin');
 
 module.exports = function(app) {
   /* GET home page. */
@@ -6,4 +7,5 @@ module.exports = function(app) {
     res.render('index', { title: 'Express' });
   });
   app.use('/blog', blog);
+  app.use('/admin', admin);
 }
