@@ -1,8 +1,34 @@
+const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Category = require('../models/category');
+
+router.post('/add-post', (req, res) => {
+    const schema = Joi.object({
+        preview: Joi.string().required(),
+        title: Joi.string().required(),
+        announcement: Joi.string().required(),
+        editor: Joi.string().required()
+    });
+    const { value, error } = schema.validate(req.body, { abortEarly: false });
+    console.log('ERRORS: ', error.details);
+    if (error) {
+        res.render('admin/addPost', { errors: [] });
+    }
+    // ToDo Валідація
+    // ToDo Якщо помилка - повернути список помилок
+    // ToDo Якщо все ок, Створюємо транзакцію
+    // ToDo створюємо запис про публікацію
+    // ToDo створити список категорій
+    // ToDo створюємо запис про категорію
+    // ToDo Переносимо файли публікації в папку
+    // ToDo Коміт транзакції
+    res.render('admin/addPost', { errors: error.details })
+});
 
 router.get('/add-post', (req, res) => {
+    console.log('req: ', req.body);
     res.render('admin/addPost');
 });
 
@@ -27,7 +53,6 @@ router.post('/', async (req, res) => {
     const user = await User.getUser(login, password);
     if (user) {
         req.session.userId = user.id;
-        console.log('user_s: ', req.session.userId);
         res.redirect('/admin');
     } else {
         res.render('admin/login', {

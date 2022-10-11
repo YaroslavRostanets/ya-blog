@@ -50,9 +50,8 @@ const tzDataTypes = withDateNoTz(DataTypes);
   User.sync({ alter: true })
   
   User.getUser = async function (login, password) {
-    console.log('l: ', login)
-    console.log('p: ', password)
-    const passwordHash = crypto.createHash('md5').update(password).digest("hex");
+    // const passwordHash = crypto.createHash('md5').update(password).digest("hex");
+    const passwordHash = password;
     return await User.findOne({
       attributes: ['id', 'firstName', 'lastName'],
       limit: 1,
