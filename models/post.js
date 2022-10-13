@@ -33,6 +33,6 @@ Post.init({
   modelName: 'Post',
 });
 
-Post.sync({ alter: true })
+// Post.sync({ alter: true })
 
 module.exports = Post;

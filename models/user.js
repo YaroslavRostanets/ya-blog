@@ -47,7 +47,7 @@ const tzDataTypes = withDateNoTz(DataTypes);
 
   User.hasMany(Post, {foreignKey: 'userId'});
   Post.belongsTo(User, {foreignKey: 'userId'});
-  User.sync({ alter: true })
+  // User.sync({ alter: true })
   
   User.getUser = async function (login, password) {
     // const passwordHash = crypto.createHash('md5').update(password).digest("hex");

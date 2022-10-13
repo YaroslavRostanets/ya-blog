@@ -34,6 +34,6 @@ const CategoryDictionary = database.define('CategoryDictionary', {
   freezeTableName: true
 });
 
-CategoryDictionary.sync({ alter: true})
+// CategoryDictionary.sync({ alter: true})
 
 module.exports = CategoryDictionary;

@@ -1,9 +1,12 @@
 const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
-const CategoryDictionary = require('../models/categoryDictionary');
+const category = require('./category');
+const User = require('../../models/user');
+const CategoryDictionary = require('../../models/categoryDictionary');
 const {noRawAttributes} = require("sequelize/lib/utils/deprecations");
+
+router.use('/category', category);
 
 router.post('/add-post', (req, res) => {
   const schema = Joi.object({
@@ -65,7 +68,7 @@ router.post('/', async (req, res) => {
   } else {
     res.render('admin/login', {
       login: req.body.login
-    })
+    });
   }
 });
 

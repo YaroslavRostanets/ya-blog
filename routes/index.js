@@ -24,7 +24,6 @@ module.exports = function(app) {
   app.use('/blog', blog);
   app.use('/admin', admin);
   app.post('/upload', upload.single('image'), function (req, res, next) {
-    console.log('T: ', req.file)
     res.json({
       status: 200,
       success: true,
