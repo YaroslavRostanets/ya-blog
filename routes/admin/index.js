@@ -2,11 +2,13 @@ const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
 const category = require('./category');
+const post = require('./post');
 const User = require('../../models/user');
 const CategoryDictionary = require('../../models/categoryDictionary');
 const {noRawAttributes} = require("sequelize/lib/utils/deprecations");
 
 router.use('/category', category);
+router.use('/post', post);
 
 router.post('/add-post', (req, res) => {
   const schema = Joi.object({

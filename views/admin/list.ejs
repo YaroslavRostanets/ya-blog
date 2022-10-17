@@ -21,13 +21,17 @@
                             <td><%= item[field] %></td>
                         <% } else if (item[field].type === 'button') { %>
                             <td>
-                                <a href="<%= item[field].link %>" class="btn btn-<%= item[field].buttonType %>">
+                                <a href="<%= item[field].link %>"
+                                   class="btn btn-<%= item[field].buttonType %> <%= item[field].btnClass %>">
                                     <span class="glyphicon <%= item[field].icon %>"></span>
                                 </a>
                             </td>
                         <% } else { %>
                             <td>
-                                <input class="form-check-input" type="checkbox" checked="<%= item[field].value %>">
+                                <input data-id="<%= item.id %>"
+                                       class="form-check-input js-ckeckbox"
+                                       type="checkbox"
+                                        <%= item[field].value ? "checked" : "" %>>
                             </td>
                         <% } %>
                     <% }); %>
@@ -35,7 +39,47 @@
             <% }); %>
             </tbody>
         </table>
+        <% include ../partials/pagination.ejs %>
     </div><!--/row-->
 </div><!--/col-span-9-->
+
+
+<div class="modal fade" id="remove-item" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure you want to delete the item?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-danger js-remove-btn">
+                    Remove
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.js-remove-item').click(function (e) {
+            e.preventDefault();
+            const deletePath = $(this).attr('href');
+            $('#remove-item').modal('show');
+            $('.js-remove-btn').attr('href', deletePath);
+        });
+
+        $('.js-ckeckbox').change(async function (e) {
+            let formData = new FormData();
+            formData.append('published', false);
+            await fetch('/admin/category/set-published/' + $(this).data('id'), {
+                method: 'POST',
+                body: new URLSearchParams({
+                    'published': $(this).is(':checked')
+                })
+            });
+        });
+    });
+</script>
 
 <% include layout/bottom.ejs %>

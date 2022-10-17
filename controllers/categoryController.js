@@ -3,8 +3,17 @@ const CategoryDictionary = require('../models/categoryDictionary');
 const Joi = require("joi");
 
 const getList = async (req, res) => {
+  const perPage = 15;
+  let page = req.params.page ? Number(req.params.page.replace('page', '')) : 1;
+  const count = await CategoryDictionary.count({
+    where: {
+      published: true
+    }
+  });
   const categories = await CategoryDictionary.findAll({
     attributes: ['id', 'label', 'createdAt', 'published'],
+    limit: perPage,
+    offset: (page - 1) * perPage,
     raw: true,
     order: [
       ['id', 'ASC'],
@@ -16,28 +25,37 @@ const getList = async (req, res) => {
       createdAt: moment(category.createdAt).format('DD-MM-YYYY HH:mm'),
       published: {
         type: 'checkbox',
-        value: category.published
+        value: category.published,
+        toggleUrl: '/admin/category/set-published'
       },
       edit: {
         type: 'button',
-        link: `category/edit/${category.id}`,
+        link: `/admin/category/edit/${category.id}`,
         buttonType: 'primary',
-        icon: 'glyphicon-pencil'
+        icon: 'glyphicon-pencil',
+        btnClass: ''
       },
       delete: {
         type: 'button',
-        link: `category/delete/${category.id}`,
+        link: `/admin/category/delete/${category.id}`,
         buttonType: 'danger',
-        icon: 'glyphicon-remove'
+        icon: 'glyphicon-remove',
+        btnClass: 'js-remove-item'
       }
     }
   });
-  console.log('cat: ', categories);
-  console.log('keys: ', Object.keys(catItems[0]))
+
   res.render('admin/list', {
     title: 'Category list',
     fields: Object.keys(catItems[0]),
-    items: catItems
+    items: catItems,
+    pagination: {
+      current: page,
+      perPage: perPage,
+      count: count,
+      pages: Math.ceil(count/perPage),
+      baseUrl: `/admin/category`
+    }
   });
 };
 
@@ -98,8 +116,31 @@ const updateCategory = async (req, res) => {
   }
 };
 
+const deleteCategory = async (req, res) => {
+  const {categoryId} = req.params;
+  await CategoryDictionary.destroy({
+    where: {
+      id: categoryId
+    }
+  });
+  res.redirect('back');
+};
+
+const setPublished = async (req, res) => {
+  await CategoryDictionary.update({
+    published: req.body.published
+  }, {
+    where: {
+      id: req.params.categoryId
+    }
+  });
+  res.json({status: 'ok'});
+};
+
 module.exports = {
   getList,
   editCategory,
-  updateCategory
+  updateCategory,
+  deleteCategory,
+  setPublished
 }

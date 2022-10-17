@@ -16,11 +16,6 @@ app.use(session({ secret: 'keyboard cat',
     cookie: { maxAge: 3600000,secure: false, httpOnly: true }
   })
 );
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-app.use(bodyParser.json())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
