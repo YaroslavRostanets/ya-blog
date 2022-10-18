@@ -97,7 +97,7 @@ const updateCategory = async (req, res) => {
       return acc;
     }, {});
     console.log('err: ', errors)
-    res.render('admin/editCategory', {
+    return res.render('admin/editCategory', {
       title: 'Category edit',
       ...req.body,
       published: req.body.published === 'on',

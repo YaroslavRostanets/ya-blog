@@ -14,10 +14,18 @@ class Post extends Model {
 
 Post.init({
   title: DataTypes.STRING,
+  announcement: {
+    type: DataTypes.STRING(2048),
+    allowNull: false
+  },
   body: DataTypes.TEXT,
   img: DataTypes.STRING,
   userId: {
     type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  published: {
+    type: DataTypes.BOOLEAN,
     allowNull: false
   },
   createdAt: {
@@ -33,6 +41,6 @@ Post.init({
   modelName: 'Post',
 });
 
-// Post.sync({ alter: true })
+Post.sync({ alter: true })
 
 module.exports = Post;

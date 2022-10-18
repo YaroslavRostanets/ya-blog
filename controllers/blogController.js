@@ -2,6 +2,7 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const CategoryDictionary = require("../models/categoryDictionary");
 const moment = require("moment");
+const Joi = require("joi");
 
 const getList = async (req, res) => {
     const perPage = 4;
@@ -28,25 +29,25 @@ const getList = async (req, res) => {
             model: User,
             required: false,
             attributes: ['firstName', 'lastName']
-          },
+        },
         where: {
             published: true
         }
-      });
+    });
 
     const count = await Post.count()
 
-      res.render('blogList/index', {
-          title,
-          list,
-          pagination: {
-              current: page,
-              perPage: perPage,
-              count: count,
-              pages: Math.ceil(count/perPage),
-              baseUrl: `/blog` + (category ? `/${category}` : '')
-          }
-      });
+    res.render('blogList/index', {
+        title,
+        list,
+        pagination: {
+            current: page,
+            perPage: perPage,
+            count: count,
+            pages: Math.ceil(count / perPage),
+            baseUrl: `/blog` + (category ? `/${category}` : '')
+        }
+    });
 };
 
 const getListAll = async (req, res) => {
@@ -92,13 +93,70 @@ const getListAll = async (req, res) => {
             current: page,
             perPage: perPage,
             count: count,
-            pages: Math.ceil(count/perPage),
+            pages: Math.ceil(count / perPage),
             baseUrl: `/admin/category`
         }
     });
 };
 
+const editPost = async (req, res) => {
+    console.log('req: ', req.body);
+    const categories = await CategoryDictionary.findAll({
+        attributes: ['id', 'label'],
+        raw: true
+    });
+    console.log('cat: ', categories)
+    res.render('admin/editPost', {
+        categories,
+        errors: {}
+    });
+};
+
+const updatePost = async (req, res) => {
+    const schema = Joi.object({
+        preview: Joi.string().required(),
+        title: Joi.string().required(),
+        announcement: Joi.string().required(),
+        editor: Joi.string().required()
+    });
+    console.log('BODY: ', req.body);
+    const {value, error} = schema.validate(req.body, {abortEarly: false});
+    if (error) {
+        console.log('ERR: ', error);
+        const errors = error.details.reduce((acc, item) => {
+            acc[item.path[0]] = item.message;
+            return acc;
+        }, {});
+        console.log('err: ', errors)
+        const categories = await CategoryDictionary.findAll({
+            attributes: ['id', 'label'],
+            raw: true
+        });
+        res.render('admin/editPost', {
+            title: 'Post edit',
+            ...req.body,
+            published: req.body.published === 'on',
+            categories,
+            errors
+        });
+    } else {
+
+    }
+
+    // ToDo Валідація
+    // ToDo Якщо помилка - повернути список помилок
+    // ToDo Якщо все ок, Створюємо транзакцію
+    // ToDo створюємо запис про публікацію
+    // ToDo створити список категорій
+    // ToDo створюємо запис про категорію
+    // ToDo Переносимо файли публікації в папку
+    // ToDo Коміт транзакції
+    res.redirect('/admin/post')
+};
+
 module.exports = {
     getList,
-    getListAll
+    getListAll,
+    editPost,
+    updatePost
 }
