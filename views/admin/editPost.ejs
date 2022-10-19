@@ -1,6 +1,7 @@
 <% include layout/top.ejs %>
+<link rel="stylesheet" href="/stylesheets/dropzone.css">
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css">-->
 <link rel="stylesheet" href="/trumbowyg/ui/trumbowyg.min.css">
-<link rel="stylesheet" href="/stylesheets/dropzone.min.css">
 <link rel="stylesheet" href="/bootstrap-multiselect/bootstrap-multiselect.min.css">
 <div class="col-md-9">
 
@@ -12,8 +13,8 @@
         <% } %>
     </div>
 
-    <form method="post">
-        <input type="hidden" name="preview" id="preview">
+    <form action="/admin/post/edit" method="post">
+        <input type="text" name="preview" id="preview" value="<%= preview %>">
         <div class="form-group <%= errors && errors.title ? 'has-error' : '' %>">
             <label for="title">Title</label>
             <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp">
@@ -87,8 +88,6 @@
             }
         }
     });
-</script>
-<script>
     const preview = document.getElementById('preview');
     Dropzone.options.imageDropzone = {
         paramName: "image",
@@ -101,9 +100,20 @@
                     this.removeFile(this.files[0]);
                 }
             });
+            <%
+            if (preview) {
+                const previewObj = JSON.parse(preview);
+            %>
+                const mockFile = { name: "<%= previewObj.name %>", size: '<%= previewObj.size %>', type: '<%= previewObj.type %>' };
+                this.options.addedfile.call(this, mockFile);
+                this.options.thumbnail.call(this, mockFile, "<%= previewObj.file %>");
+                mockFile.previewElement.classList.add('dz-success');
+                mockFile.previewElement.classList.add('dz-complete');
+            <% } %>
         },
         success: function (file) {
-            preview.value = JSON.parse(file.xhr.response).file;
+            const {name, size, type} = file;
+            preview.value = JSON.stringify({name, size, type, file: JSON.parse(file.xhr.response).file});
         },
         removedfile: function (file) {
             file.previewElement.remove();

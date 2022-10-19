@@ -100,7 +100,6 @@ const getListAll = async (req, res) => {
 };
 
 const editPost = async (req, res) => {
-    console.log('req: ', req.body);
     const categories = await CategoryDictionary.findAll({
         attributes: ['id', 'label'],
         raw: true
@@ -108,6 +107,7 @@ const editPost = async (req, res) => {
     console.log('cat: ', categories)
     res.render('admin/editPost', {
         categories,
+        preview: '',
         errors: {}
     });
 };
@@ -133,14 +133,14 @@ const updatePost = async (req, res) => {
             raw: true
         });
         res.render('admin/editPost', {
-            title: 'Post edit',
             ...req.body,
+            title: 'Post edit',
             published: req.body.published === 'on',
-            categories,
-            errors
+            categories: categories,
+            errors: errors
         });
     } else {
-
+        res.redirect('/')
     }
 
     // ToDo Валідація
@@ -151,7 +151,6 @@ const updatePost = async (req, res) => {
     // ToDo створюємо запис про категорію
     // ToDo Переносимо файли публікації в папку
     // ToDo Коміт транзакції
-    res.redirect('/admin/post')
 };
 
 module.exports = {
