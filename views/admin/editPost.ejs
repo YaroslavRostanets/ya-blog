@@ -14,7 +14,7 @@
     </div>
 
     <form action="/admin/post/edit" method="post">
-        <input type="text" name="preview" id="preview" value="<%= preview %>">
+        <input type="hidden" name="preview" id="preview" value="<%= preview %>">
         <div class="form-group <%= errors && errors.title ? 'has-error' : '' %>">
             <label for="title">Title</label>
             <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp">
@@ -22,13 +22,18 @@
                 <small class="form-text text-danger"><%= errors.title %></small>
             <% } %>
         </div>
-        <div class="form-group">
+        <div class="form-group <%= errors && errors.categories ? 'has-error' : '' %>"">
             <label for="categories">Categories: </label>
             <select id="categories" multiple="multiple" name="categories">
                 <% categories.forEach(function(category) { %>
                     <option value="<%= category.id %>"><%= category.label %></option>
                 <% }); %>
             </select>
+            <div>
+                <% if (errors && errors.categories) { %>
+                    <small class="form-text text-danger"><%= errors.categories %></small>
+                <% } %>
+            </div>
         </div>
 
         <div class="form-group <%= errors && errors.announcement ? 'has-error' : '' %>">

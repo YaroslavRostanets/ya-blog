@@ -5,12 +5,11 @@ const path = require('path');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, path.join(__dirname, '../files/uploads'))
   },
   filename: function (req, file, cb) {
-    console.log('file: ', file);
     const ext = path.extname(file.originalname);
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    const uniqueSuffix = Date.now() + '-' + Math.random().toString(36).slice(2, 4);
     cb(null, file.fieldname + '-' + uniqueSuffix + ext);
   }
 });

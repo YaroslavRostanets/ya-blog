@@ -1,1 +1,7 @@
-body{margin-top:20px;}				              
+body{margin-top:20px;}
+.has-error .trumbowyg-box {
+    border-color: #b94a48;
+}
+.dropzone.form-control {
+    height: auto;
+}

@@ -1,8 +1,10 @@
 const Post = require('../models/post');
 const User = require('../models/user');
 const CategoryDictionary = require("../models/categoryDictionary");
+const CategoryToPost = require('../models/categoryToPost');
 const moment = require("moment");
 const Joi = require("joi");
+const db = require('../config/database');
 
 const getList = async (req, res) => {
     const perPage = 4;
@@ -100,6 +102,9 @@ const getListAll = async (req, res) => {
 };
 
 const editPost = async (req, res) => {
+    // console.log('R: ', req.params.postId);
+    // const post = await Post.getById(req.params.postId);
+    // console.log('POST: ', post);
     const categories = await CategoryDictionary.findAll({
         attributes: ['id', 'label'],
         raw: true
@@ -117,7 +122,8 @@ const updatePost = async (req, res) => {
         preview: Joi.string().required(),
         title: Joi.string().required(),
         announcement: Joi.string().required(),
-        editor: Joi.string().required()
+        editor: Joi.string().required(),
+        categories: Joi.array().items(Joi.string()).required()
     });
     console.log('BODY: ', req.body);
     const {value, error} = schema.validate(req.body, {abortEarly: false});
@@ -140,12 +146,18 @@ const updatePost = async (req, res) => {
             errors: errors
         });
     } else {
-        res.redirect('/')
+        const transaction = await db.transaction();
+        const { title, editor, announcement} = req.body;
+        await Post.create({
+            title,
+            announcement,
+            body: editor
+        }, {
+            transaction
+        });
+        res.send(req.body);
     }
-
-    // ToDo Валідація
-    // ToDo Якщо помилка - повернути список помилок
-    // ToDo Якщо все ок, Створюємо транзакцію
+    
     // ToDo створюємо запис про публікацію
     // ToDo створити список категорій
     // ToDo створюємо запис про категорію

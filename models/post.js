@@ -41,6 +41,16 @@ Post.init({
   modelName: 'Post',
 });
 
-Post.sync({ alter: true })
+Post.sync({ alter: true });
+
+Post.getById = id => {
+  return Post.findOne({
+    where: {
+      id
+    },
+    raw: true
+  })
+}
+
 
 module.exports = Post;
