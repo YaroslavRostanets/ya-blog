@@ -2,4 +2,5 @@
 .env.production
 /node_modules
 package-lock.json
-/uploads
+/files
+/sessions

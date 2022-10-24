@@ -157,7 +157,7 @@ const updatePost = async (req, res) => {
         });
         res.send(req.body);
     }
-    
+
     // ToDo створюємо запис про публікацію
     // ToDo створити список категорій
     // ToDo створюємо запис про категорію
