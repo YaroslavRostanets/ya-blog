@@ -2,21 +2,32 @@ const { DataTypes } = require('sequelize');
 const database = require('../config/database');
 const withDateNoTz = require('sequelize-date-no-tz-postgres');
 const updDataTypes = withDateNoTz(DataTypes);
-const Post = require('./post');
-const CategoryDictionary = require('./categoryDictionary');
 
-const CategoryToPost = database.define('CategoryToPost', {
+const File = database.define('File', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    postId: {
+    uuid: {
+        type: DataTypes.UUIDV4,
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4
+    },
+    name: {
+        type: DataTypes.STRING(127),
+        allowNull: false
+    },
+    type: {
+        type: DataTypes.STRING(64),
+        allowNull: false
+    },
+    size: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    categoryDictionaryId: {
-        type: DataTypes.INTEGER,
+    path: {
+        type: DataTypes.STRING(255),
         allowNull: false
     },
     createdAt: {
@@ -31,7 +42,4 @@ const CategoryToPost = database.define('CategoryToPost', {
     freezeTableName: true
 });
 
-CategoryToPost.sync({ alter: true});
-CategoryToPost.belongsTo(CategoryDictionary);
-
-module.exports = CategoryToPost;
+module.exports = File;

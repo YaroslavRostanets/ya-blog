@@ -1,25 +1,24 @@
 'use strict';
 const {
-  Model, DataTypes
+  DataTypes
 } = require('sequelize');
 const withDateNoTz = require('sequelize-date-no-tz-postgres');
-const db = require('../config/database');
 const tzDataTypes = withDateNoTz(DataTypes);
+const File = require('./file');
+const CategoryToPost = require('./categoryToPost');
+const database = require("../config/database");
 
-class Post extends Model {
-  static associate(models) {
-    console.log('as: ', models)
-  }
-}
-
-Post.init({
+const Post = database.define('Post', {
   title: DataTypes.STRING,
   announcement: {
     type: DataTypes.STRING(2048),
     allowNull: false
   },
   body: DataTypes.TEXT,
-  img: DataTypes.STRING,
+  previewId:{
+    type: DataTypes.BIGINT,
+    allowNull: false
+  },
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false
@@ -37,11 +36,14 @@ Post.init({
     type: tzDataTypes.DATE_NO_TZ,
   }
 }, {
-  sequelize: db,
-  modelName: 'Post',
+
 });
 
 Post.sync({ alter: true });
+Post.hasOne(CategoryToPost);
+Post.hasOne(File, {
+  foreignKey: 'previewId'
+});
 
 Post.getById = id => {
   return Post.findOne({
@@ -50,7 +52,19 @@ Post.getById = id => {
     },
     raw: true
   })
-}
+};
 
+Post.createBlank = (transaction, userId, title, announcement) => {
+  return Post.create({
+    title,
+    announcement,
+    userId: userId,
+    published: false,
+    previewId: 0
+  }, {
+    transaction,
+    returning: true
+  });
+};
 
 module.exports = Post;

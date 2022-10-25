@@ -5,6 +5,7 @@ const CategoryToPost = require('../models/categoryToPost');
 const moment = require("moment");
 const Joi = require("joi");
 const db = require('../config/database');
+const PostClass = require('../classes/Post');
 
 const getList = async (req, res) => {
     const perPage = 4;
@@ -146,15 +147,10 @@ const updatePost = async (req, res) => {
             errors: errors
         });
     } else {
-        const transaction = await db.transaction();
-        const { title, editor, announcement} = req.body;
-        await Post.create({
-            title,
-            announcement,
-            body: editor
-        }, {
-            transaction
-        });
+        const { title, preview, announcement, editor, categories } = req.body;
+        const post = new PostClass(preview, title, editor, announcement, categories);
+        console.log('post: ', post);
+        post.save();
         res.send(req.body);
     }
 
