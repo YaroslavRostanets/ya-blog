@@ -40,9 +40,8 @@ const Post = database.define('Post', {
 });
 
 Post.sync({ alter: true });
-Post.hasOne(CategoryToPost);
-Post.hasOne(File, {
-  foreignKey: 'previewId'
+Post.hasMany(CategoryToPost, {
+  foreignKey: 'postId'
 });
 
 Post.getById = id => {

@@ -23,7 +23,7 @@ const getList = async (req, res) => {
     }
     // ToDo model method
     const list = await Post.findAll({
-        attributes: ['title', 'body', 'img', 'createdAt'],
+        attributes: ['title', 'body', 'previewId', 'createdAt'],
         order: [['id', 'DESC']],
         limit: perPage,
         offset: (page - 1) * perPage,
@@ -58,7 +58,7 @@ const getListAll = async (req, res) => {
     let page = req.params.page ? Number(req.params.page.replace('page', '')) : 1;
     const count = await Post.count();
     const posts = await Post.findAll({
-        attributes: ['id', 'title', 'img', 'userId', 'createdAt'],
+        attributes: ['id', 'title', 'previewId', 'userId', 'createdAt'],
         limit: perPage,
         offset: (page - 1) * perPage,
         raw: true,
@@ -70,6 +70,7 @@ const getListAll = async (req, res) => {
     const catItems = posts.map(post => {
         return {
             ...post,
+            img: '',
             createdAt: moment(post.createdAt).format('DD-MM-YYYY HH:mm'),
             edit: {
                 type: 'button',
@@ -90,7 +91,7 @@ const getListAll = async (req, res) => {
 
     res.render('admin/list', {
         title: 'Post list',
-        fields: Object.keys(catItems[0]),
+        fields: Object.keys(),
         items: catItems,
         pagination: {
             current: page,

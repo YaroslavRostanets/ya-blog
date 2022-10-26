@@ -10,7 +10,7 @@ const File = database.define('File', {
         primaryKey: true
     },
     uuid: {
-        type: DataTypes.UUIDV4,
+        type: DataTypes.UUID,
         allowNull: false,
         defaultValue: DataTypes.UUIDV4
     },
@@ -41,5 +41,7 @@ const File = database.define('File', {
 }, {
     freezeTableName: true
 });
+
+File.sync({ alter: true });
 
 module.exports = File;

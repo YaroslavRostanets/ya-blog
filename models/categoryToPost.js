@@ -2,7 +2,6 @@ const { DataTypes } = require('sequelize');
 const database = require('../config/database');
 const withDateNoTz = require('sequelize-date-no-tz-postgres');
 const updDataTypes = withDateNoTz(DataTypes);
-const Post = require('./post');
 const CategoryDictionary = require('./categoryDictionary');
 
 const CategoryToPost = database.define('CategoryToPost', {
@@ -32,6 +31,8 @@ const CategoryToPost = database.define('CategoryToPost', {
 });
 
 CategoryToPost.sync({ alter: true});
-CategoryToPost.belongsTo(CategoryDictionary);
+CategoryToPost.belongsTo(CategoryDictionary, {
+    foreignKey: 'categoryDictionaryId'
+});
 
 module.exports = CategoryToPost;
