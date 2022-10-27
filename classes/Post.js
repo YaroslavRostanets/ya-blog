@@ -50,6 +50,7 @@ class PostClass {
             });
             await Promise.all(promises);
         }
+        this.editor = this.editor.replace(/\/uploads\//, `/posts/post_${postId}/`);
         return files;
     }
 
@@ -64,7 +65,7 @@ class PostClass {
                 name: fileName,
                 type: mime.lookup(filePath),
                 size: stat.size,
-                path: filePath
+                path: filePath.replace(/^\/files/g, '')
             }
         });
         return await File.bulkCreate(files, {
@@ -93,15 +94,21 @@ class PostClass {
             const files = await this.#mvFiles(this.post.id, this.preview, this.editor);
 
             const savedFiles = await this.#saveFilesDb(transaction, files);
-            console.log('SAVED_FILES: ', savedFiles);
             await this.#setCategories(transaction);
-            this.post.update({
-                previewId: savedFiles[0].id
+            await Post.update({
+                previewId: savedFiles[0].id,
+                body: this.editor
             }, {
-                transaction
-            })
+                transaction,
+                where: {
+                    id: this.post.id
+                }
+            });
+            await transaction.commit();
+            console.log('SAVED_FILES: ', savedFiles);
         } catch (err) {
             console.log('ERR: ', err);
+            await transaction.rollback();
         }
     }
 }

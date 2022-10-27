@@ -36,7 +36,7 @@ const Post = database.define('Post', {
     type: tzDataTypes.DATE_NO_TZ,
   }
 }, {
-
+  freezeTableName: true
 });
 
 Post.sync({ alter: true });

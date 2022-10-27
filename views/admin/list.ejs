@@ -26,6 +26,12 @@
                                     <span class="glyphicon <%= item[field].icon %>"></span>
                                 </a>
                             </td>
+                        <% } else if (item[field].type === 'image') { %>
+                            <td>
+                                <div class="img-container">
+                                    <img src="<%= item[field].src %>" alt="">
+                                </div>
+                            </td>
                         <% } else { %>
                             <td>
                                 <input data-id="<%= item.id %>"
@@ -61,25 +67,25 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('.js-remove-item').click(function (e) {
-            e.preventDefault();
-            const deletePath = $(this).attr('href');
-            $('#remove-item').modal('show');
-            $('.js-remove-btn').attr('href', deletePath);
-        });
-
-        $('.js-ckeckbox').change(async function (e) {
-            let formData = new FormData();
-            formData.append('published', false);
-            await fetch('/admin/category/set-published/' + $(this).data('id'), {
-                method: 'POST',
-                body: new URLSearchParams({
-                    'published': $(this).is(':checked')
-                })
-            });
-        });
+  $(document).ready(function () {
+    $('.js-remove-item').click(function (e) {
+      e.preventDefault();
+      const deletePath = $(this).attr('href');
+      $('#remove-item').modal('show');
+      $('.js-remove-btn').attr('href', deletePath);
     });
+
+    $('.js-ckeckbox').change(async function (e) {
+      let formData = new FormData();
+      formData.append('published', false);
+      await fetch('/admin/category/set-published/' + $(this).data('id'), {
+        method: 'POST',
+        body: new URLSearchParams({
+          'published': $(this).is(':checked')
+        })
+      });
+    });
+  });
 </script>
 
 <% include layout/bottom.ejs %>

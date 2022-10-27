@@ -17,7 +17,7 @@
         <input type="hidden" name="preview" id="preview" value="<%= preview %>">
         <div class="form-group <%= errors && errors.title ? 'has-error' : '' %>">
             <label for="title">Title</label>
-            <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp">
+            <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" value="<%= title %>">
             <% if (errors && errors.title) { %>
                 <small class="form-text text-danger"><%= errors.title %></small>
             <% } %>
