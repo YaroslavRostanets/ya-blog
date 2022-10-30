@@ -35,4 +35,14 @@ CategoryToPost.belongsTo(CategoryDictionary, {
     foreignKey: 'categoryDictionaryId'
 });
 
+CategoryToPost.getByPostId = postId => {
+  return CategoryToPost.findAll({
+      attributes: ['categoryDictionaryId'],
+      where: {
+          postId
+      },
+      raw: true
+  })
+};
+
 module.exports = CategoryToPost;

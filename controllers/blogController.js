@@ -59,7 +59,7 @@ const getListAll = async (req, res) => {
   let page = req.params.page ? Number(req.params.page.replace('page', '')) : 1;
   const count = await Post.count();
   const posts = await Post.findAll({
-    attributes: ['id', 'title', 'previewId', 'userId', 'createdAt'],
+    attributes: ['id', 'title', 'previewId', 'userId', 'published', 'createdAt'],
     limit: perPage,
     offset: (page - 1) * perPage,
     raw: true,
@@ -90,7 +90,7 @@ const getListAll = async (req, res) => {
       published: {
         type: 'checkbox',
         value: post.published,
-        toggleUrl: '/admin/category/set-published'
+        toggleUrl: '/admin/post/set-published'
       },
       edit: {
         type: 'button',
@@ -120,7 +120,7 @@ const getListAll = async (req, res) => {
       perPage: perPage,
       count: count,
       pages: Math.ceil(count / perPage),
-      baseUrl: `/admin/category`
+      baseUrl: `/admin/post`
     }
   });
 };
@@ -132,26 +132,35 @@ const editPost = async (req, res) => {
     raw: true
   });
   if (postId) {
-    console.log('R: ', req.params.postId);
     const post = await Post.getById(req.params.postId);
+    const preview = await File.getById(post.previewId);
+    const postCategories = await CategoryToPost.getByPostId(post.id);
+    const cat = categories.map(cat => ({... cat, selected: postCategories.some(postCat => postCat.categoryDictionaryId === cat.id)}));
+    const { name, size } = preview;
     res.render('admin/editPost', {
       title: post.title,
-      categories,
-      preview: '',
+      categories: cat,
+      preview: JSON.stringify({ name, size, file: preview.path}),
+      announcement: post.announcement,
+      editor: post.body,
+      published: post.published,
       errors: {}
     });
-    // console.log('POST: ', post);
   } else {
     res.render('admin/editPost', {
       title: '',
       categories,
       preview: '',
+      announcement: '',
+      editor: '',
+      published: false,
       errors: {}
     });
   }
 };
 
 const updatePost = async (req, res) => {
+  console.log('REQ_BODY: ', req.body);
   const schema = Joi.object({
     preview: Joi.string().required(),
     title: Joi.string().required(),
@@ -159,38 +168,55 @@ const updatePost = async (req, res) => {
     editor: Joi.string().required(),
     categories: Joi.array().items(Joi.string()).required()
   });
-  console.log('BODY: ', req.body);
   const {value, error} = schema.validate(req.body, {abortEarly: false});
   if (error) {
-    console.log('ERR: ', error);
     const errors = error.details.reduce((acc, item) => {
       acc[item.path[0]] = item.message;
       return acc;
     }, {});
-    console.log('err: ', errors)
     const categories = await CategoryDictionary.findAll({
       attributes: ['id', 'label'],
       raw: true
     });
+    const cat = req.body.categories
+      ? categories.map(cat => ({...cat, selected: req.body.categories.some(postCatId => String(postCatId) === String(cat.id))}))
+      : categories;
     res.render('admin/editPost', {
       ...req.body,
       title: 'Post edit',
+      announcement: req.body.announcement,
       published: req.body.published === 'on',
-      categories: categories,
+      editor: req.body.editor,
+      categories: cat,
       errors: errors
     });
   } else {
     const {title, preview, announcement, editor, categories} = req.body;
     const post = new PostClass(preview, title, editor, announcement, categories);
     console.log('post: ', post);
+    // ToDo зробити update
     post.save();
     res.send(req.body);
   }
 };
 
+const setPublished = async (req, res) => {
+  console.log('SP: ', req.body.published, req.params.postId);
+  await Post.update({
+    published: req.body.published
+  }, {
+    where: {
+      id: req.params.postId
+    }
+  });
+  res.json({status: 'ok'});
+};
+
+
 module.exports = {
   getList,
   getListAll,
   editPost,
-  updatePost
+  updatePost,
+  setPublished
 }

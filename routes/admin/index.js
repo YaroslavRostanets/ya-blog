@@ -10,10 +10,6 @@ const {noRawAttributes} = require("sequelize/lib/utils/deprecations");
 router.use('/category', category);
 router.use('/post', post);
 
-router.post('/add-post', (req, res) => {
-
-});
-
 router.get('/add-post', async (req, res) => {
   console.log('req: ', req.body);
   const categories = await CategoryDictionary.findAll({
@@ -35,14 +31,16 @@ router.get('/', (req, res) => {
   const {userId} = req.session;
   console.log('USR: ', userId)
   res.setHeader('Last-Modified', (new Date()).toUTCString());
-  if (userId) {
-    res.render('admin/index')
-  } else {
-    res.render('admin/login', {login: ''})
-  }
+  res.render('admin/index');
 });
 
-router.post('/', async (req, res) => {
+router.get('/login', (req, res) => {
+  res.render('admin/login', {
+    login: ''
+  });
+});
+
+router.post('/login', async (req, res) => {
   const {login, password} = req.body;
   const user = await User.getUser(login, password);
   if (user) {

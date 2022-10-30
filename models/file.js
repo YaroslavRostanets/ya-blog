@@ -44,4 +44,13 @@ const File = database.define('File', {
 
 File.sync({ alter: true });
 
+File.getById = id => {
+    return File.findOne({
+        attributes: ['name', 'size', 'path'],
+        where: {
+            id
+        }
+    })
+};
+
 module.exports = File;

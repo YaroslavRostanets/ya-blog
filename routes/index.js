@@ -2,6 +2,7 @@ const blog = require('./blog');
 const admin = require('./admin');
 const multer  = require('multer');
 const path = require('path');
+const checkAuth = require('../middlewares/checkAuth');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -21,7 +22,7 @@ module.exports = function(app) {
     res.render('index', { title: 'Express' });
   });
   app.use('/blog', blog);
-  app.use('/admin', admin);
+  app.use('/admin', [checkAuth, admin]);
   app.post('/upload', upload.single('image'), function (req, res, next) {
     res.json({
       status: 200,

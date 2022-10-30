@@ -35,6 +35,7 @@
                         <% } else { %>
                             <td>
                                 <input data-id="<%= item.id %>"
+                                       data-toggle-url="<%= item[field].toggleUrl %>"
                                        class="form-check-input js-ckeckbox"
                                        type="checkbox"
                                         <%= item[field].value ? "checked" : "" %>>
@@ -78,7 +79,7 @@
     $('.js-ckeckbox').change(async function (e) {
       let formData = new FormData();
       formData.append('published', false);
-      await fetch('/admin/category/set-published/' + $(this).data('id'), {
+      await fetch($(this).data('toggle-url') + '/' + $(this).data('id'), {
         method: 'POST',
         body: new URLSearchParams({
           'published': $(this).is(':checked')
