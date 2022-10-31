@@ -101,7 +101,7 @@ const getListAll = async (req, res) => {
       },
       delete: {
         type: 'button',
-        link: `/admin/category/delete/${post.id}`,
+        link: `/admin/post/delete/${post.id}`,
         buttonType: 'danger',
         icon: 'glyphicon-remove',
         btnClass: 'js-remove-item'
@@ -138,6 +138,7 @@ const editPost = async (req, res) => {
     const cat = categories.map(cat => ({... cat, selected: postCategories.some(postCat => postCat.categoryDictionaryId === cat.id)}));
     const { name, size } = preview;
     res.render('admin/editPost', {
+      id: post.id,
       title: post.title,
       categories: cat,
       preview: JSON.stringify({ name, size, file: preview.path}),
@@ -148,6 +149,7 @@ const editPost = async (req, res) => {
     });
   } else {
     res.render('admin/editPost', {
+      id: '',
       title: '',
       categories,
       preview: '',
@@ -162,6 +164,7 @@ const editPost = async (req, res) => {
 const updatePost = async (req, res) => {
   console.log('REQ_BODY: ', req.body);
   const schema = Joi.object({
+    id: Joi.string(),
     preview: Joi.string().required(),
     title: Joi.string().required(),
     announcement: Joi.string().required(),
@@ -194,8 +197,12 @@ const updatePost = async (req, res) => {
     const {title, preview, announcement, editor, categories} = req.body;
     const post = new PostClass(preview, title, editor, announcement, categories);
     console.log('post: ', post);
-    // ToDo зробити update
-    post.save();
+    if (req.body.id) {
+      // ToDo зробити update
+      process.exit(1)
+    } else {
+      post.save();
+    }
     res.send(req.body);
   }
 };
@@ -212,11 +219,21 @@ const setPublished = async (req, res) => {
   res.json({status: 'ok'});
 };
 
+const deletePost = async (req, res) => {
+  const {postId} = req.params;
+  await Post.destroy({
+    where: {
+      id: postId
+    }
+  });
+  res.redirect('back');
+};
 
 module.exports = {
   getList,
   getListAll,
   editPost,
   updatePost,
-  setPublished
+  setPublished,
+  deletePost
 }

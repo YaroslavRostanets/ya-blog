@@ -14,6 +14,7 @@
     </div>
 
     <form action="/admin/post/edit" method="post">
+        <input type="text" name="id" value="<%= id %>">
         <input type="hidden" name="preview" id="preview" value="<%= preview %>">
         <div class="form-group <%= errors && errors.title ? 'has-error' : '' %>">
             <label for="title">Title</label>

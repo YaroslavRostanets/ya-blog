@@ -31,6 +31,20 @@ class PostClass {
         }
     }
 
+    async #updatePreview(postId, preview) {
+        if (preview.file.match(/^\/uploads\//)) {
+            // новий файл
+            // ToDo видалити старий файл з диску
+            // ToDo видалити файл з БД
+            // ToDo перенести новий на диск
+            // ToDo записати новий в БД
+        }
+    }
+
+    async #updateEditorImg() {
+
+    }
+
     async #mvFiles(postId, preview, editor) {
         const files = [];
         const newPreviewPath = preview.file.replace(/^\/uploads\//, `/files/posts/post_${postId}/`);
