@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
     if (req.originalUrl === '/admin/login') {
       next();
     } else {
-      res.redirect('admin/login');
+      res.redirect('/admin/login');
     }
   }
 }
