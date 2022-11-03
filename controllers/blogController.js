@@ -164,7 +164,7 @@ const editPost = async (req, res) => {
 const updatePost = async (req, res) => {
   console.log('REQ_BODY: ', req.body);
   const schema = Joi.object({
-    id: Joi.string(),
+    id: Joi.string().min(0),
     preview: Joi.string().required(),
     title: Joi.string().required(),
     announcement: Joi.string().required(),
@@ -173,6 +173,7 @@ const updatePost = async (req, res) => {
   });
   const {value, error} = schema.validate(req.body, {abortEarly: false});
   if (error) {
+    console.log('ERROR: ', error);
     const errors = error.details.reduce((acc, item) => {
       acc[item.path[0]] = item.message;
       return acc;
@@ -194,14 +195,14 @@ const updatePost = async (req, res) => {
       errors: errors
     });
   } else {
-    const {title, preview, announcement, editor, categories} = req.body;
-    const post = new PostClass(preview, title, editor, announcement, categories);
+    const {id, title, preview, announcement, editor, categories} = req.body;
+    const post = new PostClass(id, preview, title, editor, announcement, categories);
     console.log('post: ', post);
     if (req.body.id) {
       // ToDo зробити update
-      process.exit(1)
+      await post.update();
     } else {
-      post.save();
+      await post.save();
     }
     res.send(req.body);
   }
