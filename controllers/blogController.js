@@ -23,23 +23,44 @@ const getList = async (req, res) => {
     category = isPage ? null : params[0];
   }
   // ToDo model method
-  const list = await Post.findAll({
-    attributes: ['title', 'body', 'previewId', 'createdAt'],
+  let list = await Post.findAll({
+    attributes: ['id', 'title', 'announcement', 'body', 'previewId', 'createdAt'],
     order: [['id', 'DESC']],
     limit: perPage,
     offset: (page - 1) * perPage,
     raw: true,
-    include: {
+    include: [{
       model: User,
       required: false,
       attributes: ['firstName', 'lastName']
-    },
+    }],
     where: {
       published: true
     }
   });
 
-  const count = await Post.count()
+  const previews = await File.getByIds(list.map(item => item.previewId));
+  const categories = await CategoryToPost.findAll({
+    attributes: ['postId'],
+    raw: true,
+    where: {
+      postId: list.map(item => item.id)
+    },
+    include: [{
+      model: CategoryDictionary,
+      required: false,
+      attributes: ['name', 'label']
+    }],
+  });
+  console.log('categories: ', categories);
+  list = list.map(item => ({
+    ...item,
+    categories: categories.filter(category => category.postId === item.id),
+    previewSrc: previews.find(pr => String(pr.id) === String(item.previewId)).path
+  }));
+  console.log('LIST: ', list);
+
+  const count = await Post.count();
 
   res.render('blogList/index', {
     title,
@@ -63,6 +84,7 @@ const getListAll = async (req, res) => {
     limit: perPage,
     offset: (page - 1) * perPage,
     raw: true,
+    userId: req.session.userId,
     order: [
       ['id', 'DESC'],
     ]
@@ -155,22 +177,23 @@ const editPost = async (req, res) => {
       preview: '',
       announcement: '',
       editor: '',
-      published: false,
+      published: req.body.published === 'on',
       errors: {}
     });
   }
 };
 
 const updatePost = async (req, res) => {
-  console.log('REQ_BODY: ', req.body);
   const schema = Joi.object({
     id: Joi.string().min(0),
     preview: Joi.string().required(),
     title: Joi.string().required(),
     announcement: Joi.string().required(),
     editor: Joi.string().required(),
-    categories: Joi.array().items(Joi.string()).required()
+    categories: Joi.alternatives().try(Joi.array().items(Joi.string()).required(), Joi.string().required()),
+    published: Joi.string().valid('on')
   });
+  req.body.categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
   const {value, error} = schema.validate(req.body, {abortEarly: false});
   if (error) {
     console.log('ERROR: ', error);
@@ -187,7 +210,7 @@ const updatePost = async (req, res) => {
       : categories;
     res.render('admin/editPost', {
       ...req.body,
-      title: 'Post edit',
+      title: title,
       announcement: req.body.announcement,
       published: req.body.published === 'on',
       editor: req.body.editor,
@@ -195,21 +218,19 @@ const updatePost = async (req, res) => {
       errors: errors
     });
   } else {
-    const {id, title, preview, announcement, editor, categories} = req.body;
-    const post = new PostClass(id, preview, title, editor, announcement, categories);
+    const {id, title, preview, announcement, editor, published, categories} = req.body;
+    const post = new PostClass(id, preview, title, editor, announcement, published, categories, req.session.userId);
     console.log('post: ', post);
     if (req.body.id) {
-      // ToDo зробити update
       await post.update();
     } else {
       await post.save();
     }
-    res.send(req.body);
+    res.redirect('/admin/post');
   }
 };
 
 const setPublished = async (req, res) => {
-  console.log('SP: ', req.body.published, req.params.postId);
   await Post.update({
     published: req.body.published
   }, {
@@ -222,11 +243,7 @@ const setPublished = async (req, res) => {
 
 const deletePost = async (req, res) => {
   const {postId} = req.params;
-  await Post.destroy({
-    where: {
-      id: postId
-    }
-  });
+  await PostClass.removePost(postId);
   res.redirect('back');
 };
 

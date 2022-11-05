@@ -66,4 +66,13 @@ Post.createBlank = (transaction, userId, title, announcement) => {
   });
 };
 
+Post.removeById = (transaction, postId) => {
+  return Post.destroy({
+    transaction,
+    where: {
+      id: postId
+    }
+  });
+}
+
 module.exports = Post;

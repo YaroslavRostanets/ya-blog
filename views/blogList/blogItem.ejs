@@ -1,19 +1,20 @@
 <div class="card single_post">
     <div class="body">
         <div class="img-post">
-            <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt="First slide">
+            <img class="d-block img-fluid" src="<%= item.previewSrc%>" alt="preview">
         </div>
         <h3><a href="blog-details.html"><%= item.title %></a></h3>
-        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal</p>
+        <p><%= item.announcement %></p>
     </div>
     <div class="footer">
         <div class="actions">
-            <a href="javascript:void(0);" class="btn btn-outline-secondary">Continue Reading</a>
+            <a href="javascript:void(0);" class="btn btn-outline-secondary">Read</a>
         </div>
         <ul class="stats">
-            <li><a href="javascript:void(0);">General</a></li>
+            <% item.categories.forEach(function(category){ %>
+                <li><a href="javascript:void(0);"><%= category['CategoryDictionary.name'] %></a></li>
+            <% }); %>
             <li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
-            <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
         </ul>
     </div>
 

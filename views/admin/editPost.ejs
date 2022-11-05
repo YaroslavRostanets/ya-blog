@@ -52,8 +52,8 @@
             <% } %>
         </div>
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="publish" <%= published ? 'checked' : ''%>>
-            <label name="publish" class="form-check-label" for="publish">Publish</label>
+            <input type="checkbox" name="published" class="form-check-input" id="published" <%= published ? 'checked' : ''%>>
+            <label class="form-check-label" for="published">Publish</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

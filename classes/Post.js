@@ -1,3 +1,4 @@
+const { mapLimit } = require('async');
 const jsdom = require("jsdom");
 const {JSDOM} = jsdom;
 const fs = require('fs').promises;
@@ -13,13 +14,37 @@ const File = require('../models/file');
 
 
 class PostClass {
-  constructor(id, preview, title, editor, announcement, categories) {
+  constructor(id, preview, title, editor, announcement, published, categories, userId) {
     this.postId = id;
     this.categories = categories;
     this.title = title;
     this.editor = editor;
     this.announcement = announcement;
     this.preview = JSON.parse(preview);
+    this.published = published;
+    this.userId = userId;
+  }
+
+  static async removeFileByPath(transaction, filePath) {
+    const resolvedFilePath = path.join(__dirname, '../files', filePath);
+    await File.rmByPath(transaction, filePath);
+    await fs.rm(resolvedFilePath);
+  }
+
+  async #mvEditorFiles() {
+    const files = [];
+    const editorImages = this.editor.match(/\/uploads\/.*\.(?:png|jpg)/g);
+    if (editorImages) {
+      const promises = editorImages.map(async filePath => {
+        const fileName = path.basename(filePath);
+        const newFilePath = `/files/posts/post_${this.postId}/${fileName}`;
+        await fs.rename(path.join(__dirname, '../files', filePath), path.join(__dirname, '../', `/files/posts/post_${this.postId}/${fileName}`));
+        files.push(newFilePath);
+      });
+      await Promise.all(promises);
+    }
+    this.editor = this.editor.replace(/\/uploads\//, `/posts/post_${this.postId}/`);
+    return files;
   }
 
   async #createPostDirectory(postId) {
@@ -58,17 +83,24 @@ class PostClass {
       };
       return [newPreviewPath];
     }
+    return [];
   }
 
   async #updateEditorImg(transaction, post) {
-    console.log('POST: ', post.body);
-    const dom = new JSDOM(post.body);
-
-    const images = dom.window.document.querySelectorAll('img');
-    const srcs = Array.from(images).map(img => img.getAttribute('src'));
-    console.log('IMAGES: ', images);
-    console.log('SRCS: ', srcs);
-
+    const checkSelfPath = item => /^\/uploads\//.test(item) || /^\/posts\//.test(item);
+    const oldDom = new JSDOM(post.body);
+    const oldImages = oldDom.window.document.querySelectorAll('img');
+    const oldSrcs = Array.from(oldImages)
+      .map(img => img.getAttribute('src'))
+      .filter(checkSelfPath);
+    const newDom = new JSDOM(this.editor);
+    const newImages = newDom.window.document.querySelectorAll('img');
+    const newSrcs = Array.from(newImages)
+      .map(img => img.getAttribute('src'))
+      .filter(checkSelfPath);
+    const removed = oldSrcs.filter(oldSrc => !newSrcs.some(newSrcs => newSrcs === oldSrc));
+    await mapLimit(removed, 1, PostClass.removeFileByPath.bind(PostClass, transaction))
+    return await this.#mvEditorFiles();
   }
 
   async #mvFiles(postId, preview, editor) {
@@ -114,36 +146,44 @@ class PostClass {
   }
 
   async #setCategories(transaction) {
-    const categories = this.categories.map(category => ({
-      postId: this.post.id,
-      categoryDictionaryId: category
-    }));
-    await CategoryToPost.bulkCreate(categories, {
-      transaction
-    })
+    let oldCategories = await CategoryToPost.getByPostId(this.postId);
+        oldCategories = oldCategories.map(oldCat => oldCat.categoryDictionaryId);
+    const newCategories = this.categories;
+    const removed = oldCategories
+      .filter(oldCat => !newCategories.some(newCat => String(newCat) === String(oldCat)));
+    const added = newCategories
+      .filter(newCat => !oldCategories.some(oldCat => String(oldCat) === String(newCat)));
+    if (added.length) {
+      const categories = this.categories.map(category => ({
+        postId: this.postId,
+        categoryDictionaryId: category
+      }));
+      await CategoryToPost.bulkCreate(categories, {
+        transaction
+      })
+    }
+    if (removed.length) {
+      await CategoryToPost.remove(transaction, this.postId, removed);
+    }
   }
 
   // Редагування поста
   async update() {
     const transaction = await db.transaction();
     try {
-      const post = await Post.findOne({
-        attributes: ['previewId', 'body'],
-        where: {
-          id: this.postId
-        },
-        transaction
-      });
+      const post = await Post.getById(this.postId);
       const savedPreview = await this.#updatePreview(transaction, post);
-      await this.#updateEditorImg(transaction, post);
-      await this.#saveFilesDb(transaction, savedPreview);
+      const savedImgFiles = await this.#updateEditorImg(transaction, post);
+      await this.#saveFilesDb(transaction, [...savedPreview, ...savedImgFiles]);
+      await this.#setCategories(transaction);
       const updPost = {
         title: this.title,
         announcement: this.announcement,
-        body: this.editor
+        body: this.editor,
+        published: this.published
       };
-      if (savedPreview) {
-        updPost.previewId = savedPreview.id
+      if (savedPreview.length) {
+        updPost.previewId = savedPreview[0].id
       }
       await Post.update(updPost, {
         transaction,
@@ -162,15 +202,16 @@ class PostClass {
   async save() {
     const transaction = await db.transaction();
     try {
-      this.post = await Post.createBlank(transaction, 1, this.title, this.announcement);
+      this.post = await Post.createBlank(transaction, this.userId, this.title, this.announcement);
+      this.postId = this.post.id;
       await this.#createPostDirectory(this.post.id);
       const files = await this.#mvFiles(this.post.id, this.preview, this.editor);
-
       const savedFiles = await this.#saveFilesDb(transaction, files);
       await this.#setCategories(transaction);
       await Post.update({
         previewId: savedFiles[0].id,
-        body: this.editor
+        body: this.editor,
+        published: this.published
       }, {
         transaction,
         where: {
@@ -178,7 +219,25 @@ class PostClass {
         }
       });
       await transaction.commit();
-      console.log('SAVED_FILES: ', savedFiles);
+    } catch (err) {
+      console.log('ERR: ', err);
+      await transaction.rollback();
+    }
+  }
+
+  static async removePost(id) {
+    const transaction = await db.transaction();
+    try {
+      const post = await Post.getById(id);
+      const editorImages = post.body.match(/\/uploads\/.*\.(?:png|jpg)/g);
+      await File.rmById(transaction, post.previewId);
+      if (editorImages) {
+        await File.rmByPath(transaction, editorImages);
+      }
+      await CategoryToPost.removeByPostId(transaction, post.id);
+      await Post.removeById(transaction, id);
+      await fs.rm(path.join(__dirname, '../files/posts', `/post_${post.id}`), { recursive: true });
+      await transaction.commit();
     } catch (err) {
       console.log('ERR: ', err);
       await transaction.rollback();
