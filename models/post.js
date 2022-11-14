@@ -23,6 +23,11 @@ const Post = database.define('Post', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  furl: {
+    type: DataTypes.STRING(64),
+    allowNull: false,
+    unique: true
+  },
   published: {
     type: DataTypes.BOOLEAN,
     allowNull: false

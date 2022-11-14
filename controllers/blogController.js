@@ -162,6 +162,7 @@ const editPost = async (req, res) => {
     res.render('admin/editPost', {
       id: post.id,
       title: post.title,
+      furl: post.furl,
       categories: cat,
       preview: JSON.stringify({ name, size, file: preview.path}),
       announcement: post.announcement,
@@ -173,6 +174,7 @@ const editPost = async (req, res) => {
     res.render('admin/editPost', {
       id: '',
       title: '',
+      furl: '',
       categories,
       preview: '',
       announcement: '',
@@ -188,6 +190,7 @@ const updatePost = async (req, res) => {
     id: Joi.string().min(0),
     preview: Joi.string().required(),
     title: Joi.string().required(),
+    furl: Joi.string().required(),
     announcement: Joi.string().required(),
     editor: Joi.string().required(),
     categories: Joi.alternatives().try(Joi.array().items(Joi.string()).required(), Joi.string().required()),
@@ -211,6 +214,7 @@ const updatePost = async (req, res) => {
     res.render('admin/editPost', {
       ...req.body,
       title: title,
+      furl: req.body.furl,
       announcement: req.body.announcement,
       published: req.body.published === 'on',
       editor: req.body.editor,
@@ -218,8 +222,8 @@ const updatePost = async (req, res) => {
       errors: errors
     });
   } else {
-    const {id, title, preview, announcement, editor, published, categories} = req.body;
-    const post = new PostClass(id, preview, title, editor, announcement, published, categories, req.session.userId);
+    const {id, title, preview, announcement, editor, published, categories, furl} = req.body;
+    const post = new PostClass(id, preview, title, editor, announcement, published, categories, furl, req.session.userId);
     console.log('post: ', post);
     if (req.body.id) {
       await post.update();
@@ -247,11 +251,33 @@ const deletePost = async (req, res) => {
   res.redirect('back');
 };
 
+const detail = async (req, res) => {
+  console.log('REQ: ', req.params)
+  const post = await Post.findOne({
+    where: {
+      furl: req.params.furl
+    }
+  });
+  const preview = await File.findOne({
+    attributes: ['path'],
+    where: {
+      id: post.previewId
+    }
+  });
+
+  res.render('blogList/detail', {
+    title: post.title,
+    body: post.body,
+    preview: preview.path
+  });
+};
+
 module.exports = {
   getList,
   getListAll,
   editPost,
   updatePost,
   setPublished,
-  deletePost
+  deletePost,
+  detail
 }

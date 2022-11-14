@@ -14,13 +14,20 @@
     </div>
 
     <form action="/admin/post/edit" method="post">
-        <input type="text" name="id" value="<%= id %>">
+        <input type="hidden" name="id" value="<%= id %>">
         <input type="hidden" name="preview" id="preview" value="<%= preview %>">
         <div class="form-group <%= errors && errors.title ? 'has-error' : '' %>">
             <label for="title">Title</label>
             <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" value="<%= title %>">
             <% if (errors && errors.title) { %>
                 <small class="form-text text-danger"><%= errors.title %></small>
+            <% } %>
+        </div>
+        <div class="form-group <%= errors && errors.furl ? 'has-error' : '' %>">
+            <label for="furl">Friendly URL</label>
+            <input name="furl" type="text" class="form-control" id="furl" aria-describedby="emailHelp" value="<%= furl %>">
+            <% if (errors && errors.furl) { %>
+                <small class="form-text text-danger"><%= errors.furl %></small>
             <% } %>
         </div>
         <div class="form-group <%= errors && errors.categories ? 'has-error' : '' %>">
@@ -65,7 +72,12 @@
 <script src="/trumbowyg/plugins/upload/trumbowyg.upload.min.js"></script>
 <script src="/javascripts/dropzone.min.js"></script>
 <script src="/bootstrap-multiselect/bootstrap-multiselect.min.js"></script>
+<script src="/javascripts/transliterate.js"></script>
 <script>
+    $('#title').on('input', function(e) {
+      const transliterated = transliterate($(e.target).val());
+      $('#furl').val(transliterated);
+    })
     $('#editor').trumbowyg({
         btnsDef: {
             // Create a new dropdown

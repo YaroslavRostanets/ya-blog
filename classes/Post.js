@@ -14,7 +14,7 @@ const File = require('../models/file');
 
 
 class PostClass {
-  constructor(id, preview, title, editor, announcement, published, categories, userId) {
+  constructor(id, preview, title, editor, announcement, published, categories, furl, userId) {
     this.postId = id;
     this.categories = categories;
     this.title = title;
@@ -22,6 +22,7 @@ class PostClass {
     this.announcement = announcement;
     this.preview = JSON.parse(preview);
     this.published = published;
+    this.furl = furl;
     this.userId = userId;
   }
 
@@ -180,7 +181,8 @@ class PostClass {
         title: this.title,
         announcement: this.announcement,
         body: this.editor,
-        published: this.published
+        published: this.published,
+        furl: this.furl
       };
       if (savedPreview.length) {
         updPost.previewId = savedPreview[0].id
@@ -211,7 +213,8 @@ class PostClass {
       await Post.update({
         previewId: savedFiles[0].id,
         body: this.editor,
-        published: this.published
+        published: this.published,
+        furl: this.furl
       }, {
         transaction,
         where: {
