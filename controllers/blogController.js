@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Post = require('../models/post');
 const User = require('../models/user');
 const CategoryDictionary = require("../models/categoryDictionary");
@@ -186,17 +187,32 @@ const editPost = async (req, res) => {
 };
 
 const updatePost = async (req, res) => {
+  const furlExist = await Post.findOne({
+    attributes: ['id'],
+    where: {
+      id: {
+        [Op.ne]: req.body.id
+      },
+      furl: req.body.furl
+    }
+  });
   const schema = Joi.object({
     id: Joi.string().min(0),
     preview: Joi.string().required(),
     title: Joi.string().required(),
-    furl: Joi.string().required(),
+    furl: Joi.string().custom((value, helpers) => {
+      if (furlExist) {
+        return helpers.message('friendly url must be unique')
+      }
+      return value;
+    }).required(),
     announcement: Joi.string().required(),
     editor: Joi.string().required(),
     categories: Joi.alternatives().try(Joi.array().items(Joi.string()).required(), Joi.string().required()),
     published: Joi.string().valid('on')
   });
   req.body.categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
+  const {id, title, preview, announcement, editor, published, categories, furl} = req.body;
   const {value, error} = schema.validate(req.body, {abortEarly: false});
   if (error) {
     console.log('ERROR: ', error);
@@ -222,7 +238,6 @@ const updatePost = async (req, res) => {
       errors: errors
     });
   } else {
-    const {id, title, preview, announcement, editor, published, categories, furl} = req.body;
     const post = new PostClass(id, preview, title, editor, announcement, published, categories, furl, req.session.userId);
     console.log('post: ', post);
     if (req.body.id) {
