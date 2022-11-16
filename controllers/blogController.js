@@ -20,12 +20,25 @@ const getList = async (req, res) => {
     page = Number(params[1].replace('page', ''));
   } else if (params.length === 1) {
     const isPage = params[0].match(/page\d/);
-    page = isPage ? Number(params[0].replace('page', '')) : 0;
+    page = isPage ? Number(params[0].replace('page', '')) : 1;
     category = isPage ? null : params[0];
   }
+  const categoryDict = await CategoryDictionary.findOne({
+    attributes: ['id'],
+    where: {
+      name: category,
+      published: true
+    }
+  });
+  console.log('catDict: ', categoryDict);
+  const categoryInclude = categoryDict ? [{
+    model: CategoryToPost,
+    where: {
+      categoryDictionaryId: categoryDict.id
+    }}] : [];
   // ToDo model method
   let list = await Post.findAll({
-    attributes: ['id', 'title', 'announcement', 'body', 'previewId', 'createdAt'],
+    attributes: ['id', 'title', 'announcement', 'body', 'previewId', 'furl', 'createdAt'],
     order: [['id', 'DESC']],
     limit: perPage,
     offset: (page - 1) * perPage,
@@ -34,7 +47,7 @@ const getList = async (req, res) => {
       model: User,
       required: false,
       attributes: ['firstName', 'lastName']
-    }],
+    }, ...categoryInclude],
     where: {
       published: true
     }
@@ -53,7 +66,7 @@ const getList = async (req, res) => {
       attributes: ['name', 'label']
     }],
   });
-  console.log('categories: ', categories);
+  console.log('categories.ejs: ', categories);
   list = list.map(item => ({
     ...item,
     categories: categories.filter(category => category.postId === item.id),
@@ -62,10 +75,12 @@ const getList = async (req, res) => {
   console.log('LIST: ', list);
 
   const count = await Post.count();
+  const activeCategories = await CategoryDictionary.getActiveCategories();
 
   res.render('blogList/index', {
     title,
     list,
+    categories: activeCategories,
     pagination: {
       current: page,
       perPage: perPage,
@@ -131,8 +146,6 @@ const getListAll = async (req, res) => {
       }
     }
   });
-
-  console.log('catItems: ', catItems);
 
   res.render('admin/list', {
     title: 'Post list',
@@ -280,10 +293,13 @@ const detail = async (req, res) => {
     }
   });
 
+  const activeCategories = await CategoryDictionary.getActiveCategories();
+
   res.render('blogList/detail', {
     title: post.title,
     body: post.body,
-    preview: preview.path
+    preview: preview.path,
+    categories: activeCategories
   });
 };
 

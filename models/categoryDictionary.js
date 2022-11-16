@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const database = require('../config/database');
 const withDateNoTz = require('sequelize-date-no-tz-postgres');
 const updDataTypes = withDateNoTz(DataTypes);
+const CategoryToPost = require('./categoryToPost');
 
 const CategoryDictionary = database.define('CategoryDictionary', {
   id: {
@@ -34,6 +35,14 @@ const CategoryDictionary = database.define('CategoryDictionary', {
   freezeTableName: true
 });
 
-// CategoryDictionary.sync({ alter: true})
+// CategoryDictionary.sync({ alter: true});
+CategoryDictionary.getActiveCategories = () => {
+  return CategoryDictionary.findAll({
+    attributes: ['name', 'label'],
+    where: {
+      published: true
+    }
+  })
+}
 
 module.exports = CategoryDictionary;
