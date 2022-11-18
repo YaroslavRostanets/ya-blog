@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="header">
+        <h2>Популярне</h2>
+    </div>
+    <div class="body widget popular-post">
+        <div class="row">
+            <div class="col-lg-12">
+                <% popularPosts.forEach(function(post){ %>
+                    <a href="/blog/detail/<%= post.furl %>" class="single_post">
+                        <p class="m-b-0"><%= post.title %></p>
+                        <span><%= post.createdAt %></span>
+                        <div class="img-post">
+                            <img src="<%= post.preview %>" alt="post image">
+                        </div>
+                    </a>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>

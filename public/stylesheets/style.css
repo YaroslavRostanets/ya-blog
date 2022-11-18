@@ -7,3 +7,12 @@ a {
   color: #00B7FF;
 }
 
+.single_post {
+  text-decoration: none;
+  color: inherit;
+}
+
+.single_post:hover {
+  text-decoration: none;
+  color: inherit;
+}

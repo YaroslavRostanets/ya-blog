@@ -28,6 +28,11 @@ const Post = database.define('Post', {
     allowNull: false,
     unique: true
   },
+  views: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
   published: {
     type: DataTypes.BOOLEAN,
     allowNull: false
@@ -78,6 +83,16 @@ Post.removeById = (transaction, postId) => {
       id: postId
     }
   });
-}
+};
+
+Post.viewIncrement = (id, viewCount) => {
+  return Post.update({
+    views: Number(viewCount + 1)
+  }, {
+    where: {
+      id
+    }
+  })
+};
 
 module.exports = Post;

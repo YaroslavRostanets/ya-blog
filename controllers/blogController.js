@@ -30,7 +30,6 @@ const getList = async (req, res) => {
       published: true
     }
   });
-  console.log('catDict: ', categoryDict);
   const categoryInclude = categoryDict ? [{
     model: CategoryToPost,
     where: {
@@ -38,7 +37,7 @@ const getList = async (req, res) => {
     }}] : [];
   // ToDo model method
   let list = await Post.findAll({
-    attributes: ['id', 'title', 'announcement', 'body', 'previewId', 'furl', 'createdAt'],
+    attributes: ['id', 'title', 'announcement', 'body', 'previewId', 'furl', 'views', 'createdAt'],
     order: [['id', 'DESC']],
     limit: perPage,
     offset: (page - 1) * perPage,
@@ -66,21 +65,24 @@ const getList = async (req, res) => {
       attributes: ['name', 'label']
     }],
   });
-  console.log('categories.ejs: ', categories);
   list = list.map(item => ({
     ...item,
     categories: categories.filter(category => category.postId === item.id),
     previewSrc: previews.find(pr => String(pr.id) === String(item.previewId)).path
   }));
-  console.log('LIST: ', list);
 
   const count = await Post.count();
-  const activeCategories = await CategoryDictionary.getActiveCategories();
+
+  const catToPost = await CategoryToPost.getDistinct();
+  const activeCategories = await CategoryDictionary.getActiveCategories(catToPost.map(i => i.categoryDictionaryId));
+
+  console.log('popularPosts22: ', req.popularPosts);
 
   res.render('blogList/index', {
     title,
     list,
     categories: activeCategories,
+    popularPosts: req.popularPosts,
     pagination: {
       current: page,
       perPage: perPage,
@@ -117,7 +119,6 @@ const getListAll = async (req, res) => {
 
   const catItems = posts.map(post => {
     const preview = previews.find(prev => Number(prev.id) === Number(post.previewId));
-    console.log('prev: ', preview)
     return {
       ...post,
       img: {
@@ -280,7 +281,6 @@ const deletePost = async (req, res) => {
 };
 
 const detail = async (req, res) => {
-  console.log('REQ: ', req.params)
   const post = await Post.findOne({
     where: {
       furl: req.params.furl
@@ -293,12 +293,15 @@ const detail = async (req, res) => {
     }
   });
 
-  const activeCategories = await CategoryDictionary.getActiveCategories();
+  const catToPost = await CategoryToPost.getDistinct();
+  const activeCategories = await CategoryDictionary.getActiveCategories(catToPost.map(i => i.categoryDictionaryId));
+  await Post.viewIncrement(post.id, post.views);
 
   res.render('blogList/detail', {
     title: post.title,
     body: post.body,
     preview: preview.path,
+    popularPosts: req.popularPosts,
     categories: activeCategories
   });
 };

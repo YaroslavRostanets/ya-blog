@@ -36,11 +36,12 @@ const CategoryDictionary = database.define('CategoryDictionary', {
 });
 
 // CategoryDictionary.sync({ alter: true});
-CategoryDictionary.getActiveCategories = () => {
+CategoryDictionary.getActiveCategories = ids => {
   return CategoryDictionary.findAll({
     attributes: ['name', 'label'],
     where: {
-      published: true
+      published: true,
+      id: ids
     }
   })
 }

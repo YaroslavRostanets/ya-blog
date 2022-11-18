@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize');
+const {Sequelize, DataTypes} = require('sequelize');
 const database = require('../config/database');
 const withDateNoTz = require('sequelize-date-no-tz-postgres');
 const updDataTypes = withDateNoTz(DataTypes);
@@ -61,6 +61,14 @@ CategoryToPost.removeByPostId = (transaction, postId) => {
     where: {
       postId
     }
+  })
+};
+
+CategoryToPost.getDistinct = () => {
+  return CategoryToPost.findAll({
+    attributes: [
+      [Sequelize.fn('DISTINCT', Sequelize.col('categoryDictionaryId')) ,'categoryDictionaryId'],
+    ]
   })
 };
 
