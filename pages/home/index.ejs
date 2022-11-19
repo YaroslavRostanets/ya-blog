@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Certy &#8211; Designer &#8211; WordPress Resume, CV Theme</title>
+
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 0.07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+
+    <link rel='stylesheet' id='bootstrap-apcal-css' href='css/bootstrap-apcal.css?ver=5.9.5' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='datepicker-css-css' href='css/jquery-ui-1.8.23.custom.css?ver=5.9.5' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='wp-block-library-css' href='css/style.min.css' type='text/css' media='all'/>
+    <style id='global-styles-inline-css' type='text/css'>
+        body {
+            --wp--preset--color--black: #000000;
+            --wp--preset--color--cyan-bluish-gray: #abb8c3;
+            --wp--preset--color--white: #ffffff;
+            --wp--preset--color--pale-pink: #f78da7;
+            --wp--preset--color--vivid-red: #cf2e2e;
+            --wp--preset--color--luminous-vivid-orange: #ff6900;
+            --wp--preset--color--luminous-vivid-amber: #fcb900;
+            --wp--preset--color--light-green-cyan: #7bdcb5;
+            --wp--preset--color--vivid-green-cyan: #00d084;
+            --wp--preset--color--pale-cyan-blue: #8ed1fc;
+            --wp--preset--color--vivid-cyan-blue: #0693e3;
+            --wp--preset--color--vivid-purple: #9b51e0;
+            --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6, 147, 227, 1) 0%, rgb(155, 81, 224) 100%);
+            --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+            --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgba(252, 185, 0, 1) 0%, rgba(255, 105, 0, 1) 100%);
+            --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgba(255, 105, 0, 1) 0%, rgb(207, 46, 46) 100%);
+            --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+            --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+            --wp--preset--gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+            --wp--preset--gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+            --wp--preset--gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+            --wp--preset--gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+            --wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+            --wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+            --wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');
+            --wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');
+            --wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');
+            --wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');
+            --wp--preset--duotone--midnight: url('#wp-duotone-midnight');
+            --wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');
+            --wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');
+            --wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');
+            --wp--preset--font-size--small: 13px;
+            --wp--preset--font-size--medium: 20px;
+            --wp--preset--font-size--large: 36px;
+            --wp--preset--font-size--x-large: 42px;
+        }
+
+        .has-black-color {
+            color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-color {
+            color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-color {
+            color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-color {
+            color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-color {
+            color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-color {
+            color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-color {
+            color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-color {
+            color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-color {
+            color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-color {
+            color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-color {
+            color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-color {
+            color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-background-color {
+            background-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-background-color {
+            background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-background-color {
+            background-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-background-color {
+            background-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-background-color {
+            background-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-background-color {
+            background-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-background-color {
+            background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-background-color {
+            background-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-border-color {
+            border-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-border-color {
+            border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-border-color {
+            border-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-border-color {
+            border-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-border-color {
+            border-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-border-color {
+            border-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-border-color {
+            border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-border-color {
+            border-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+            background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+        }
+
+        .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+            background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+        }
+
+        .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-orange-to-vivid-red-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+        }
+
+        .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+            background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+        }
+
+        .has-cool-to-warm-spectrum-gradient-background {
+            background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+        }
+
+        .has-blush-light-purple-gradient-background {
+            background: var(--wp--preset--gradient--blush-light-purple) !important;
+        }
+
+        .has-blush-bordeaux-gradient-background {
+            background: var(--wp--preset--gradient--blush-bordeaux) !important;
+        }
+
+        .has-luminous-dusk-gradient-background {
+            background: var(--wp--preset--gradient--luminous-dusk) !important;
+        }
+
+        .has-pale-ocean-gradient-background {
+            background: var(--wp--preset--gradient--pale-ocean) !important;
+        }
+
+        .has-electric-grass-gradient-background {
+            background: var(--wp--preset--gradient--electric-grass) !important;
+        }
+
+        .has-midnight-gradient-background {
+            background: var(--wp--preset--gradient--midnight) !important;
+        }
+
+        .has-small-font-size {
+            font-size: var(--wp--preset--font-size--small) !important;
+        }
+
+        .has-medium-font-size {
+            font-size: var(--wp--preset--font-size--medium) !important;
+        }
+
+        .has-large-font-size {
+            font-size: var(--wp--preset--font-size--large) !important;
+        }
+
+        .has-x-large-font-size {
+            font-size: var(--wp--preset--font-size--x-large) !important;
+        }
+    </style>
+    <link rel='stylesheet' id='contact-form-7-css' href='css/styles.css?ver=5.5.4' type='text/css' media='all'/>
+    <link rel='stylesheet' id='switcher-css-css' href='css/switcher.css?ver=5.9.5' type='text/css' media='all'/>
+    <link rel='stylesheet' id='icon-fonts-css' href='fonts/icomoon/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='plugin-styles-css' href='css/plugins.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='certy-styles-css' href='css/style2.min.css' type='text/css' media='all'/>
+    <script type='text/javascript' src='js/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+    <script type='text/javascript' src='js/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+    <script type='text/javascript' src='js/core.min.js?ver=1.13.1' id='jquery-ui-core-js'></script>
+    <script type='text/javascript' src='js/datepicker.min.js?ver=1.13.1' id='jquery-ui-datepicker-js'></script>
+    <script type='text/javascript' id='jquery-ui-datepicker-js-after'>
+        jQuery(function (jQuery) {
+            jQuery.datepicker.setDefaults({
+                "closeText": "Close",
+                "currentText": "Today",
+                "monthNames": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                "nextText": "Next",
+                "prevText": "Previous",
+                "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                "dayNamesMin": ["S", "M", "T", "W", "T", "F", "S"],
+                "dateFormat": "MM d, yy",
+                "firstDay": 1,
+                "isRTL": false
+            });
+        });
+    </script>
+
+    <script type='text/javascript' src='js/calendar.js' id='calendar-js'></script>
+    <script type='text/javascript' src='js/moment.min.js' id='moment-min-js'></script>
+    <script type='text/javascript' src='js/modernizr-3.3.1.min.js' id='certy-Modernizer-js-js'></script>
+    <style type='text/css'>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .crt-logo {
+            font-family: 'Pacifico', handwriting;
+        }
+
+        .text-primary,
+        .crt-icon-list .crt-icon,
+        .post-title a:hover,
+        .crt-nav .menu-item-object-post.current-menu-item a,
+        .crt-nav .menu-item-object-page.current-menu-item a,
+        .crt-nav .menu-item-object-category.current-menu-item a,
+        .fc-state-active,
+        .fc-state-active .fc-button-inner {
+            color: #c0e3e7;
+        }
+
+        mark,
+        input[type='submit'],
+        .bg-primary,
+        .btn-primary,
+        .bg-primary.text-dropcup-sq,
+        .raiting-circle .fill,
+        .progress-bullets .bullet.fill,
+        .tabs .tabs-menu li.active a,
+        .tabs .tabs-menu li a:hover,
+        .togglebox-header:before,
+        .accordion-header:before,
+        .education:before,
+        .education-date,
+        .widget_calendar tbody a,
+        #crtMainNav .sub-menu li > a:hover,
+        #crtMainNav .sub-menu .current-menu-item > a,
+        #crtMainNavSm .sub-menu:before,
+        .apcal_btn-primary,
+        .apcal_btn-primary:hover,
+        #buttonbox .apcal_btn-success,
+        #buttonbox .apcal_btn-success:hover,
+        .apcal_alert-info {
+            background-color: #c0e3e7;
+        }
+
+        .btn-bordered,
+        .brd-primary,
+        #crtNavSm .current a,
+        #crtNavSm .menu-item-object-post.current-menu-item a,
+        #crtNavSm .menu-item-object-page.current-menu-item a,
+        #crtNavSm .menu-item-object-category.current-menu-item a,
+        .progress-bullets .bullet,
+        .education-date:after,
+        .education-date:before,
+        .apcal_modal-body .apcal_alert-info {
+            border-color: #c0e3e7;
+        }
+
+        ::-moz-selection {
+            background-color: #c0e3e7;
+        }
+
+        ::selection {
+            background-color: #c0e3e7;
+        }
+
+        .crt-card,
+        .btn-primary,
+        input[type='submit'],
+        .education-date,
+        .apcal_btn-primary,
+        .apcal_btn-primary:hover,
+        #buttonbox .apcal_btn-success,
+        #buttonbox .apcal_btn-success:hover,
+        .apcal_alert-info,
+        .tabs .tabs-menu li.active a,
+        .tabs .tabs-menu li a:hover,
+        .accordion-header,
+        .togglebox-header {
+            color: #010101;
+        }
+
+        ::-moz-selection {
+            color: #010101;
+        }
+
+        ::selection {
+            color: #010101;
+        }
+
+        .bg-primary .btn-bordered {
+            border-color: #010101;
+            color: #010101;
+        }
+
+        body,
+        blockquote.quote-top:before,
+        blockquote.quote-side:before,
+        .form-item,
+        .crt-logo,
+        .page-numbers:hover,
+        .page-numbers.current,
+        .tabs .tabs-menu a,
+        .crt-nav a,
+        .crt-tooltip,
+        #crtMainNav .sub-menu a,
+        #crtMainNav > ul > li > a:hover,
+        #crtMainNav > ul > li.current-menu-item > a,
+        #crtMainNav > ul > li.current-menu-parent > a,
+        #crtMainNavSm li > a:hover,
+        #crtMainNavSm li.current-menu-item a,
+        #crtMainNavSm li.current-menu-parent a,
+        .accordion li.active .accordion-header,
+        .accordion-header:hover,
+        .togglebox li.active .togglebox-header,
+        .togglebox-header:hover,
+        .pf-filter button,
+        .search-title span,
+        .widget_archive a,
+        .widget_categories a {
+            color: #010101;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #010101;
+        }
+
+        ::-moz-placeholder {
+            color: #010101;
+        }
+
+        :-ms-input-placeholder {
+            color: #010101;
+        }
+
+        :-moz-placeholder {
+            color: #010101;
+        }
+
+        .text-dropcup-sq,
+        .styled-ul li:before,
+        .education-box:before {
+            background-color: #010101;
+        }
+
+        .text-muted,
+        .post-content,
+        .page-numbers,
+        .education-company,
+        .ref-author span,
+        table > thead > tr > th,
+        .styled-ul > li > ul ul,
+        #crtMainNav > ul > li > a,
+        #crtMainNavSm a,
+        .cr-carousel .slick-next:before,
+        .cr-carousel .slick-prev:before,
+        .widget-title,
+        .widget_archive li,
+        .widget_categories li,
+        .widget_recent_entries .post-date,
+        .post-category-comment a,
+        #timesloatbox,
+        .apcal_modal-info .icon-remove {
+            color: #757575;
+        }
+
+        .styled-ul > li > ul ul li:before {
+            background-color: #757575;
+        }
+
+        hr,
+        th,
+        td,
+        blockquote,
+        .brd-btm,
+        .post-tags a,
+        .reference-box,
+        .crt-head-inner,
+        .crt-paper,
+        .crt-paper-layers:after,
+        .crt-paper-layers:before,
+        #comments .comment-list,
+        #comments .comment-body,
+        .crt-nav-type1 .crt-nav-cont,
+        .tabs .tabs-menu,
+        .tabs-vertical:before,
+        .page-category .post-footer,
+        .search-for,
+        .widget_meta > ul,
+        .widget_pages > ul,
+        .widget_archive > ul,
+        .widget_nav_menu .menu,
+        .widget_categories > ul,
+        .widget_recent_entries > ul,
+        .widget_recent_comments > ul,
+        .widget_meta li,
+        .widget_pages li,
+        .widget_archive li,
+        .widget_nav_menu li,
+        .widget_categories li,
+        .widget_recent_entries li,
+        .widget_recent_comments li,
+        .widget_calendar caption,
+        .widget_tag_cloud a,
+        .post-category-comment a,
+        .apcal_modal,
+        .apcal_btn#next1,
+        .apcal_btn#back {
+            border-color: #e1e1e1;
+        }
+
+        .crt-nav-btm:after {
+            background-color: #e1e1e1;
+        }
+
+        .post-line {
+            color: #e1e1e1;
+        }
+
+        #crtBgShape1 polygon {
+            fill: #e1e1e1;
+        }
+
+        #crtBgShape2 polygon {
+            fill: #c0e3e7;
+        }
+
+        body,
+        select,
+        textarea,
+        input[type='url'],
+        input[type='tel'],
+        input[type='time'],
+        input[type='text'],
+        input[type='email'],
+        input[type='number'],
+        input[type='search'],
+        input[type='password'],
+        input[type='week'],
+        input[type='date'],
+        input[type='datetime'],
+        input[type='datetime-local'],
+        input[type='month'],
+        .form-item,
+        .widget_search input[type="text"],
+        .fc-state-highlight {
+            background-color: #f3f3f3;
+        }
+
+        .text-dropcup-sq {
+            color: #fff;
+        }
+
+        .crt-head-inner,
+        .crt-card-footer,
+        blockquote.quote-top:before,
+        blockquote.quote-side:before,
+        .tooltip:after,
+        .education-box:last-child:after,
+        .crt-nav-type1 .crt-nav-cont,
+        #crtMainNav .sub-menu,
+        .crt-tooltip:after,
+        #crtSidebar,
+        .pf-popup-content,
+        .cr-carousel .slick-next,
+        .cr-carousel .slick-prev,
+        .crt-side-box-1,
+        .crt-side-box-2,
+        .crt-side-box-2 .widget,
+        #crtContainer,
+        .crt-paper,
+        .crt-paper-layers:after,
+        .crt-paper-layers:before,
+        #crtSidebarBtn,
+        #crtSidebarClose,
+        .crt-side-box-1 #sticky-widget-inner {
+            background-color: #fff;
+        }
+
+        .tooltip:before {
+            border-top-color: #fff;
+        }
+
+        .crt-nav-type1 .crt-nav-btm,
+        .crt-tooltip.arrow-right:before {
+            border-left-color: #fff;
+        }
+
+        .crt-tooltip.arrow-left:before {
+            border-right-color: #fff;
+        }
+
+        .btn-default {
+            background-color: #c0e3e7;
+        }
+
+        .btn-default {
+            color: #010101;
+        }
+
+        .btn-secondary {
+            background-color: #041f28;
+        }
+
+        .btn-secondary {
+            color: #fff;
+        }</style>
+    <style type="text/css">.recentcomments a {
+        display: inline !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }</style>
+    <script data-cfasync="false" type="text/javascript">if (window.addthis_product === undefined) {
+        window.addthis_product = "wpp";
+    }
+    if (window.wp_product_version === undefined) {
+        window.wp_product_version = "wpp-6.2.6";
+    }
+    if (window.addthis_share === undefined) {
+        window.addthis_share = {};
+    }
+    if (window.addthis_config === undefined) {
+        window.addthis_config = {"data_track_clickback": true, "ui_atversion": 300};
+    }
+    if (window.addthis_plugin_info === undefined) {
+        window.addthis_plugin_info = {
+            "info_status": "enabled",
+            "cms_name": "WordPress",
+            "plugin_name": "Share Buttons by AddThis",
+            "plugin_version": "6.2.6",
+            "plugin_mode": "AddThis",
+            "anonymous_profile_id": "wp-398b69e50d7db6ad5ecb68327da2dda4",
+            "page_info": {"template": "home", "post_type": ""},
+            "sharing_enabled_on_post_via_metabox": false
+        };
+    }
+
+    </script>
+</head>
+<body class="home page-template-default page page-id-5 wp-custom-logo crt crt-layers-1 crt-nav-on crt-nav-type2 crt-main-nav-off crt-side-box-on crt-sidebar-on"
+      data-color="#c0e3e7">
+<div class="crt-wrapper">
+    <header id="crtHeader" class="crt-logo-in">
+        <div class="crt-head-inner crt-container">
+            <div class="crt-container-sm">
+                <div class="crt-head-row">
+                    <div id="crtHeadCol1" class="crt-head-col text-left">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav id="crtNavSm" class="crt-nav hidden-lg hidden-md">
+            <div class="crt-avatar">
+                <a href="#about" data-tooltip="About me">
+                    <img alt=""
+                         src="img/avatar.jpg"
+                         class="avatar avatar-42"> </a>
+            </div>
+            <ul class="clear-list">
+                <li id="menu-item-41"
+                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-41">
+                    <a href="#exp" data-tooltip="Experience"><span
+                            class="crt-icon crt-icon-experience"></span></a></li>
+                <li id="menu-item-42"
+                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-42">
+                    <a href="#ref" data-tooltip="References"><span
+                            class="crt-icon crt-icon-references"></span></a></li>
+                <li id="menu-item-79"
+                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-79">
+                    <a href="#blog" data-tooltip="Blog"><span
+                            class="crt-icon crt-icon-blog"></span></a></li>
+                <li id="menu-item-43"
+                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-43">
+                    <a href="#contacts" data-tooltip="Contacts"><span
+                            class="crt-icon crt-icon-contact"></span></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="crtContainer" class="crt-container">
+        <div id="crtSideBoxWrap">
+            <div id="crtSideBox" class="clear-mrg">
+                <div class="crt-side-box-1 clear-mrg">
+                    <aside class="widget clearfix certy_widget_card">
+                        <div class="crt-card bg-primary text-center">
+                            <div class="crt-card-avatar">
+<span class="crt-avatar-state">
+<span class="crt-avatar-state1">
+<img class="avatar avatar-195" alt=""
+     src="img/avatar.jpg">
+</span>
+<span class="crt-avatar-state2">
+<img class="avatar avatar-195" alt="avatar"
+     src="img/avatar.jpg">
+</span>
+</span>
+                            </div>
+                            <div class="crt-card-info clear-mrg">
+                                <h2 class="text-upper">Yaroslav R.</h2>
+                                <p class="text-muted">Software developer</p>
+                                <ul class="crt-social clear-list">
+                                    <li><a target="_blank" href="https://www.facebook.com/pxlaboratory/"><span
+                                            class="crt-icon crt-icon-facebook"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <!--                <div class="crt-side-box-2 clear-mrg">-->
+                <!--                    <aside class="widget clearfix certy_widget_instagram"><h2 class="widget-title">Instagram Feed</h2>-->
+                <!--                    </aside>-->
+                <!--                </div>-->
+            </div>
+        </div>
+        <div id="crtNavWrap" class="hidden-sm hidden-xs">
+            <div id="crtNavInner" class="crt-sticky">
+                <div class="crt-nav-cont">
+                    <div id="crtNavScroll">
+                        <nav id="crtNav" class="crt-nav">
+                            <div class="crt-nav-img">
+                                <a href="#about" data-tooltip="About me">
+                                    <img alt="avatar"
+                                         src="img/avatar.jpg"
+                                         class="avatar avatar-42"> </a>
+                            </div>
+                            <ul class="clear-list">
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-41">
+                                    <a href="https://certy.px-lab.com/designer/#exp" data-tooltip="Experience"><span
+                                            class="crt-icon crt-icon-experience"></span></a></li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-42">
+                                    <a href="https://certy.px-lab.com/designer/#ref" data-tooltip="References"><span
+                                            class="crt-icon crt-icon-references"></span></a></li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-79">
+                                    <a href="https://certy.px-lab.com/designer/#blog" data-tooltip="Blog"><span
+                                            class="crt-icon crt-icon-blog"></span></a></li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-43">
+                                    <a href="https://certy.px-lab.com/designer/#contacts" data-tooltip="Contacts"><span
+                                            class="crt-icon crt-icon-contact"></span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div id="crtNavTools" class="hidden">
+                        <span class="crt-icon crt-icon-dots-three-horizontal"></span>
+                        <button id="crtNavArrow" class="clear-btn">
+                            <span class="crt-icon crt-icon-chevron-thin-down"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="crt-nav-btm"></div>
+            </div>
+        </div>
+        <div class="crt-container-sm">
+            <div class="crt-paper-layers crt-animate">
+                <div class="crt-paper clear-mrg clearfix">
+                    <div class="crt-paper-cont paper-padd clear-mrg">
+                        <section id="about" class="section padd-box brd-btm">
+                            <div class="row">
+                                <div class="col-sm-12 clear-mrg text-box">
+                                    <h2 class="title-lg text-upper">Привіт!</h2>
+                                    <p>Я - web-розробник, який спеціалізується на Full Stack розробці ПЗ. Маю досвід
+                                        на всіх етапах циклу розробки динамічних веб-проектів. Володію
+                                        відповідними технологіями, зокрема JavaScript, SQL. Беру участь в
+                                        управлінні проектами та відносинах із клієнтами.</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="prof-skills" class="section padd-box brd-btm">
+                            <div class="row">
+                                <div class="col-sm-6 clear-mrg">
+                                    <h3 class="title-thin text-muted">Персональна інформація</h3>
+                                    <dl class="dl-horizontal clear-mrg">
+                                        <dt class="text-upper">Ім'я</dt>
+                                        <dd>Yaroslav R.</dd>
+                                        <dt class="text-upper">Дата нар.</dt>
+                                        <dd>29 Бер 1992</dd>
+                                        <dt class="text-upper">e-mail</dt>
+                                        <dd><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                               data-cfemail="daa9afaaaab5a8ae9aaaa2f7b6bbb8f4b9b5b7">rostanets@gmail.com</a>
+                                        </dd>
+                                        <dt class="text-upper">Тел.</dt>
+                                        <dd>+38063453541*</dd>
+                                        <dt class="text-upper">Фріланс</dt>
+                                        <dd>Не займаюсь</dd>
+                                    </dl>
+                                </div>
+                                <div class="col-sm-6 clear-mrg">
+                                    <h3 class="title-thin text-muted">Мови</h3>
+                                    <div class="progress-bullets crt-animate" role="progressbar" aria-valuenow="97"
+                                         aria-valuemin="0" aria-valuemax="10">
+                                        <strong class="progress-title">English</strong>
+                                        <span class="progress-bar">
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet"></span>
+<span class="bullet"></span>
+<span class="bullet"></span>
+<span class="bullet"></span>
+<span class="bullet"></span>
+</span>
+                                        <span class="progress-text text-muted">Середній</span>
+                                    </div>
+                                    <div class="progress-bullets crt-animate" role="progressbar" aria-valuenow="84"
+                                         aria-valuemin="0" aria-valuemax="10">
+                                        <strong class="progress-title">Українська</strong>
+                                        <span class="progress-bar">
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet fill"></span>
+<span class="bullet"></span>
+</span>
+                                        <span class="progress-text text-muted">Носій</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                        <section id="skills" class="section padd-box">
+                            <div class="row">
+                                <div class="col-sm-6 clear-mrg">
+                                    <h3 class="title-thin text-muted">professional skills</h3>
+                                    <div class="progress-line crt-animate" role="progressbar" aria-valuenow="95"
+                                         aria-valuemin="0" aria-valuemax="100">
+                                        <strong class="progress-title">Adobe Creative Suite</strong>
+                                        <div class="progress-bar" data-text="95%" data-value="0.95"></div>
+                                    </div>
+                                    <div class="progress-line crt-animate" role="progressbar" aria-valuenow="75"
+                                         aria-valuemin="0" aria-valuemax="100">
+                                        <strong class="progress-title">Corel Draw</strong>
+                                        <div class="progress-bar" data-text="75%" data-value="0.75"></div>
+                                    </div>
+                                    <div class="progress-line crt-animate" role="progressbar" aria-valuenow="85"
+                                         aria-valuemin="0" aria-valuemax="100">
+                                        <strong class="progress-title">Sketch</strong>
+                                        <div class="progress-bar" data-text="85%" data-value="0.85"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 clear-mrg">
+                                    <h3 class="title-thin text-muted">additional skills</h3>
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <div class="progress-chart crt-animate" role="progressbar"
+                                                 aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar" data-text="95%" data-value="0.95"></div>
+                                                <strong class="progress-title">UX Design</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <div class="progress-chart crt-animate" role="progressbar"
+                                                 aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar" data-text="92%" data-value="0.92"></div>
+                                                <strong class="progress-title">UI Design</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <div class="progress-chart crt-animate" role="progressbar"
+                                                 aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar" data-text="90%" data-value="0.9"></div>
+                                                <strong class="progress-title">Drawing</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="crt-paper-layers crt-animate">
+                <div class="crt-paper clear-mrg clearfix">
+                    <div class="crt-paper-cont paper-padd clear-mrg">
+                        <section id="interests" class="section padd-box">
+                            <div class="row">
+                                <div class="col-sm-12 clear-mrg">
+                                    <h2 class="title-lg text-upper">Interests</h2>
+                                    <ul class="crt-icon-list crt-icon-list-col3 clearfix">
+                                        <li>
+                                            <span class="crt-icon crt-icon crt-icon-animal-lover"></span>
+                                            Animals
+                                        </li>
+                                        <li>
+                                            <span class="crt-icon crt-icon crt-icon-island"></span>
+                                            Travel
+                                        </li>
+                                        <li>
+                                            <span class="crt-icon crt-icon crt-icon-bicycle"></span>
+                                            Bicycle
+                                        </li>
+                                        <li>
+                                            <span class="crt-icon crt-icon crt-icon-party"></span>
+                                            Parties
+                                        </li>
+                                        <li>
+                                            <span class="crt-icon crt-icon crt-icon-magic"></span>
+                                            Harry Potter
+                                        </li>
+                                        <li>
+                                            <span class="crt-icon crt-icon crt-icon-coffee"></span>
+                                            Coffee
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="crt-paper-layers crt-animate">
+                <div class="crt-paper clear-mrg clearfix">
+                    <div class="crt-paper-cont paper-padd clear-mrg">
+                        <section id="blog" class="section padd-box">
+                            <div class="row">
+                                <div class="col-sm-12 clear-mrg text-box">
+                                    <h2 class="title-lg text-upper">Blog</h2>
+                                    <p style="text-align: center;">For those who are interested in latest trends in
+                                        graphic and industrial design may be found useful and intersting to read my
+                                        Blog. I am writing daily posts which includes freebies and giveaways as well. I
+                                        would be glad to any comment and will appreciate your questions and
+                                        feedback.</p>
+                                    <p style="text-align: center;"><a class="btn btn-lg btn-primary" target="_blank"
+                                                                      href="https://certy.px-lab.com/designer/blog/">Check
+                                        out my Blog</a></p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crt-paper-layers crt-animate">
+                <div class="crt-paper clear-mrg clearfix">
+                    <div class="crt-paper-cont paper-padd clear-mrg">
+                        <section id="contacts" class="section padd-box">
+                            <h2 class="title-lg text-upper">Contact Me</h2>
+                            <div class="padd-box-sm">
+                                <header class="contact-head">
+                                    <ul class="crt-social clear-list">
+                                        <li><a target="_blank" href="https://www.facebook.com/pxlaboratory/"><span
+                                                class="crt-icon crt-icon-facebook"></span></a></li>
+                                        <li><a target="_blank" href="https://twitter.com/_pxlab"><span
+                                                class="crt-icon crt-icon-twitter"></span></a></li>
+                                        <li><a target="_blank" href="https://www.behance.net/pxlab"><span
+                                                class="crt-icon crt-icon-behance"></span></a></li>
+                                        <li><a target="_blank" href="https://dribbble.com/Px-Lab"><span
+                                                class="crt-icon crt-icon-dribbble"></span></a></li>
+                                        <li><a target="_blank"
+                                               href="https://www.youtube.com/channel/UCzyxW0-fgJGrWNWz-WceMGg"><span
+                                                class="crt-icon crt-icon-youtube"></span></a></li>
+                                    </ul>
+                                </header>
+                                <h3>Fell free to contact me in case of any question</h3>
+                                <div role="form" class="wpcf7" id="wpcf7-f46-p5-o1" lang="en-US" dir="ltr">
+                                    <div class="screen-reader-response"><p role="status" aria-live="polite"
+                                                                           aria-atomic="true"></p>
+                                        <ul></ul>
+                                    </div>
+                                    <form action="/designer/#wpcf7-f46-p5-o1" method="post" class="wpcf7-form init"
+                                          novalidate="novalidate" data-status="init">
+                                        <div style="display: none;">
+                                            <input type="hidden" name="_wpcf7" value="46"/>
+                                            <input type="hidden" name="_wpcf7_version" value="5.5.4"/>
+                                            <input type="hidden" name="_wpcf7_locale" value="en_US"/>
+                                            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f46-p5-o1"/>
+                                            <input type="hidden" name="_wpcf7_container_post" value="5"/>
+                                            <input type="hidden" name="_wpcf7_posted_data_hash" value=""/>
+                                        </div>
+                                        <p><label> Your Name (required)<br/>
+                                            <span class="wpcf7-form-control-wrap your-name"><input type="text"
+                                                                                                   name="your-name"
+                                                                                                   value="" size="40"
+                                                                                                   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                                                                   aria-required="true"
+                                                                                                   aria-invalid="false"/></span>
+                                        </label></p>
+                                        <p><label> Your Email (required)<br/>
+                                            <span class="wpcf7-form-control-wrap your-email"><input type="email"
+                                                                                                    name="your-email"
+                                                                                                    value="" size="40"
+                                                                                                    class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                                                                    aria-required="true"
+                                                                                                    aria-invalid="false"/></span>
+                                        </label></p>
+                                        <p><label> Subject<br/>
+                                            <span class="wpcf7-form-control-wrap your-subject"><input type="text"
+                                                                                                      name="your-subject"
+                                                                                                      value="" size="40"
+                                                                                                      class="wpcf7-form-control wpcf7-text"
+                                                                                                      aria-invalid="false"/></span>
+                                        </label></p>
+                                        <p><label> Your Message<br/>
+                                            <span class="wpcf7-form-control-wrap your-message"><textarea
+                                                    name="your-message" cols="40" rows="10"
+                                                    class="wpcf7-form-control wpcf7-textarea"
+                                                    aria-invalid="false"></textarea></span> </label></p>
+                                        <p><input type="submit" value="Send"
+                                                  class="wpcf7-form-control has-spinner wpcf7-submit"/></p>
+                                        <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="crtSidebar">
+        <button id="crtSidebarClose" class="btn btn-icon btn-light btn-shade">
+            <span class="crt-icon crt-icon-close"></span>
+        </button>
+        <div id="crtSidebarInner">
+            <aside class="widget-area clear-mrg">
+                <section class="widget clearfix certy_widget_card">
+                    <div class="crt-card bg-primary text-center">
+                        <div class="crt-card-avatar">
+<span class="crt-avatar-state">
+<span class="crt-avatar-state1">
+<img class="avatar avatar-195" alt=""
+     src="img/avatar.jpg">
+</span>
+<span class="crt-avatar-state2">
+<img class="avatar avatar-195" alt=""
+     src="img/avatar.jpg">
+</span>
+</span>
+                        </div>
+                        <div class="crt-card-info clear-mrg">
+                            <h2 class="text-upper">Ola Lowe</h2>
+                            <p class="text-muted">Creative Designer</p>
+                            <ul class="crt-social clear-list">
+                                <li><a target="_blank" href="https://www.facebook.com/pxlaboratory/"><span
+                                        class="crt-icon crt-icon-facebook"></span></a></li>
+                                <li><a target="_blank" href="https://twitter.com/_pxlab"><span
+                                        class="crt-icon crt-icon-twitter"></span></a></li>
+                                <li><a target="_blank" href="https://www.behance.net/pxlab"><span
+                                        class="crt-icon crt-icon-behance"></span></a></li>
+                                <li><a target="_blank" href="https://dribbble.com/Px-Lab"><span
+                                        class="crt-icon crt-icon-dribbble"></span></a></li>
+                                <li><a target="_blank"
+                                       href="https://www.youtube.com/channel/UCzyxW0-fgJGrWNWz-WceMGg"><span
+                                        class="crt-icon crt-icon-youtube"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="widget clearfix widget_posts_entries"><h2 class="widget-title">Recent Posts</h2>
+                    <ul>
+                        <li>
+                            <a class="post-image"
+                               href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-google-font-developer-api-key/">
+                                <img width="80" height="60"
+                                     src="https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_by_Px-Lab-80x60.jpg"
+                                     class="attachment-certy-thumbnail-widget size-certy-thumbnail-widget wp-post-image"
+                                     alt="Certy_by_Px-Lab" loading="lazy"
+                                     srcset="https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_by_Px-Lab-80x60.jpg 80w, https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_by_Px-Lab-123x92.jpg 123w"
+                                     sizes="(max-width: 80px) 100vw, 80px"/> </a>
+                            <div class="post-content">
+                                <h3>
+                                    <a href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-google-font-developer-api-key/">How
+                                        to Create Google Font Developer API Key</a></h3>
+                            </div>
+                            <div class="post-category-comment">
+                                <a href="https://certy.px-lab.com/designer/category/category-2/" class="post-category">Category
+                                    2</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="post-image"
+                               href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-google-font-api-key/">
+                                <img width="80" height="60"
+                                     src="https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_by_Px-Lab-80x60.jpg"
+                                     class="attachment-certy-thumbnail-widget size-certy-thumbnail-widget wp-post-image"
+                                     alt="Certy_by_Px-Lab" loading="lazy"
+                                     srcset="https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_by_Px-Lab-80x60.jpg 80w, https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_by_Px-Lab-123x92.jpg 123w"
+                                     sizes="(max-width: 80px) 100vw, 80px"/> </a>
+                            <div class="post-content">
+                                <h3>
+                                    <a href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-google-font-api-key/">How
+                                        to Create Google Maps Developer API Key</a></h3>
+                            </div>
+                            <div class="post-category-comment">
+                                <a href="https://certy.px-lab.com/designer/category/category-2/" class="post-category">Category
+                                    2</a>
+                                <a href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-google-font-api-key/#respond"
+                                   class="post-comments">0 comments</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="post-image"
+                               href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-online-cv-and-resume/">
+                                <img width="80" height="60"
+                                     src="https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_Post_1-80x60.jpeg"
+                                     class="attachment-certy-thumbnail-widget size-certy-thumbnail-widget wp-post-image"
+                                     alt="Certy_Post_1" loading="lazy"
+                                     srcset="https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_Post_1-80x60.jpeg 80w, https://certy.px-lab.com/designer/wp-content/uploads/sites/2/2017/06/Certy_Post_1-123x92.jpeg 123w"
+                                     sizes="(max-width: 80px) 100vw, 80px"/> </a>
+                            <div class="post-content">
+                                <h3>
+                                    <a href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-online-cv-and-resume/">How
+                                        to Create Online CV and Resume</a></h3>
+                            </div>
+                            <div class="post-category-comment">
+                                <a href="https://certy.px-lab.com/designer/category/category-1/" class="post-category">Category
+                                    1</a>
+                                <a href="https://certy.px-lab.com/designer/2017/06/20/how-to-create-online-cv-and-resume/#comments"
+                                   class="post-comments">3 comments</a>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="widget clearfix widget_search"><h2 class="widget-title">Search</h2>
+                    <form role="search" method="get" class="search-again" action="https://certy.px-lab.com/designer/">
+                        <div class="form-item-wrap">
+                            <input type="search" id="search-form-6378f72d65ec3" class="form-item" placeholder="Search"
+                                   value="" name="s"/>
+                        </div>
+                        <div class="form-submit form-item-wrap">
+                            <input type="submit" id="submit" class="btn btn-primary" value="Try Again">
+                        </div>
+                    </form>
+                </section>
+            </aside>
+        </div>
+    </div>
+    <footer id="crtFooter" class="crt-container-lg">
+        <div class="crt-container">
+            <div class="crt-container-sm clear-mrg text-center">
+                <p>Ola Resume @ All Rights Reserved 2017</p>
+            </div>
+        </div>
+    </footer>
+    <button id="crtBtnUp" class="btn btn-icon btn-primary">
+        <span class="crt-icon crt-icon-arrow-page-up"></span>
+    </button>
+    <svg id="crtBgShape1" class="hidden-sm hidden-xs" height="519" width="758">
+        <polygon class="pol" points="0,455,693,352,173,0,92,0,0,71"/>
+    </svg>
+    <svg id="crtBgShape2" class="hidden-sm hidden-xs" height="536" width="633">
+        <polygon points="0,0,633,0,633,536"/>
+    </svg>
+</div>
+<script type='text/javascript' src='js/mouse.min.js'
+        id='jquery-ui-mouse-js'></script>
+<script type='text/javascript' src='js/slider.min.js?ver=1.13.1'
+        id='jquery-ui-slider-js'></script>
+<script type='text/javascript'
+        src='js/regenerator-runtime.min.js'
+        id='regenerator-runtime-js'></script>
+
+</body>
+</html>

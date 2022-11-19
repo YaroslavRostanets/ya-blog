@@ -17,10 +17,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 module.exports = function(app) {
-  /* GET home page. */
-  app.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-  });
   app.use('/blog', blog);
   app.use('/admin', [checkAuth, admin]);
   app.post('/upload', upload.single('image'), function (req, res, next) {
@@ -29,5 +25,14 @@ module.exports = function(app) {
       success: true,
       file: `/uploads/${req.file.filename}`
     });
-  })
+  });
+  /* GET home page. */
+  app.get('/:page?', function(req, res, next) {
+    console.log('param: ', req.params)
+    if (req.params.page) {
+
+    } else {
+      res.render(res.render('home/index'), { title: 'Y' });
+    }
+  });
 }

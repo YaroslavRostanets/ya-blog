@@ -73,15 +73,10 @@ const getList = async (req, res) => {
 
   const count = await Post.count();
 
-  const catToPost = await CategoryToPost.getDistinct();
-  const activeCategories = await CategoryDictionary.getActiveCategories(catToPost.map(i => i.categoryDictionaryId));
-
-  console.log('popularPosts22: ', req.popularPosts);
-
   res.render('blogList/index', {
     title,
     list,
-    categories: activeCategories,
+    categories: req.categories,
     popularPosts: req.popularPosts,
     pagination: {
       current: page,
@@ -293,8 +288,6 @@ const detail = async (req, res) => {
     }
   });
 
-  const catToPost = await CategoryToPost.getDistinct();
-  const activeCategories = await CategoryDictionary.getActiveCategories(catToPost.map(i => i.categoryDictionaryId));
   await Post.viewIncrement(post.id, post.views);
 
   res.render('blogList/detail', {
@@ -302,7 +295,7 @@ const detail = async (req, res) => {
     body: post.body,
     preview: preview.path,
     popularPosts: req.popularPosts,
-    categories: activeCategories
+    categories: req.categories
   });
 };
 

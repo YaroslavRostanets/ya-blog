@@ -17,7 +17,7 @@ app.use(session({ secret: 'keyboard cat',
 );
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', [path.join(__dirname, 'views'), path.join(__dirname, 'pages')]);
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -27,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'files/uploads')));
 app.use('/posts', express.static(path.join(__dirname, 'files/posts')));
+
 
 require('./routes')(app);
 
