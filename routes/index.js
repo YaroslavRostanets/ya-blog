@@ -32,7 +32,11 @@ module.exports = function(app) {
     if (req.params.page) {
 
     } else {
-      res.render(res.render('home/index'), { title: 'Y' });
+      console.log('INDEX')
+      res.render('home/index', {
+        title: 'Y',
+        basePath: '/home/'
+      });
     }
   });
 }

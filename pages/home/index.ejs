@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Certy &#8211; Designer &#8211; WordPress Resume, CV Theme</title>
+    <title><%= title %></title>
 
     <style type="text/css">
         img.wp-smiley,
@@ -21,11 +21,11 @@
         }
     </style>
 
-    <link rel='stylesheet' id='bootstrap-apcal-css' href='css/bootstrap-apcal.css?ver=5.9.5' type='text/css'
+    <link rel='stylesheet' id='bootstrap-apcal-css' href='<%= basePath %>css/bootstrap-apcal.css?ver=5.9.5' type='text/css'
           media='all'/>
-    <link rel='stylesheet' id='datepicker-css-css' href='css/jquery-ui-1.8.23.custom.css?ver=5.9.5' type='text/css'
+    <link rel='stylesheet' id='datepicker-css-css' href='<%= basePath %>css/jquery-ui-1.8.23.custom.css?ver=5.9.5' type='text/css'
           media='all'/>
-    <link rel='stylesheet' id='wp-block-library-css' href='css/style.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='wp-block-library-css' href='<%= basePath %>css/style.min.css' type='text/css' media='all'/>
     <style id='global-styles-inline-css' type='text/css'>
         body {
             --wp--preset--color--black: #000000;
@@ -274,15 +274,15 @@
             font-size: var(--wp--preset--font-size--x-large) !important;
         }
     </style>
-    <link rel='stylesheet' id='contact-form-7-css' href='css/styles.css?ver=5.5.4' type='text/css' media='all'/>
-    <link rel='stylesheet' id='switcher-css-css' href='css/switcher.css?ver=5.9.5' type='text/css' media='all'/>
-    <link rel='stylesheet' id='icon-fonts-css' href='fonts/icomoon/style.css' type='text/css' media='all'/>
-    <link rel='stylesheet' id='plugin-styles-css' href='css/plugins.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' id='certy-styles-css' href='css/style2.min.css' type='text/css' media='all'/>
-    <script type='text/javascript' src='js/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
-    <script type='text/javascript' src='js/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
-    <script type='text/javascript' src='js/core.min.js?ver=1.13.1' id='jquery-ui-core-js'></script>
-    <script type='text/javascript' src='js/datepicker.min.js?ver=1.13.1' id='jquery-ui-datepicker-js'></script>
+    <link rel='stylesheet' id='contact-form-7-css' href='<%= basePath %>css/styles.css?ver=5.5.4' type='text/css' media='all'/>
+    <link rel='stylesheet' id='switcher-css-css' href='<%= basePath %>css/switcher.css?ver=5.9.5' type='text/css' media='all'/>
+    <link rel='stylesheet' id='icon-fonts-css' href='<%= basePath %>fonts/icomoon/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='plugin-styles-css' href='<%= basePath %>css/plugins.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='certy-styles-css' href='<%= basePath %>css/style2.min.css' type='text/css' media='all'/>
+    <script type='text/javascript' src="<%= basePath %>js/jquery-3.6.1.min.js"></script>
+    <script type='text/javascript' src='<%= basePath %>js/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+    <script type='text/javascript' src='<%= basePath %>js/core.min.js?ver=1.13.1' id='jquery-ui-core-js'></script>
+    <script type='text/javascript' src='<%= basePath %>js/datepicker.min.js?ver=1.13.1' id='jquery-ui-datepicker-js'></script>
     <script type='text/javascript' id='jquery-ui-datepicker-js-after'>
         jQuery(function (jQuery) {
             jQuery.datepicker.setDefaults({
@@ -302,9 +302,9 @@
         });
     </script>
 
-    <script type='text/javascript' src='js/calendar.js' id='calendar-js'></script>
-    <script type='text/javascript' src='js/moment.min.js' id='moment-min-js'></script>
-    <script type='text/javascript' src='js/modernizr-3.3.1.min.js' id='certy-Modernizer-js-js'></script>
+    <script type='text/javascript' src='<%= basePath %>js/calendar.js' id='calendar-js'></script>
+    <script type='text/javascript' src='<%= basePath %>js/moment.min.js' id='moment-min-js'></script>
+    <script type='text/javascript' src='<%= basePath %>js/modernizr-3.3.1.min.js' id='certy-Modernizer-js-js'></script>
     <style type='text/css'>
         body {
             font-family: 'Quicksand', sans-serif;
@@ -661,7 +661,7 @@
             <div class="crt-avatar">
                 <a href="#about" data-tooltip="About me">
                     <img alt=""
-                         src="img/avatar.jpg"
+                         src="<%= basePath %>img/avatar.jpg"
                          class="avatar avatar-42"> </a>
             </div>
             <ul class="clear-list">
@@ -694,11 +694,11 @@
 <span class="crt-avatar-state">
 <span class="crt-avatar-state1">
 <img class="avatar avatar-195" alt=""
-     src="img/avatar.jpg">
+     src="<%= basePath %>img/avatar.jpg">
 </span>
 <span class="crt-avatar-state2">
 <img class="avatar avatar-195" alt="avatar"
-     src="img/avatar.jpg">
+     src="<%= basePath %>img/avatar.jpg">
 </span>
 </span>
                             </div>
@@ -727,7 +727,7 @@
                             <div class="crt-nav-img">
                                 <a href="#about" data-tooltip="About me">
                                     <img alt="avatar"
-                                         src="img/avatar.jpg"
+                                         src="<%= basePath %>img/avatar.jpg"
                                          class="avatar avatar-42"> </a>
                             </div>
                             <ul class="clear-list">
@@ -833,45 +833,42 @@
                         <section id="skills" class="section padd-box">
                             <div class="row">
                                 <div class="col-sm-6 clear-mrg">
-                                    <h3 class="title-thin text-muted">professional skills</h3>
+                                    <h3 class="title-thin text-muted">Скіли</h3>
                                     <div class="progress-line crt-animate" role="progressbar" aria-valuenow="95"
                                          aria-valuemin="0" aria-valuemax="100">
-                                        <strong class="progress-title">Adobe Creative Suite</strong>
+                                        <strong class="progress-title">JavaScript</strong>
                                         <div class="progress-bar" data-text="95%" data-value="0.95"></div>
                                     </div>
                                     <div class="progress-line crt-animate" role="progressbar" aria-valuenow="75"
                                          aria-valuemin="0" aria-valuemax="100">
-                                        <strong class="progress-title">Corel Draw</strong>
+                                        <strong class="progress-title">SQL (Postgres dialect)</strong>
                                         <div class="progress-bar" data-text="75%" data-value="0.75"></div>
                                     </div>
                                     <div class="progress-line crt-animate" role="progressbar" aria-valuenow="85"
                                          aria-valuemin="0" aria-valuemax="100">
-                                        <strong class="progress-title">Sketch</strong>
+                                        <strong class="progress-title">Node.js</strong>
                                         <div class="progress-bar" data-text="85%" data-value="0.85"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 clear-mrg">
-                                    <h3 class="title-thin text-muted">additional skills</h3>
+                                    <h3 class="title-thin text-muted">Додаткові</h3>
                                     <div class="row">
                                         <div class="col-xs-4 text-center">
                                             <div class="progress-chart crt-animate" role="progressbar"
                                                  aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar" data-text="95%" data-value="0.95"></div>
-                                                <strong class="progress-title">UX Design</strong>
+                                                <strong class="progress-title">WebRTC</strong>
                                             </div>
                                         </div>
                                         <div class="col-xs-4 text-center">
                                             <div class="progress-chart crt-animate" role="progressbar"
                                                  aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar" data-text="92%" data-value="0.92"></div>
-                                                <strong class="progress-title">UI Design</strong>
+                                                <strong class="progress-title">Vue.js</strong>
                                             </div>
                                         </div>
                                         <div class="col-xs-4 text-center">
                                             <div class="progress-chart crt-animate" role="progressbar"
                                                  aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar" data-text="90%" data-value="0.9"></div>
-                                                <strong class="progress-title">Drawing</strong>
+                                                <strong class="progress-title">OLAP</strong>
                                             </div>
                                         </div>
                                     </div>
@@ -1031,11 +1028,11 @@
 <span class="crt-avatar-state">
 <span class="crt-avatar-state1">
 <img class="avatar avatar-195" alt=""
-     src="img/avatar.jpg">
+     src="<%= basePath %>img/avatar.jpg">
 </span>
 <span class="crt-avatar-state2">
 <img class="avatar avatar-195" alt=""
-     src="img/avatar.jpg">
+     src="<%= basePath %>img/avatar.jpg">
 </span>
 </span>
                         </div>
@@ -1154,13 +1151,25 @@
         <polygon points="0,0,633,0,633,536"/>
     </svg>
 </div>
-<script type='text/javascript' src='js/mouse.min.js'
+<script type='text/javascript' src='<%= basePath %>js/mouse.min.js'
         id='jquery-ui-mouse-js'></script>
-<script type='text/javascript' src='js/slider.min.js?ver=1.13.1'
+<script type='text/javascript' src='<%= basePath %>js/slider.min.js?ver=1.13.1'
         id='jquery-ui-slider-js'></script>
 <script type='text/javascript'
-        src='js/regenerator-runtime.min.js'
+        src='<%= basePath %>js/regenerator-runtime.min.js'
         id='regenerator-runtime-js'></script>
+<script type='text/javascript' src='<%= basePath %>js/circle-progress.min.js'></script>
+<script>
+    $(document).ready(function() {
+        $('.progress-chart').circleProgress({
+            value: 0.75,
+            size: 80,
+            fill: {
+                gradient: ["red", "orange"]
+            }
+        });
+    })
+</script>
 
 </body>
 </html>
