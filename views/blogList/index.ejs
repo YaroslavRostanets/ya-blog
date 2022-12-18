@@ -3,7 +3,6 @@
     <style>
       body{
     background-color: #f4f7f6;
-    margin-top:20px;
 }
 .card {
     background: #fff;
@@ -276,53 +275,15 @@
 
             </div>
             <div class="col-lg-4 col-md-12 right-box">
-                <div class="card">
-                    <div class="body search">
-                        <div class="input-group m-b-0">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Search...">                                    
-                        </div>
-                    </div>
-                </div>
+                <%- include('./search'); %>
                 <%- include('./categories'); %>
                 <%- include('./popularPosts'); %>
-                <div class="card">
-                    <div class="header">
-                        <h2>Instagram Post</h2>
-                    </div>
-                    <div class="body widget">
-                        <ul class="list-unstyled instagram-plugin m-b-0">
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="header">
-                        <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
-                    </div>
-                    <div class="body widget newsletter">                        
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter Email">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="icon-paper-plane"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%- include('./instagram'); %>
+                <%- include('./email'); %>
             </div>
         </div>
 
     </div>
 </div>
-  </body>
-</html>
+
+<%- include('../layout/footer'); %>

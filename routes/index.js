@@ -34,7 +34,7 @@ module.exports = function(app) {
     } else {
       console.log('INDEX')
       res.render('home/index', {
-        title: 'Y',
+        title: 'Yaroslav',
         basePath: '/home/'
       });
     }

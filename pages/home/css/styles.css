@@ -157,3 +157,44 @@ form.submitting .wpcf7-spinner {
 .wpcf7 input[type="tel"] {
 	direction: ltr;
 }
+
+.progress-chart-wrap {
+	position: relative;
+	display: inline-block;
+}
+
+.progress-chart-wrap .progress-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.progress-line {
+	position: relative;
+}
+
+.progressbar-wrap {
+	position: relative;
+}
+
+.progress-line .progress-text {
+	top: -25px;
+	right: 0px;
+	color: inherit;
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	transform: translate(0px, 0px);
+}
+
+#crtNavInner.fixed {
+	position: fixed;
+	top: 0;
+	left: unset;
+}
+
+#crtNavInner {
+	position: relative;
+	left: -2px;
+}

@@ -21,11 +21,18 @@
         }
     </style>
 
-    <link rel='stylesheet' id='bootstrap-apcal-css' href='<%= basePath %>css/bootstrap-apcal.css?ver=5.9.5' type='text/css'
+    <link rel='stylesheet' id='bootstrap-apcal-css' href='<%= basePath %>css/bootstrap-apcal.css?ver=5.9.5'
+          type='text/css'
           media='all'/>
-    <link rel='stylesheet' id='datepicker-css-css' href='<%= basePath %>css/jquery-ui-1.8.23.custom.css?ver=5.9.5' type='text/css'
+    <link rel='stylesheet' id='datepicker-css-css' href='<%= basePath %>css/jquery-ui-1.8.23.custom.css?ver=5.9.5'
+          type='text/css'
           media='all'/>
-    <link rel='stylesheet' id='wp-block-library-css' href='<%= basePath %>css/style.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='datepicker-css-css' href='<%= basePath %>css/jquery.lineProgressbar.css'
+          type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='wp-block-library-css' href='<%= basePath %>css/style.min.css' type='text/css'
+          media='all'/>
+
     <style id='global-styles-inline-css' type='text/css'>
         body {
             --wp--preset--color--black: #000000;
@@ -273,16 +280,25 @@
         .has-x-large-font-size {
             font-size: var(--wp--preset--font-size--x-large) !important;
         }
+        #crtMainNav>ul {
+            text-align: right;
+        }
     </style>
-    <link rel='stylesheet' id='contact-form-7-css' href='<%= basePath %>css/styles.css?ver=5.5.4' type='text/css' media='all'/>
-    <link rel='stylesheet' id='switcher-css-css' href='<%= basePath %>css/switcher.css?ver=5.9.5' type='text/css' media='all'/>
-    <link rel='stylesheet' id='icon-fonts-css' href='<%= basePath %>fonts/icomoon/style.css' type='text/css' media='all'/>
-    <link rel='stylesheet' id='plugin-styles-css' href='<%= basePath %>css/plugins.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='contact-form-7-css' href='<%= basePath %>css/styles.css?ver=5.5.4' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='switcher-css-css' href='<%= basePath %>css/switcher.css?ver=5.9.5' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='icon-fonts-css' href='<%= basePath %>fonts/icomoon/style.css' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='plugin-styles-css' href='<%= basePath %>css/plugins.min.css' type='text/css'
+          media='all'/>
     <link rel='stylesheet' id='certy-styles-css' href='<%= basePath %>css/style2.min.css' type='text/css' media='all'/>
     <script type='text/javascript' src="<%= basePath %>js/jquery-3.6.1.min.js"></script>
-    <script type='text/javascript' src='<%= basePath %>js/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+    <script type='text/javascript' src='<%= basePath %>js/jquery-migrate.min.js?ver=3.3.2'
+            id='jquery-migrate-js'></script>
     <script type='text/javascript' src='<%= basePath %>js/core.min.js?ver=1.13.1' id='jquery-ui-core-js'></script>
-    <script type='text/javascript' src='<%= basePath %>js/datepicker.min.js?ver=1.13.1' id='jquery-ui-datepicker-js'></script>
+    <script type='text/javascript' src='<%= basePath %>js/datepicker.min.js?ver=1.13.1'
+            id='jquery-ui-datepicker-js'></script>
     <script type='text/javascript' id='jquery-ui-datepicker-js-after'>
         jQuery(function (jQuery) {
             jQuery.datepicker.setDefaults({
@@ -308,6 +324,7 @@
     <style type='text/css'>
         body {
             font-family: 'Quicksand', sans-serif;
+            background: #f4f7f6;
         }
 
         .crt-logo {
@@ -532,7 +549,6 @@
             fill: #c0e3e7;
         }
 
-        body,
         select,
         textarea,
         input[type='url'],
@@ -613,34 +629,34 @@
             color: #fff;
         }</style>
     <style type="text/css">.recentcomments a {
-        display: inline !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }</style>
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }</style>
     <script data-cfasync="false" type="text/javascript">if (window.addthis_product === undefined) {
-        window.addthis_product = "wpp";
-    }
-    if (window.wp_product_version === undefined) {
-        window.wp_product_version = "wpp-6.2.6";
-    }
-    if (window.addthis_share === undefined) {
-        window.addthis_share = {};
-    }
-    if (window.addthis_config === undefined) {
-        window.addthis_config = {"data_track_clickback": true, "ui_atversion": 300};
-    }
-    if (window.addthis_plugin_info === undefined) {
-        window.addthis_plugin_info = {
-            "info_status": "enabled",
-            "cms_name": "WordPress",
-            "plugin_name": "Share Buttons by AddThis",
-            "plugin_version": "6.2.6",
-            "plugin_mode": "AddThis",
-            "anonymous_profile_id": "wp-398b69e50d7db6ad5ecb68327da2dda4",
-            "page_info": {"template": "home", "post_type": ""},
-            "sharing_enabled_on_post_via_metabox": false
-        };
-    }
+            window.addthis_product = "wpp";
+        }
+        if (window.wp_product_version === undefined) {
+            window.wp_product_version = "wpp-6.2.6";
+        }
+        if (window.addthis_share === undefined) {
+            window.addthis_share = {};
+        }
+        if (window.addthis_config === undefined) {
+            window.addthis_config = {"data_track_clickback": true, "ui_atversion": 300};
+        }
+        if (window.addthis_plugin_info === undefined) {
+            window.addthis_plugin_info = {
+                "info_status": "enabled",
+                "cms_name": "WordPress",
+                "plugin_name": "Share Buttons by AddThis",
+                "plugin_version": "6.2.6",
+                "plugin_mode": "AddThis",
+                "anonymous_profile_id": "wp-398b69e50d7db6ad5ecb68327da2dda4",
+                "page_info": {"template": "home", "post_type": ""},
+                "sharing_enabled_on_post_via_metabox": false
+            };
+        }
 
     </script>
 </head>
@@ -652,7 +668,17 @@
             <div class="crt-container-sm">
                 <div class="crt-head-row">
                     <div id="crtHeadCol1" class="crt-head-col text-left">
-
+                        <div class="crt-nav-container crt-container hidden-sm hidden-xs">
+                            <nav id="crtMainNav">
+                                <ul class="clear-list">
+                                    <li id="menu-item-56" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-8 current_page_item menu-item-56">
+                                        <a href="/" aria-current="page">home</a>
+                                    </li>
+                                    <li id="menu-item-55" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-55">
+                                        <a href="/blog/">blog</a>
+                                    </li>
+                                </ul> </nav>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -668,19 +694,15 @@
                 <li id="menu-item-41"
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-41">
                     <a href="#exp" data-tooltip="Experience"><span
-                            class="crt-icon crt-icon-experience"></span></a></li>
-                <li id="menu-item-42"
-                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-42">
-                    <a href="#ref" data-tooltip="References"><span
-                            class="crt-icon crt-icon-references"></span></a></li>
+                                class="crt-icon crt-icon-experience"></span></a></li>
                 <li id="menu-item-79"
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-79">
                     <a href="#blog" data-tooltip="Blog"><span
-                            class="crt-icon crt-icon-blog"></span></a></li>
+                                class="crt-icon crt-icon-blog"></span></a></li>
                 <li id="menu-item-43"
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-43">
                     <a href="#contacts" data-tooltip="Contacts"><span
-                            class="crt-icon crt-icon-contact"></span></a></li>
+                                class="crt-icon crt-icon-contact"></span></a></li>
             </ul>
         </nav>
     </header>
@@ -707,7 +729,7 @@
                                 <p class="text-muted">Software developer</p>
                                 <ul class="crt-social clear-list">
                                     <li><a target="_blank" href="https://www.facebook.com/pxlaboratory/"><span
-                                            class="crt-icon crt-icon-facebook"></span></a></li>
+                                                    class="crt-icon crt-icon-facebook"></span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -733,16 +755,13 @@
                             <ul class="clear-list">
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-41">
                                     <a href="https://certy.px-lab.com/designer/#exp" data-tooltip="Experience"><span
-                                            class="crt-icon crt-icon-experience"></span></a></li>
-                                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-42">
-                                    <a href="https://certy.px-lab.com/designer/#ref" data-tooltip="References"><span
-                                            class="crt-icon crt-icon-references"></span></a></li>
+                                                class="crt-icon crt-icon-experience"></span></a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-79">
                                     <a href="https://certy.px-lab.com/designer/#blog" data-tooltip="Blog"><span
-                                            class="crt-icon crt-icon-blog"></span></a></li>
+                                                class="crt-icon crt-icon-blog"></span></a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-43">
                                     <a href="https://certy.px-lab.com/designer/#contacts" data-tooltip="Contacts"><span
-                                            class="crt-icon crt-icon-contact"></span></a></li>
+                                                class="crt-icon crt-icon-contact"></span></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -837,39 +856,70 @@
                                     <div class="progress-line crt-animate" role="progressbar" aria-valuenow="95"
                                          aria-valuemin="0" aria-valuemax="100">
                                         <strong class="progress-title">JavaScript</strong>
-                                        <div class="progress-bar" data-text="95%" data-value="0.95"></div>
+                                        <div class="progressbar-wrap">
+                                            <div line-progressbar
+                                                 data-percentage="85"
+                                                 data-height="4px"
+                                                 data-progress-color="#c0e3e7"
+                                                 data-showcount="false"
+                                                 class="progress-bar"></div>
+                                            <div class="progress-text">85%</div>
+                                        </div>
+
                                     </div>
                                     <div class="progress-line crt-animate" role="progressbar" aria-valuenow="75"
                                          aria-valuemin="0" aria-valuemax="100">
                                         <strong class="progress-title">SQL (Postgres dialect)</strong>
-                                        <div class="progress-bar" data-text="75%" data-value="0.75"></div>
+                                        <div class="progressbar-wrap">
+                                            <div class="progress-text">75%</div>
+                                            <div line-progressbar
+                                                 data-percentage="75"
+                                                 data-height="4px"
+                                                 data-progress-color="#c0e3e7"
+                                                 data-showcount="false"
+                                                 class="progress-bar"></div>
+                                        </div>
                                     </div>
                                     <div class="progress-line crt-animate" role="progressbar" aria-valuenow="85"
                                          aria-valuemin="0" aria-valuemax="100">
                                         <strong class="progress-title">Node.js</strong>
-                                        <div class="progress-bar" data-text="85%" data-value="0.85"></div>
+                                        <div class="progressbar-wrap">
+                                            <div class="progress-text">90%</div>
+                                            <div line-progressbar
+                                                 data-percentage="90"
+                                                 data-height="4px"
+                                                 data-progress-color="#c0e3e7"
+                                                 data-showcount="false"
+                                                 class="progress-bar"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 clear-mrg">
                                     <h3 class="title-thin text-muted">Додаткові</h3>
                                     <div class="row">
                                         <div class="col-xs-4 text-center">
-                                            <div class="progress-chart crt-animate" role="progressbar"
-                                                 aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                                <strong class="progress-title">WebRTC</strong>
+                                            <div class="progress-chart-wrap">
+                                                <div class="progress-chart crt-animate" role="progressbar" data-value="0.75" data-fill="{
+                                                    &quot;gradient&quot;: [&quot;#fdd250&quot;, &quot;#c0e3e7&quot;]}"></div>
+                                                <div class="progress-text">75%</div>
                                             </div>
+                                            <strong class="progress-title">WebRTC</strong>
                                         </div>
                                         <div class="col-xs-4 text-center">
-                                            <div class="progress-chart crt-animate" role="progressbar"
-                                                 aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
-                                                <strong class="progress-title">Vue.js</strong>
+                                            <div class="progress-chart-wrap">
+                                                <div class="progress-chart crt-animate" role="progressbar" data-value="0.8" data-fill="{
+                                                    &quot;color&quot;: &quot;#c0e3e7&quot;}"></div>
+                                                <div class="progress-text">80%</div>
                                             </div>
+                                            <strong class="progress-title">Vue.js</strong>
                                         </div>
                                         <div class="col-xs-4 text-center">
-                                            <div class="progress-chart crt-animate" role="progressbar"
-                                                 aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                <strong class="progress-title">OLAP</strong>
+                                            <div class="progress-chart-wrap">
+                                                <div class="progress-chart crt-animate" role="progressbar" data-value="0.85" data-fill="{
+                                                    &quot;color&quot;: &quot;#c0e3e7&quot;}"></div>
+                                                <div class="progress-text">85%</div>
                                             </div>
+                                            <strong class="progress-title">OLAP</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -884,23 +934,23 @@
                         <section id="interests" class="section padd-box">
                             <div class="row">
                                 <div class="col-sm-12 clear-mrg">
-                                    <h2 class="title-lg text-upper">Interests</h2>
+                                    <h2 class="title-lg text-upper">Інтереси</h2>
                                     <ul class="crt-icon-list crt-icon-list-col3 clearfix">
                                         <li>
                                             <span class="crt-icon crt-icon crt-icon-animal-lover"></span>
-                                            Animals
+                                            Тварини
                                         </li>
                                         <li>
                                             <span class="crt-icon crt-icon crt-icon-island"></span>
-                                            Travel
+                                            Подорожі
                                         </li>
                                         <li>
                                             <span class="crt-icon crt-icon crt-icon-bicycle"></span>
-                                            Bicycle
+                                            Велосипед
                                         </li>
                                         <li>
                                             <span class="crt-icon crt-icon crt-icon-party"></span>
-                                            Parties
+                                            Вечірки
                                         </li>
                                         <li>
                                             <span class="crt-icon crt-icon crt-icon-magic"></span>
@@ -908,7 +958,7 @@
                                         </li>
                                         <li>
                                             <span class="crt-icon crt-icon crt-icon-coffee"></span>
-                                            Coffee
+                                            Кава
                                         </li>
                                     </ul>
                                 </div>
@@ -923,15 +973,11 @@
                         <section id="blog" class="section padd-box">
                             <div class="row">
                                 <div class="col-sm-12 clear-mrg text-box">
-                                    <h2 class="title-lg text-upper">Blog</h2>
-                                    <p style="text-align: center;">For those who are interested in latest trends in
-                                        graphic and industrial design may be found useful and intersting to read my
-                                        Blog. I am writing daily posts which includes freebies and giveaways as well. I
-                                        would be glad to any comment and will appreciate your questions and
-                                        feedback.</p>
-                                    <p style="text-align: center;"><a class="btn btn-lg btn-primary" target="_blank"
-                                                                      href="https://certy.px-lab.com/designer/blog/">Check
-                                        out my Blog</a></p>
+                                    <h2 class="title-lg text-upper">Блог</h2>
+                                    <p style="text-align: center;">Для тих, хто цікавиться останніми тенденціями DIY, розробки ПЗ, політикою, архітектурою,
+                                        може бути корисно та цікаво прочитати мій блог. Я буду радий будь-якому коментарю та вдячний за ваші запитання та відгуки.</p>
+                                    <p style="text-align: center;">
+                                        <a class="btn btn-lg btn-primary" href="/blog">Читати блог</a></p>
                                 </div>
                             </div>
                         </section>
@@ -948,16 +994,16 @@
                                 <header class="contact-head">
                                     <ul class="crt-social clear-list">
                                         <li><a target="_blank" href="https://www.facebook.com/pxlaboratory/"><span
-                                                class="crt-icon crt-icon-facebook"></span></a></li>
+                                                        class="crt-icon crt-icon-facebook"></span></a></li>
                                         <li><a target="_blank" href="https://twitter.com/_pxlab"><span
-                                                class="crt-icon crt-icon-twitter"></span></a></li>
+                                                        class="crt-icon crt-icon-twitter"></span></a></li>
                                         <li><a target="_blank" href="https://www.behance.net/pxlab"><span
-                                                class="crt-icon crt-icon-behance"></span></a></li>
+                                                        class="crt-icon crt-icon-behance"></span></a></li>
                                         <li><a target="_blank" href="https://dribbble.com/Px-Lab"><span
-                                                class="crt-icon crt-icon-dribbble"></span></a></li>
+                                                        class="crt-icon crt-icon-dribbble"></span></a></li>
                                         <li><a target="_blank"
                                                href="https://www.youtube.com/channel/UCzyxW0-fgJGrWNWz-WceMGg"><span
-                                                class="crt-icon crt-icon-youtube"></span></a></li>
+                                                        class="crt-icon crt-icon-youtube"></span></a></li>
                                     </ul>
                                 </header>
                                 <h3>Fell free to contact me in case of any question</h3>
@@ -977,33 +1023,36 @@
                                             <input type="hidden" name="_wpcf7_posted_data_hash" value=""/>
                                         </div>
                                         <p><label> Your Name (required)<br/>
-                                            <span class="wpcf7-form-control-wrap your-name"><input type="text"
-                                                                                                   name="your-name"
-                                                                                                   value="" size="40"
-                                                                                                   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
-                                                                                                   aria-required="true"
-                                                                                                   aria-invalid="false"/></span>
-                                        </label></p>
+                                                <span class="wpcf7-form-control-wrap your-name"><input type="text"
+                                                                                                       name="your-name"
+                                                                                                       value=""
+                                                                                                       size="40"
+                                                                                                       class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                                                                                       aria-required="true"
+                                                                                                       aria-invalid="false"/></span>
+                                            </label></p>
                                         <p><label> Your Email (required)<br/>
-                                            <span class="wpcf7-form-control-wrap your-email"><input type="email"
-                                                                                                    name="your-email"
-                                                                                                    value="" size="40"
-                                                                                                    class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
-                                                                                                    aria-required="true"
-                                                                                                    aria-invalid="false"/></span>
-                                        </label></p>
+                                                <span class="wpcf7-form-control-wrap your-email"><input type="email"
+                                                                                                        name="your-email"
+                                                                                                        value=""
+                                                                                                        size="40"
+                                                                                                        class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                                                                                        aria-required="true"
+                                                                                                        aria-invalid="false"/></span>
+                                            </label></p>
                                         <p><label> Subject<br/>
-                                            <span class="wpcf7-form-control-wrap your-subject"><input type="text"
-                                                                                                      name="your-subject"
-                                                                                                      value="" size="40"
-                                                                                                      class="wpcf7-form-control wpcf7-text"
-                                                                                                      aria-invalid="false"/></span>
-                                        </label></p>
+                                                <span class="wpcf7-form-control-wrap your-subject"><input type="text"
+                                                                                                          name="your-subject"
+                                                                                                          value=""
+                                                                                                          size="40"
+                                                                                                          class="wpcf7-form-control wpcf7-text"
+                                                                                                          aria-invalid="false"/></span>
+                                            </label></p>
                                         <p><label> Your Message<br/>
-                                            <span class="wpcf7-form-control-wrap your-message"><textarea
-                                                    name="your-message" cols="40" rows="10"
-                                                    class="wpcf7-form-control wpcf7-textarea"
-                                                    aria-invalid="false"></textarea></span> </label></p>
+                                                <span class="wpcf7-form-control-wrap your-message"><textarea
+                                                            name="your-message" cols="40" rows="10"
+                                                            class="wpcf7-form-control wpcf7-textarea"
+                                                            aria-invalid="false"></textarea></span> </label></p>
                                         <p><input type="submit" value="Send"
                                                   class="wpcf7-form-control has-spinner wpcf7-submit"/></p>
                                         <div class="wpcf7-response-output" aria-hidden="true"></div>
@@ -1041,16 +1090,16 @@
                             <p class="text-muted">Creative Designer</p>
                             <ul class="crt-social clear-list">
                                 <li><a target="_blank" href="https://www.facebook.com/pxlaboratory/"><span
-                                        class="crt-icon crt-icon-facebook"></span></a></li>
+                                                class="crt-icon crt-icon-facebook"></span></a></li>
                                 <li><a target="_blank" href="https://twitter.com/_pxlab"><span
-                                        class="crt-icon crt-icon-twitter"></span></a></li>
+                                                class="crt-icon crt-icon-twitter"></span></a></li>
                                 <li><a target="_blank" href="https://www.behance.net/pxlab"><span
-                                        class="crt-icon crt-icon-behance"></span></a></li>
+                                                class="crt-icon crt-icon-behance"></span></a></li>
                                 <li><a target="_blank" href="https://dribbble.com/Px-Lab"><span
-                                        class="crt-icon crt-icon-dribbble"></span></a></li>
+                                                class="crt-icon crt-icon-dribbble"></span></a></li>
                                 <li><a target="_blank"
                                        href="https://www.youtube.com/channel/UCzyxW0-fgJGrWNWz-WceMGg"><span
-                                        class="crt-icon crt-icon-youtube"></span></a></li>
+                                                class="crt-icon crt-icon-youtube"></span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -1159,16 +1208,28 @@
         src='<%= basePath %>js/regenerator-runtime.min.js'
         id='regenerator-runtime-js'></script>
 <script type='text/javascript' src='<%= basePath %>js/circle-progress.min.js'></script>
+<script type='text/javascript' src='<%= basePath %>js/waypoint.js'></script>
+<script type='text/javascript' src='<%= basePath %>js/jquery.lineProgressbar.js'></script>
 <script>
+    $(document).ready(function () {
+        $('.progress-chart').circleProgress();
+    });
+
     $(document).ready(function() {
-        $('.progress-chart').circleProgress({
-            value: 0.75,
-            size: 80,
-            fill: {
-                gradient: ["red", "orange"]
-            }
-        });
-    })
+      $(window).scroll(function() {
+        var scrollTop = $(window).scrollTop();
+        var elementOffset = $('#crtNavWrap').offset().top;
+        var distance = (elementOffset - scrollTop);
+        console.log('distance: ', distance)
+        if (distance > 0) {
+          $('#crtNavInner').removeClass('fixed');
+        } else {
+          $('#crtNavInner').addClass('fixed');
+        }
+      });
+
+
+    });
 </script>
 
 </body>
