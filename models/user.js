@@ -46,8 +46,8 @@ const tzDataTypes = withDateNoTz(DataTypes);
   });
 
   User.sync({ alter: true });
-  User.hasMany(Post, {foreignKey: 'userId'});
-  Post.belongsTo(User, {foreignKey: 'userId'});
+  // User.hasMany(Post, {foreignKey: 'userId'});
+  // Post.belongsTo(User, {foreignKey: 'userId'});
 
   
   User.getUser = async function (login, password) {

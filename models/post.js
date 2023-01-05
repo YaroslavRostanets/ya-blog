@@ -50,9 +50,9 @@ const Post = database.define('Post', {
 });
 
 Post.sync({ alter: true });
-Post.hasMany(CategoryToPost, {
-  foreignKey: 'postId'
-});
+// Post.hasMany(CategoryToPost, {
+//   foreignKey: 'postId'
+// });
 
 Post.getById = id => {
   return Post.findOne({

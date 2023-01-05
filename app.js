@@ -12,7 +12,7 @@ app.use(session({ secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
     store: new FileStore({path: './sessions'}),
-    cookie: { maxAge: 3600000,secure: false, httpOnly: true }
+    cookie: { maxAge: 3600000, secure: false, httpOnly: false }
   })
 );
 
