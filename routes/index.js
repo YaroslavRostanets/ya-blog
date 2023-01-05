@@ -1,5 +1,6 @@
 const blog = require('./blog');
 const admin = require('./admin');
+const contact = require('./contact');
 const multer  = require('multer');
 const path = require('path');
 const checkAuth = require('../middlewares/checkAuth');
@@ -19,6 +20,7 @@ const upload = multer({ storage: storage })
 module.exports = function(app) {
   app.use('/blog', blog);
   app.use('/admin', [checkAuth, admin]);
+  app.use('/contact', contact);
   app.post('/upload', upload.single('image'), function (req, res, next) {
     res.json({
       status: 200,

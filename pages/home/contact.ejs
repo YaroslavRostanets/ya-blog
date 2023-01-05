@@ -1,0 +1,107 @@
+<div class="crt-paper-layers crt-animate">
+    <div class="crt-paper clear-mrg clearfix">
+        <div class="crt-paper-cont paper-padd clear-mrg">
+            <section id="contacts" class="section padd-box">
+                <h2 class="title-lg text-upper">Написати мені</h2>
+                <div class="padd-box-sm">
+                    <h3>Ви можете зв'язатись зі мною з приводу будь-яких питань</h3>
+                    <div role="form" class="wpcf7" id="wpcf7-f46-p5-o1" lang="en-US" dir="ltr">
+                        <div class="screen-reader-response"><p role="status" aria-live="polite"
+                                                               aria-atomic="true"></p>
+                            <ul></ul>
+                        </div>
+                        <form action="/contact/send" method="post" class="js-contact-form init"
+                              novalidate="novalidate" data-status="init">
+                            <div class="js-form-name">
+                                <label>Ваше ім'я (обов'язкове поле)
+                                    <input type="text"
+                                           name="name"
+                                           value=""
+                                           size="40"
+                                           class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                                           aria-required="true"
+                                           aria-invalid="false"/>
+                                </label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="js-form-email">
+                                <label>Ваш email (обов'язкове поле)<br/>
+                                    <input type="email"
+                                           name="email"
+                                           value=""
+                                           size="40"
+                                           class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                                           aria-required="true"
+                                           aria-invalid="false"/>
+                                </label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="js-form-subject">
+                                <label>Тема<br/>
+                                    <input type="text"
+                                           name="subject"
+                                           value=""
+                                           size="40"
+                                           class="wpcf7-form-control wpcf7-text"
+                                           aria-invalid="false"/>
+                                </label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="js-form-message">
+                                <label>Текст повідомлення<br/>
+                                    <textarea
+                                            name="message" cols="40" rows="10"
+                                            class="wpcf7-form-control wpcf7-textarea"
+                                            aria-invalid="false"></textarea>
+                                </label>
+                                <div class="invalid-feedback"></div>
+                            <div>
+                                <input type="submit" value="Відправити"
+                                       class="wpcf7-form-control has-spinner wpcf7-submit"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $('.js-contact-form').submit(function (e) {
+      e.preventDefault();
+      var actionUrl = $(this).attr('action');
+      $('.has-error').removeClass('has-error');
+      $('.invalid-feedback').text('');
+      $.ajax({
+        type: "POST",
+        url: actionUrl,
+        data: $(this).serialize(),
+        success: function (data) {
+
+        },
+        error: function (err) {
+          if (err.status === 400) {
+            Object.keys(err.responseJSON).forEach(key => {
+                $('.js-form-' + key).addClass('has-error').find('.invalid-feedback').text(err.responseJSON[key]);
+            })
+          }
+        }
+      });
+    });
+  });
+</script>
+<style>
+    .invalid-feedback {
+        font-size: .875em;
+        color: #dc3545;
+        display: none;
+        margin-bottom: 10px;
+    }
+    .has-error input[type="text"], .has-error input[type="email"], .has-error textarea {
+        border: 1px solid #dc3545;
+    }
+    .has-error .invalid-feedback {
+        display: block;
+    }
+</style>

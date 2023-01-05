@@ -47,7 +47,7 @@ const getList = async (req, res) => {
 
   res.render('admin/list', {
     title: 'Category list',
-    fields: Object.keys(catItems[0]),
+    fields: catItems ? Object.keys(catItems[0]) : [],
     items: catItems,
     pagination: {
       current: page,

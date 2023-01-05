@@ -31,9 +31,9 @@ const CategoryToPost = database.define('CategoryToPost', {
 });
 
 CategoryToPost.sync({alter: true});
-// CategoryToPost.belongsTo(CategoryDictionary, {
-//   foreignKey: 'categoryDictionaryId'
-// });
+CategoryToPost.belongsTo(CategoryDictionary, {
+  foreignKey: 'categoryDictionaryId'
+});
 
 CategoryToPost.getByPostId = postId => {
   return CategoryToPost.findAll({
