@@ -6,10 +6,10 @@ const config = {
   password: process.env.PGPASSWORD,
   port: process.env.PGPORT,
   dialect: 'postgres',
-  database: 'ya-blog',
+  database: process.env.PGDATABASE,
   pool: {
-    max: 100,
-    min: 5,
+    max: 3,
+    min: 1,
     acquire: 30000,
     idle: 10000,
   },
