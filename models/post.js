@@ -25,7 +25,6 @@ const Post = database.define('Post', {
   },
   furl: {
     type: DataTypes.STRING(64),
-    allowNull: false,
     unique: true
   },
   views: {

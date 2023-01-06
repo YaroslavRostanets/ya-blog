@@ -8,7 +8,7 @@ const config = {
   dialect: 'postgres',
   database: process.env.PGDATABASE,
   pool: {
-    max: 1,
+    max: 2,
     min: 1,
     acquire: 30000,
     idle: 10000,

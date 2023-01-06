@@ -159,6 +159,7 @@ const getListAll = async (req, res) => {
 
 const editPost = async (req, res) => {
   const postId = req.params.postId;
+  console.log('POST_ID: ')
   const categories = await CategoryDictionary.findAll({
     attributes: ['id', 'label'],
     raw: true
@@ -199,9 +200,6 @@ const updatePost = async (req, res) => {
   const furlExist = await Post.findOne({
     attributes: ['id'],
     where: {
-      id: {
-        [Op.ne]: req.body.id
-      },
       furl: req.body.furl
     }
   });
