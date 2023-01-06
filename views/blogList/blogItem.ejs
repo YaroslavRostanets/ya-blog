@@ -12,7 +12,7 @@
         </div>
         <ul class="stats">
             <% item.categories.forEach(function(category){ %>
-                <li><a href="javascript:void(0);"><%= category['CategoryDictionary.name'] %></a></li>
+                <li><a href="javascript:void(0);"><%= category['CategoryDictionary.label'] %></a></li>
             <% }); %>
             <li><a href="javascript:void(0);" class="fa fa-eye"><%= item.views %></a></li>
         </ul>

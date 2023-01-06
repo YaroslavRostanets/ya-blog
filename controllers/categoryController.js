@@ -47,7 +47,7 @@ const getList = async (req, res) => {
 
   res.render('admin/list', {
     title: 'Category list',
-    fields: catItems ? Object.keys(catItems[0]) : [],
+    fields: catItems.length ? Object.keys(catItems[0]) : [],
     items: catItems,
     pagination: {
       current: page,
@@ -86,12 +86,13 @@ const editCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
   const schema = Joi.object({
-    id: Joi.string().required(),
+    id: Joi.string().min(0),
     label: Joi.string().min(3).required(),
     published: Joi.string().valid('on')
   });
   const {value, error} = schema.validate(req.body, {abortEarly: false});
   if (error) {
+    console.log('BODY: ', req.body)
     const errors = error.details.reduce((acc, item) => {
       acc[item.path[0]] = item.message;
       return acc;
@@ -104,14 +105,22 @@ const updateCategory = async (req, res) => {
       errors
     });
   } else {
-    await CategoryDictionary.update({
-      published: req.body.published === 'on',
-      label: req.body.label
-    }, {
-      where: {
-        id: req.body.id
-      }
-    })
+    console.log('CATEGORY_ID: ', req.params)
+    if (req.params.categoryId) {
+      await CategoryDictionary.update({
+        published: req.body.published === 'on',
+        label: req.body.label
+      }, {
+        where: {
+          id: req.body.id
+        }
+      })
+    } else {
+      await CategoryDictionary.create({
+        published: req.body.published === 'on',
+        label: req.body.label
+      });
+    }
     res.redirect('/admin/category');
   }
 };

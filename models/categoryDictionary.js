@@ -10,10 +10,6 @@ const CategoryDictionary = database.define('CategoryDictionary', {
     autoIncrement: true,
     primaryKey: true
   },
-  name: {
-    type: DataTypes.STRING(128),
-    allowNull: false
-  },
   label: {
     type: DataTypes.STRING(128),
     allowNull: false
@@ -38,7 +34,7 @@ const CategoryDictionary = database.define('CategoryDictionary', {
 CategoryDictionary.sync({ alter: true});
 CategoryDictionary.getActiveCategories = ids => {
   return CategoryDictionary.findAll({
-    attributes: ['name', 'label'],
+    attributes: ['label'],
     where: {
       published: true,
       id: ids

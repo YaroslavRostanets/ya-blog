@@ -16,7 +16,7 @@ const getList = async (req, res) => {
   let category = null;
   const params = Object.values(req.params).filter(i => i);
   if (params.length === 2) {
-    category = params[0];
+    category = params[0].toLowerCase();
     page = Number(params[1].replace('page', ''));
   } else if (params.length === 1) {
     const isPage = params[0].match(/page\d/);
@@ -26,7 +26,7 @@ const getList = async (req, res) => {
   const categoryDict = await CategoryDictionary.findOne({
     attributes: ['id'],
     where: {
-      name: category,
+      label: category,
       published: true
     }
   });
@@ -62,7 +62,7 @@ const getList = async (req, res) => {
     include: [{
       model: CategoryDictionary,
       required: false,
-      attributes: ['name', 'label']
+      attributes: ['label']
     }],
   });
   list = list.map(item => ({
