@@ -2,7 +2,7 @@
 .env.production
 /node_modules
 package-lock.json
-/files/posts/post_
+/files/posts/
 /files/uploads/
 /sessions/*
 app.yaml

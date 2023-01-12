@@ -1,14 +1,13 @@
 <div class="crt-paper-layers crt-animate">
     <div class="crt-paper clear-mrg clearfix">
-        <div class="crt-paper-cont paper-padd clear-mrg">
-            <section id="contacts" class="section padd-box">
+        <div class="js-contact-form-wrap crt-paper-cont paper-padd clear-mrg">
+            <section class="section padd-box js-form-part">
                 <h2 class="title-lg text-upper">Написати мені</h2>
                 <div class="padd-box-sm">
                     <h3>Ви можете зв'язатись зі мною з приводу будь-яких питань</h3>
                     <div role="form" class="wpcf7" id="wpcf7-f46-p5-o1" lang="en-US" dir="ltr">
                         <div class="screen-reader-response"><p role="status" aria-live="polite"
                                                                aria-atomic="true"></p>
-                            <ul></ul>
                         </div>
                         <form action="/contact/send" method="post" class="js-contact-form init"
                               novalidate="novalidate" data-status="init">
@@ -56,12 +55,15 @@
                                 </label>
                                 <div class="invalid-feedback"></div>
                             <div>
-                                <input type="submit" value="Відправити"
-                                       class="wpcf7-form-control has-spinner wpcf7-submit"/>
+                                <input type="submit" value="Відправити"/>
                             </div>
                         </form>
                     </div>
                 </div>
+            </section>
+            <section class="text-center js-thanks-part">
+                <h2>Дякую!</h2>
+                <p>Обов'язково відповім найближчим часом!</p>
             </section>
         </div>
     </div>
@@ -78,7 +80,8 @@
         url: actionUrl,
         data: $(this).serialize(),
         success: function (data) {
-
+            $('.js-contact-form-wrap').addClass('success');
+            $('.js-form-part').hide();
         },
         error: function (err) {
           if (err.status === 400) {
@@ -102,6 +105,12 @@
         border: 1px solid #dc3545;
     }
     .has-error .invalid-feedback {
+        display: block;
+    }
+    .js-thanks-part {
+        display: none;
+    }
+    .js-contact-form-wrap.success .js-thanks-part {
         display: block;
     }
 </style>

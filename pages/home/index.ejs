@@ -1143,7 +1143,6 @@
         var scrollTop = $(window).scrollTop();
         var elementOffset = $('#crtNavWrap').offset().top;
         var distance = (elementOffset - scrollTop);
-        console.log('distance: ', distance)
         if (distance > 0) {
           $('#crtNavInner').removeClass('fixed');
         } else {

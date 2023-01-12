@@ -3,12 +3,14 @@ const express = require('express');
 const router = express.Router();
 const category = require('./category');
 const post = require('./post');
+const contact = require('./contact');
 const User = require('../../models/user');
 const CategoryDictionary = require('../../models/categoryDictionary');
 const {noRawAttributes} = require("sequelize/lib/utils/deprecations");
 
 router.use('/category', category);
 router.use('/post', post);
+router.use('/contact', contact);
 
 router.get('/add-post', async (req, res) => {
   console.log('req: ', req.body);
