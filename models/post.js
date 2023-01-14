@@ -4,8 +4,6 @@ const {
 } = require('sequelize');
 const withDateNoTz = require('sequelize-date-no-tz-postgres');
 const tzDataTypes = withDateNoTz(DataTypes);
-const File = require('./file');
-const CategoryToPost = require('./categoryToPost');
 const database = require("../config/database");
 
 const Post = database.define('Post', {

@@ -286,14 +286,31 @@ const detail = async (req, res) => {
     }
   });
 
+  const categories = await CategoryToPost.findAll({
+    attributes: ['postId'],
+    raw: true,
+    where: {
+      postId: post.id
+    },
+    include: [{
+      model: CategoryDictionary,
+      required: false,
+      attributes: ['label']
+    }],
+  });
+
+  console.log('CAT: ', categories)
+
   await Post.viewIncrement(post.id, post.views);
 
   res.render('blogList/detail', {
     title: post.title,
     body: post.body,
     preview: preview.path,
+    views: post.views,
     popularPosts: req.popularPosts,
-    categories: req.categories
+    categories: req.categories,
+    postCategories: categories
   });
 };
 

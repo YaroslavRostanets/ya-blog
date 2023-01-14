@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <% popularPosts.forEach(function(post){ %>
                     <a href="/blog/detail/<%= post.furl %>" class="single_post">
-                        <p class="m-b-0"><%= post.title %></p>
+                        <h5 class="m-b-0"><%= post.title %></h5>
                         <span><%= post.createdAt %></span>
                         <div class="img-post">
                             <img src="<%= post.preview %>" alt="post image">
