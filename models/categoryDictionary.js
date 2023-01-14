@@ -31,7 +31,7 @@ const CategoryDictionary = database.define('CategoryDictionary', {
   freezeTableName: true
 });
 
-CategoryDictionary.sync({ alter: true});
+
 CategoryDictionary.getActiveCategories = ids => {
   return CategoryDictionary.findAll({
     attributes: ['label'],

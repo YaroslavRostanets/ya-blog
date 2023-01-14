@@ -48,10 +48,8 @@ const Post = database.define('Post', {
   freezeTableName: true
 });
 
-Post.sync({ alter: true });
-Post.hasMany(CategoryToPost, {
-  foreignKey: 'postId'
-});
+
+
 
 Post.getById = id => {
   return Post.findOne({

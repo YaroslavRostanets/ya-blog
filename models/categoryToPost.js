@@ -30,10 +30,6 @@ const CategoryToPost = database.define('CategoryToPost', {
   freezeTableName: true
 });
 
-CategoryToPost.sync({alter: true});
-CategoryToPost.belongsTo(CategoryDictionary, {
-  foreignKey: 'categoryDictionaryId'
-});
 
 CategoryToPost.getByPostId = postId => {
   return CategoryToPost.findAll({

@@ -12,6 +12,8 @@ const CategoryDictionary = require("../models/categoryDictionary");
 const CategoryToPost = require('../models/categoryToPost');
 const File = require('../models/file');
 
+const FtpManager = require('../modules/FtpManager');
+
 
 class PostClass {
   constructor(id, preview, title, editor, announcement, published, categories, furl, userId) {
@@ -194,6 +196,7 @@ class PostClass {
         }
       });
       await transaction.commit();
+      // post_${postId}
     } catch (err) {
       console.log('ERR: ', err)
       await transaction.rollback();
@@ -221,6 +224,7 @@ class PostClass {
           id: this.post.id
         }
       });
+      await FtpManager.uploadDir(`post_${this.postId}`, 5);
       await transaction.commit();
     } catch (err) {
       console.log('ERR: ', err);
@@ -245,6 +249,10 @@ class PostClass {
       console.log('ERR: ', err);
       await transaction.rollback();
     }
+  }
+
+  static async ftpPostUpdate(postId) {
+
   }
 }
 

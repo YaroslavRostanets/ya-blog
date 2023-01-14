@@ -21,6 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 module.exports = function(app) {
+  app.get('ping', (req, res) => res.send(1));
   app.use('/blog', blog);
   app.use('/admin', [checkAuth, admin]);
   app.use('/contact', contact);

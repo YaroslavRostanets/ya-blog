@@ -1,6 +1,6 @@
 'use strict';
 const {
-  DataTypes
+  DataTypes, literal
 } = require('sequelize');
 const withDateNoTz = require('sequelize-date-no-tz-postgres');
 const tzDataTypes = withDateNoTz(DataTypes);
@@ -27,13 +27,11 @@ const Contact = database.define('Contact', {
   createdAt: {
     allowNull: false,
     type: tzDataTypes.DATE_NO_TZ,
-    defaultValue: moment().utc().format('DD-MM-YYYY HH:mm')
+    defaultValue:  literal(`CURRENT_TIMESTAMP`),
   }
 }, {
   freezeTableName: true,
   timestamp: false
 });
-
-Contact.sync({alter: true});
 
 module.exports = Contact;

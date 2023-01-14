@@ -3,11 +3,11 @@
 /**
  * Module dependencies.
  */
-
+require('dotenv-flow').config({});
 var app = require('../app');
 var debug = require('debug')('ya-blog:server');
 var http = require('http');
-require('dotenv-flow').config({});
+require('../config/init')();
 
 
 /**

@@ -42,8 +42,6 @@ const File = database.define('File', {
   freezeTableName: true
 });
 
-File.sync({alter: true});
-
 File.getByIds = ids => {
   return File.findAll({
     attributes: ['id', 'name', 'size', 'path'],
