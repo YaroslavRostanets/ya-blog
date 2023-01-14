@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 const { mapLimit } = require('async');
 const FtpManager = require('../modules/FtpManager');
 const modelSync = require('../config/modelSync');
@@ -31,6 +32,14 @@ const downLoadPostDirs = async () => {
   });
 };
 
+const autoPing = () => {
+  if (process.env.SELF_URL) {
+    setInterval(async () => {
+      const response = await fetch(`${process.env.SELF_URL}/ping`);
+    }, 59000);
+  }
+};
+
 module.exports = async function () {
   // ToDo скачування файлів з ftp
   await modelSync();
@@ -38,4 +47,5 @@ module.exports = async function () {
   createDir(path.join(__dirname, '../files/uploads'));
   createDir(path.join(__dirname, '../files/posts'));
   downLoadPostDirs();
+  autoPing();
 };

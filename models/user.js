@@ -30,7 +30,8 @@ const User = database.define('User', {
     type: tzDataTypes.DATE_NO_TZ,
   }
 }, {
-  freezeTableName: true
+  freezeTableName: true,
+  tableName: 'Users'
 });
 
 User.getUser = async function (login, password) {
