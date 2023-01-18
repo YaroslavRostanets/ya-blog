@@ -1,27 +1,39 @@
+<style>
+    .right-box .instagram-plugin {
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .right-box .instagram-plugin li {
+        width: 103px;
+        height: 103px;
+        overflow: hidden;
+        border: 1px solid #fff
+    }
+    .right-box .instagram-plugin a {
+        display: block;
+    }
+    .right-box .instagram-plugin img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
 <div class="card">
     <div class="header">
-        <h2>Instagram Post</h2>
+        <h2>Instagram</h2>
     </div>
     <div class="body widget">
         <ul class="list-unstyled instagram-plugin m-b-0">
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
-            <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000"
-                                                   alt="image description"></a></li>
+            <% instagram.forEach(function(post){ %>
+                <li>
+                    <a href="https://www.instagram.com/yaroslav_r/">
+                        <img src="<%= post.media_url %>"
+                             alt="instagram post">
+                    </a>
+                </li>
+            <% }); %>
+
         </ul>
     </div>
 </div>

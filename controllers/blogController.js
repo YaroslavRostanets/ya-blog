@@ -78,6 +78,7 @@ const getList = async (req, res) => {
     list,
     categories: req.categories,
     popularPosts: req.popularPosts,
+    instagram: req.instagram,
     pagination: {
       current: page,
       perPage: perPage,
@@ -310,7 +311,9 @@ const detail = async (req, res) => {
     views: post.views,
     popularPosts: req.popularPosts,
     categories: req.categories,
-    postCategories: categories
+    postCategories: categories,
+    createdAt: moment(post.createdAt).format('DD.MM.YYYY'),
+    instagram: req.instagram
   });
 };
 

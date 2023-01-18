@@ -41,7 +41,7 @@
         position: relative;
         overflow: hidden;
         max-height: 500px;
-        margin-bottom: 30px
+        margin-bottom: 15px
     }
 
     .single_post .img-post > img {
@@ -201,16 +201,6 @@
         border-radius: 3px
     }
 
-    .right-box .instagram-plugin {
-        overflow: hidden
-    }
-
-    .right-box .instagram-plugin li {
-        float: left;
-        overflow: hidden;
-        border: 1px solid #fff
-    }
-
     .comment-reply li {
         margin-bottom: 15px
     }
@@ -269,6 +259,9 @@
             padding: 30px
         }
     }
+    .m-b-15 {
+        margin-bottom: 15px;
+    }
 </style>
 
 
@@ -284,12 +277,15 @@
                                  src="<%= preview %>"
                                  alt="post image">
                         </div>
-                        <ul class="stats">
-                            <% postCategories.forEach(function(category){ %>
-                                <li><a href="/blog/<%= category['CategoryDictionary.label'] %>"><%= category['CategoryDictionary.label'] %></a></li>
-                            <% }); %>
-                            <li class="fa fa-eye"><%= views %></li>
-                        </ul>
+                        <div class="d-flex justify-content-between align-items-center m-b-15">
+                            <span><%= createdAt %></span>
+                            <ul class="stats">
+                                <% postCategories.forEach(function(category){ %>
+                                    <li><a href="/blog/<%= category['CategoryDictionary.label'] %>"><%= category['CategoryDictionary.label'] %></a></li>
+                                <% }); %>
+                                <li class="fa fa-eye"><%= views %></li>
+                            </ul>
+                        </div>
                         <h3><a href="blog-details.html"><%= title %></a></h3>
                         <div class="post-body">
                             <%- body %>
