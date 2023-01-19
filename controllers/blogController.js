@@ -300,8 +300,6 @@ const detail = async (req, res) => {
     }],
   });
 
-  console.log('CAT: ', categories)
-
   await Post.viewIncrement(post.id, post.views);
 
   res.render('blogList/detail', {
@@ -313,7 +311,13 @@ const detail = async (req, res) => {
     categories: req.categories,
     postCategories: categories,
     createdAt: moment(post.createdAt).format('DD.MM.YYYY'),
-    instagram: req.instagram
+    instagram: req.instagram,
+    meta: {
+      title: post.title,
+      description: post.announcement,
+      url: req.protocol + '://' + req.get('host') + req.originalUrl,
+      image: req.protocol + '://' + req.get('host') + preview.path
+    }
   });
 };
 

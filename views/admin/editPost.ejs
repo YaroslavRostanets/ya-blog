@@ -1,6 +1,8 @@
 <% include layout/top.ejs %>
+<link rel="stylesheet" href="/trumbowyg/prism.css">
+<link rel="stylesheet" href="/trumbowyg/plugins/highlight/ui/trumbowyg.highlight.min.css">
+
 <link rel="stylesheet" href="/stylesheets/dropzone.css">
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css">-->
 <link rel="stylesheet" href="/trumbowyg/ui/trumbowyg.min.css">
 <link rel="stylesheet" href="/bootstrap-multiselect/bootstrap-multiselect.min.css">
 <div class="col-md-9">
@@ -18,14 +20,16 @@
         <input type="hidden" name="preview" id="preview" value="<%= preview %>">
         <div class="form-group <%= errors && errors.title ? 'has-error' : '' %>">
             <label for="title">Title</label>
-            <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" value="<%= title %>">
+            <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp"
+                   value="<%= title %>">
             <% if (errors && errors.title) { %>
                 <small class="form-text text-danger"><%= errors.title %></small>
             <% } %>
         </div>
         <div class="form-group <%= errors && errors.furl ? 'has-error' : '' %>">
             <label for="furl">Friendly URL</label>
-            <input name="furl" type="text" class="form-control" id="furl" aria-describedby="emailHelp" value="<%= furl %>">
+            <input name="furl" type="text" class="form-control" id="furl" aria-describedby="emailHelp"
+                   value="<%= furl %>">
             <% if (errors && errors.furl) { %>
                 <small class="form-text text-danger"><%= errors.furl %></small>
             <% } %>
@@ -59,7 +63,8 @@
             <% } %>
         </div>
         <div class="form-check">
-            <input type="checkbox" name="published" class="form-check-input" id="published" <%= published ? 'checked' : ''%>>
+            <input type="checkbox" name="published" class="form-check-input"
+                   id="published" <%= published ? 'checked' : '' %>>
             <label class="form-check-label" for="published">Publish</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -68,78 +73,88 @@
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+<script src="/javascripts/jquery-resizable.min.js"></script>
 <script src="/trumbowyg/trumbowyg.min.js"></script>
+<script src="/trumbowyg/prism.js"></script>
+<script src="/trumbowyg/plugins/highlight/trumbowyg.highlight.min.js"></script>
 <script src="/trumbowyg/plugins/upload/trumbowyg.upload.min.js"></script>
+<script src="/trumbowyg/plugins/resizimg/trumbowyg.resizimg.min.js"></script>
+<script src="trumbowyg/plugins/pasteembed/trumbowyg.pasteembed.min.js"></script>
 <script src="/javascripts/dropzone.min.js"></script>
 <script src="/bootstrap-multiselect/bootstrap-multiselect.min.js"></script>
 <script src="/javascripts/transliterate.js"></script>
 <script>
-    $('#title').on('input', function(e) {
-      const transliterated = transliterate($(e.target).val());
-      $('#furl').val(transliterated);
-    })
-    $('#editor').trumbowyg({
-        btnsDef: {
-            // Create a new dropdown
-            image: {
-                dropdown: ['insertImage', 'upload'],
-                ico: 'insertImage'
-            }
-        },
-        btns: [
-            ['viewHTML'],
-            ['formatting'],
-            ['strong', 'em', 'del'],
-            ['superscript', 'subscript'],
-            ['link'],
-            ['image'], // Our fresh created dropdown
-            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-            ['unorderedList', 'orderedList'],
-            ['horizontalRule'],
-            ['removeformat'],
-            ['fullscreen']
-        ],
-        plugins: {
-            upload: {
-                serverPath: '/upload',
-                fileFieldName: 'image'
-            }
+  $('#title').on('input', function (e) {
+    const transliterated = transliterate($(e.target).val());
+    $('#furl').val(transliterated);
+  })
+  $('#editor').trumbowyg({
+    btnsDef: {
+      // Create a new dropdown
+      image: {
+        dropdown: ['insertImage', 'upload'],
+        ico: 'insertImage'
+      }
+    },
+    btns: [
+      ['viewHTML'],
+      ['formatting'],
+      ['strong', 'em', 'del'],
+      ['superscript', 'subscript'],
+      ['link'],
+      ['image'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+      ['unorderedList', 'orderedList'],
+      ['horizontalRule'],
+      ['removeformat'],
+      ['fullscreen'],
+      ['highlight']
+    ],
+    plugins: {
+      upload: {
+        serverPath: '/upload',
+        fileFieldName: 'image'
+      },
+      resizimg: {
+        minSize: 64,
+        step: 16
+      }
+    }
+  });
+  const preview = document.getElementById('preview');
+  Dropzone.options.imageDropzone = {
+    paramName: "image",
+    maxFilesize: 2,
+    maxFiles: 1,
+    addRemoveLinks: true,
+    init: function () {
+      this.on('addedfile', function (file) {
+        if (this.files.length > 1) {
+          this.removeFile(this.files[0]);
         }
-    });
-    const preview = document.getElementById('preview');
-    Dropzone.options.imageDropzone = {
-        paramName: "image",
-        maxFilesize: 2,
-        maxFiles: 1,
-        addRemoveLinks: true,
-        init: function () {
-            this.on('addedfile', function (file) {
-                if (this.files.length > 1) {
-                    this.removeFile(this.files[0]);
-                }
-            });
-            <%
-            if (preview) {
-                const previewObj = JSON.parse(preview);
-            %>
-                const mockFile = { name: "<%= previewObj.name %>", size: '<%= previewObj.size %>', type: '<%= previewObj.type %>' };
-                this.options.addedfile.call(this, mockFile);
-                this.options.thumbnail.call(this, mockFile, "<%= previewObj.file %>");
-                mockFile.previewElement.classList.add('dz-success');
-                mockFile.previewElement.classList.add('dz-complete');
-            <% } %>
-        },
-        success: function (file) {
-            const {name, size, type} = file;
-            preview.value = JSON.stringify({name, size, type, file: JSON.parse(file.xhr.response).file});
-        },
-        removedfile: function (file) {
-            file.previewElement.remove();
-            preview.value = '';
-        }
-    };
-    $(document).ready(function () {
-        $('#categories.ejs').multiselect();
-    });
+      });
+        <%
+        if (preview) {
+            const previewObj = JSON.parse(preview);
+        %>
+      const mockFile = {name: "<%= previewObj.name %>", size: '<%= previewObj.size %>', type: '<%= previewObj.type %>'};
+      this.options.addedfile.call(this, mockFile);
+      this.options.thumbnail.call(this, mockFile, "<%= previewObj.file %>");
+      mockFile.previewElement.classList.add('dz-success');
+      mockFile.previewElement.classList.add('dz-complete');
+        <% } %>
+    },
+    success: function (file) {
+      const {name, size, type} = file;
+      preview.value = JSON.stringify({name, size, type, file: JSON.parse(file.xhr.response).file});
+    },
+    removedfile: function (file) {
+      file.previewElement.remove();
+      preview.value = '';
+    }
+  };
+  $(document).ready(function () {
+    $('#categories.ejs').multiselect();
+  });
 </script>
 <% include layout/bottom.ejs %>
