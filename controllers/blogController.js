@@ -203,7 +203,7 @@ const updatePost = async (req, res) => {
       [Op.and]: {
         furl: req.body.furl,
         id: {
-          [Op.not]: req.body.id
+          [Op.not]: req.body.id || '0'
         }
       }
     }
