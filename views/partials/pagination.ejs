@@ -1,12 +1,11 @@
 <%
     const { pages, current, baseUrl } = pagination;
-    // ToDo ref reduce
 %>
 <% if(pages > 1){ %>
     <ul class="pagination pagination-primary">
 
         <% if(pages > 1){ %>
-            <li class="page-item"><a class="page-link" href="<%= baseUrl + `/page${current - 1}` %>">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="<%= baseUrl + `/page${current - 1}` %>">Назад</a></li>
         <% } %>
 
         <% for (let i = 1; i <= current;  i++ ) { %>
@@ -46,7 +45,7 @@
         <% } %>
 
         <% if(current < pages){ %>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0);">Далі</a></li>
         <% } %>
     </ul> 
 <% } %>

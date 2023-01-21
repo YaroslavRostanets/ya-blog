@@ -32,6 +32,7 @@
           media='all'/>
     <link rel='stylesheet' id='wp-block-library-css' href='<%= basePath %>css/style.min.css' type='text/css'
           media='all'/>
+    <link href="<%= basePath %>css/aos.css" rel="stylesheet" type='text/css'>
 
     <style id='global-styles-inline-css' type='text/css'>
         body {
@@ -72,216 +73,23 @@
             --wp--preset--font-size--large: 36px;
             --wp--preset--font-size--x-large: 42px;
         }
-
-        .has-black-color {
-            color: var(--wp--preset--color--black) !important;
-        }
-
-        .has-cyan-bluish-gray-color {
-            color: var(--wp--preset--color--cyan-bluish-gray) !important;
-        }
-
-        .has-white-color {
-            color: var(--wp--preset--color--white) !important;
-        }
-
-        .has-pale-pink-color {
-            color: var(--wp--preset--color--pale-pink) !important;
-        }
-
-        .has-vivid-red-color {
-            color: var(--wp--preset--color--vivid-red) !important;
-        }
-
-        .has-luminous-vivid-orange-color {
-            color: var(--wp--preset--color--luminous-vivid-orange) !important;
-        }
-
-        .has-luminous-vivid-amber-color {
-            color: var(--wp--preset--color--luminous-vivid-amber) !important;
-        }
-
-        .has-light-green-cyan-color {
-            color: var(--wp--preset--color--light-green-cyan) !important;
-        }
-
-        .has-vivid-green-cyan-color {
-            color: var(--wp--preset--color--vivid-green-cyan) !important;
-        }
-
-        .has-pale-cyan-blue-color {
-            color: var(--wp--preset--color--pale-cyan-blue) !important;
-        }
-
-        .has-vivid-cyan-blue-color {
-            color: var(--wp--preset--color--vivid-cyan-blue) !important;
-        }
-
-        .has-vivid-purple-color {
-            color: var(--wp--preset--color--vivid-purple) !important;
-        }
-
-        .has-black-background-color {
-            background-color: var(--wp--preset--color--black) !important;
-        }
-
-        .has-cyan-bluish-gray-background-color {
-            background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
-        }
-
-        .has-white-background-color {
-            background-color: var(--wp--preset--color--white) !important;
-        }
-
-        .has-pale-pink-background-color {
-            background-color: var(--wp--preset--color--pale-pink) !important;
-        }
-
-        .has-vivid-red-background-color {
-            background-color: var(--wp--preset--color--vivid-red) !important;
-        }
-
-        .has-luminous-vivid-orange-background-color {
-            background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
-        }
-
-        .has-luminous-vivid-amber-background-color {
-            background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
-        }
-
-        .has-light-green-cyan-background-color {
-            background-color: var(--wp--preset--color--light-green-cyan) !important;
-        }
-
-        .has-vivid-green-cyan-background-color {
-            background-color: var(--wp--preset--color--vivid-green-cyan) !important;
-        }
-
-        .has-pale-cyan-blue-background-color {
-            background-color: var(--wp--preset--color--pale-cyan-blue) !important;
-        }
-
-        .has-vivid-cyan-blue-background-color {
-            background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
-        }
-
-        .has-vivid-purple-background-color {
-            background-color: var(--wp--preset--color--vivid-purple) !important;
-        }
-
-        .has-black-border-color {
-            border-color: var(--wp--preset--color--black) !important;
-        }
-
-        .has-cyan-bluish-gray-border-color {
-            border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
-        }
-
-        .has-white-border-color {
-            border-color: var(--wp--preset--color--white) !important;
-        }
-
-        .has-pale-pink-border-color {
-            border-color: var(--wp--preset--color--pale-pink) !important;
-        }
-
-        .has-vivid-red-border-color {
-            border-color: var(--wp--preset--color--vivid-red) !important;
-        }
-
-        .has-luminous-vivid-orange-border-color {
-            border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
-        }
-
-        .has-luminous-vivid-amber-border-color {
-            border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
-        }
-
-        .has-light-green-cyan-border-color {
-            border-color: var(--wp--preset--color--light-green-cyan) !important;
-        }
-
-        .has-vivid-green-cyan-border-color {
-            border-color: var(--wp--preset--color--vivid-green-cyan) !important;
-        }
-
-        .has-pale-cyan-blue-border-color {
-            border-color: var(--wp--preset--color--pale-cyan-blue) !important;
-        }
-
-        .has-vivid-cyan-blue-border-color {
-            border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
-        }
-
-        .has-vivid-purple-border-color {
-            border-color: var(--wp--preset--color--vivid-purple) !important;
-        }
-
-        .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
-            background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
-        }
-
-        .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
-            background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
-        }
-
-        .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
-            background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
-        }
-
-        .has-luminous-vivid-orange-to-vivid-red-gradient-background {
-            background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
-        }
-
-        .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
-            background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
-        }
-
-        .has-cool-to-warm-spectrum-gradient-background {
-            background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
-        }
-
-        .has-blush-light-purple-gradient-background {
-            background: var(--wp--preset--gradient--blush-light-purple) !important;
-        }
-
-        .has-blush-bordeaux-gradient-background {
-            background: var(--wp--preset--gradient--blush-bordeaux) !important;
-        }
-
-        .has-luminous-dusk-gradient-background {
-            background: var(--wp--preset--gradient--luminous-dusk) !important;
-        }
-
-        .has-pale-ocean-gradient-background {
-            background: var(--wp--preset--gradient--pale-ocean) !important;
-        }
-
-        .has-electric-grass-gradient-background {
-            background: var(--wp--preset--gradient--electric-grass) !important;
-        }
-
-        .has-midnight-gradient-background {
-            background: var(--wp--preset--gradient--midnight) !important;
-        }
-
-        .has-small-font-size {
-            font-size: var(--wp--preset--font-size--small) !important;
-        }
-
-        .has-medium-font-size {
-            font-size: var(--wp--preset--font-size--medium) !important;
-        }
-
-        .has-large-font-size {
-            font-size: var(--wp--preset--font-size--large) !important;
-        }
-
-        .has-x-large-font-size {
-            font-size: var(--wp--preset--font-size--x-large) !important;
-        }
         #crtMainNav>ul {
             text-align: right;
+        }
+
+        .instagram-plugin-wrap .widget {
+            padding: 10px !important;
+        }
+
+        .instagram-plugin li {
+            max-width: 90px;
+            max-height: 90px;
+        }
+        .instagram-plugin-wrap h2 {
+            padding: 15px 10px 5px 10px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 0;
         }
     </style>
     <link rel='stylesheet' id='contact-form-7-css' href='<%= basePath %>css/styles.css?ver=5.5.4' type='text/css'
@@ -322,16 +130,20 @@
     <script type='text/javascript' src='<%= basePath %>js/moment.min.js' id='moment-min-js'></script>
     <script type='text/javascript' src='<%= basePath %>js/modernizr-3.3.1.min.js' id='certy-Modernizer-js-js'></script>
     <style type='text/css'>
+        .card {
+            background: #fff;
+            transition: .5s;
+            border: 0;
+            margin-bottom: 30px;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+        }
         body {
             font-family: 'Quicksand', sans-serif;
             background: #f4f7f6;
         }
 
-        .crt-logo {
-            font-family: 'Pacifico', handwriting;
-        }
-
-        .text-primary,
         .crt-icon-list .crt-icon,
         .post-title a:hover,
         .crt-nav .menu-item-object-post.current-menu-item a,
@@ -526,10 +338,7 @@
         .widget_recent_comments li,
         .widget_calendar caption,
         .widget_tag_cloud a,
-        .post-category-comment a,
-        .apcal_modal,
-        .apcal_btn#next1,
-        .apcal_btn#back {
+        .post-category-comment a {
             border-color: #e1e1e1;
         }
 
@@ -612,22 +421,7 @@
         .crt-tooltip.arrow-left:before {
             border-right-color: #fff;
         }
-
-        .btn-default {
-            background-color: #c0e3e7;
-        }
-
-        .btn-default {
-            color: #010101;
-        }
-
-        .btn-secondary {
-            background-color: #041f28;
-        }
-
-        .btn-secondary {
-            color: #fff;
-        }</style>
+    </style>
     <style type="text/css">.recentcomments a {
             display: inline !important;
             padding: 0 !important;
@@ -707,40 +501,41 @@
         </nav>
     </header>
     <div id="crtContainer" class="crt-container">
-        <div id="crtSideBoxWrap">
+        <div data-aos="fade-down" id="crtSideBoxWrap">
             <div id="crtSideBox" class="clear-mrg">
                 <div class="crt-side-box-1 clear-mrg">
                     <aside class="widget clearfix certy_widget_card">
                         <div class="crt-card bg-primary text-center">
                             <div class="crt-card-avatar">
-<span class="crt-avatar-state">
-<span class="crt-avatar-state1">
-<img class="avatar avatar-195" alt=""
-     src="<%= basePath %>img/avatar.jpg">
-</span>
-<span class="crt-avatar-state2">
-<img class="avatar avatar-195" alt="avatar"
-     src="<%= basePath %>img/avatar.jpg">
-</span>
-</span>
+                                <span class="crt-avatar-state">
+                                <span class="crt-avatar-state1">
+                                <img class="avatar avatar-195" alt=""
+                                     src="<%= basePath %>img/avatar.jpg">
+                                </span>
+                                <span class="crt-avatar-state2">
+                                <img class="avatar avatar-195" alt="avatar"
+                                     src="<%= basePath %>img/avatar.jpg">
+                                </span>
+                                </span>
                             </div>
                             <div class="crt-card-info clear-mrg">
                                 <h2 class="text-upper">Yaroslav R.</h2>
                                 <p class="text-muted">Software developer</p>
                                 <ul class="crt-social clear-list">
-                                    <li><a target="_blank" href="https://www.facebook.com/pxlaboratory/"><span
-                                                    class="crt-icon crt-icon-facebook"></span></a></li>
+                                    <li>
+                                        <a target="_blank" href="https://www.facebook.com/rostanets/">
+                                            <span class="crt-icon crt-icon-facebook"></span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </aside>
                 </div>
-                <!--                <div class="crt-side-box-2 clear-mrg">-->
-                <!--                    <aside class="widget clearfix certy_widget_instagram"><h2 class="widget-title">Instagram Feed</h2>-->
-                <!--                    </aside>-->
-                <!--                </div>-->
+                <%- include('../../views/partials/instagram'); %>
             </div>
         </div>
+
         <div id="crtNavWrap" class="hidden-sm hidden-xs">
             <div id="crtNavInner" class="crt-sticky">
                 <div class="crt-nav-cont">
@@ -776,7 +571,7 @@
             </div>
         </div>
         <div class="crt-container-sm">
-            <div class="crt-paper-layers crt-animate">
+            <div data-aos="fade-down" class="crt-paper-layers crt-animate">
                 <div class="crt-paper clear-mrg clearfix">
                     <div class="crt-paper-cont paper-padd clear-mrg">
                         <section id="about" class="section padd-box brd-btm">
@@ -928,7 +723,7 @@
                     </div>
                 </div>
             </div>
-            <div class="crt-paper-layers crt-animate">
+            <div data-aos="fade-down" class="crt-paper-layers crt-animate">
                 <div class="crt-paper clear-mrg clearfix">
                     <div class="crt-paper-cont paper-padd clear-mrg">
                         <section id="interests" class="section padd-box">
@@ -967,7 +762,7 @@
                     </div>
                 </div>
             </div>
-            <div class="crt-paper-layers crt-animate">
+            <div data-aos="fade-down" class="crt-paper-layers crt-animate">
                 <div class="crt-paper clear-mrg clearfix">
                     <div class="crt-paper-cont paper-padd clear-mrg">
                         <section id="blog" class="section padd-box">
@@ -1133,6 +928,7 @@
 <script type='text/javascript' src='<%= basePath %>js/circle-progress.min.js'></script>
 <script type='text/javascript' src='<%= basePath %>js/waypoint.js'></script>
 <script type='text/javascript' src='<%= basePath %>js/jquery.lineProgressbar.js'></script>
+<script src="<%= basePath %>js/aos.js"></script>
 <script>
     $(document).ready(function () {
         $('.progress-chart').circleProgress();
@@ -1150,7 +946,7 @@
         }
       });
 
-
+      AOS.init();
     });
 </script>
 

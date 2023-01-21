@@ -7,6 +7,8 @@ const admin = require('./admin');
 const contact = require('./contact');
 const multer  = require('multer');
 const checkAuth = require('../middlewares/checkAuth');
+const homeController = require('../controllers/homeController');
+const instagramWidget = require('../wigetMiddlewares/instagramWiget');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -48,16 +50,10 @@ module.exports = function(app) {
     }
   });
   /* GET home page. */
-  app.get('/:page?', function(req, res, next) {
-    console.log('param: ', req.params)
-    if (req.params.page) {
 
-    } else {
-      console.log('INDEX')
-      res.render('home/index', {
-        title: 'Yaroslav',
-        basePath: '/home/'
-      });
-    }
+  app.get('/:page', function(req, res, next) {
+    res.send(0);
   });
+
+  app.get('/', [instagramWidget, homeController.getIndex]);
 }

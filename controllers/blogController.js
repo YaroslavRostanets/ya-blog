@@ -160,7 +160,6 @@ const getListAll = async (req, res) => {
 
 const editPost = async (req, res) => {
   const postId = req.params.postId;
-  console.log('POST_ID: ')
   const categories = await CategoryDictionary.findAll({
     attributes: ['id', 'label'],
     raw: true
@@ -201,7 +200,12 @@ const updatePost = async (req, res) => {
   const furlExist = await Post.findOne({
     attributes: ['id'],
     where: {
-      furl: req.body.furl
+      [Op.and]: {
+        furl: req.body.furl,
+        id: {
+          [Op.not]: req.body.id
+        }
+      }
     }
   });
   const schema = Joi.object({
@@ -315,7 +319,7 @@ const detail = async (req, res) => {
     meta: {
       title: post.title,
       description: post.announcement,
-      url: req.protocol + '://' + req.get('host') + req.originalUrl,
+      url: req.protocol + '://' + req.get('host'),
       image: req.protocol + '://' + req.get('host') + preview.path
     }
   });

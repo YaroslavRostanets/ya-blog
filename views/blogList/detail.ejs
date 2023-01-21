@@ -5,14 +5,7 @@
     }
 
     .card {
-        background: #fff;
-        transition: .5s;
-        border: 0;
         margin-bottom: 30px;
-        border-radius: .55rem;
-        position: relative;
-        width: 100%;
-        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
     }
 
     .card .body {
@@ -270,7 +263,7 @@
         <div class="row clearfix">
 
             <div class="col-lg-8 col-md-12 left-box">
-                <div class="card single_post">
+                <div data-aos="fade-down" class="card single_post">
                     <div class="body">
                         <div class="img-post">
                             <img class="d-block img-fluid"
@@ -298,7 +291,7 @@
                 <%- include('./search'); %>
                 <%- include('./categories'); %>
                 <%- include('./popularPosts'); %>
-                <%- include('./instagram'); %>
+                <%- include('../partials/instagram'); %>
 
                 <%- include('./email'); %>
 

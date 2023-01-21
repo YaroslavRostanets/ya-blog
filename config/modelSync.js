@@ -4,6 +4,7 @@ const File = require('../models/file');
 const Post = require('../models/post');
 const User = require('../models/user');
 const Instagram = require('../models/instagram');
+const Variable = require('../models/variable');
 
 const modelSync = async () => {
   if (!process.env.MODEL_SYNC) {
@@ -15,6 +16,7 @@ const modelSync = async () => {
   await Post.sync({ alter: true });
   await User.sync({ alter: true });
   await Instagram.sync({ alter: true });
+  await Variable.sync({alter: true });
 }
 
 module.exports = modelSync;
