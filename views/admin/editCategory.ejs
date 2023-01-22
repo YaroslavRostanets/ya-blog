@@ -10,9 +10,16 @@
                 <input name="id" type="hidden" value="<%= id %>">
                 <div class="form-group <%= errors && errors.label ? 'has-error' : '' %>">
                     <label for="categoryName" class="control-label">Category name</label>
-                    <input name="label" type="name" class="form-control" id="categoryName" placeholder="Enter name of category" value="<%= label %>">
+                    <input name="label" type="text" class="form-control" id="categoryName" placeholder="Enter name of category" value="<%= label %>">
                     <% if (errors && errors.label) { %>
                     <small id="categoryNameHelp" class="form-text text-danger"><%= errors.label %></small>
+                    <% } %>
+                </div>
+                <div class="form-group <%= errors && errors.label ? 'has-error' : '' %>">
+                    <label for="categoryCode" class="control-label">Category code</label>
+                    <input name="code" type="text" class="form-control" id="categoryCode" placeholder="Enter code of category" value="<%= code %>">
+                    <% if (errors && errors.code) { %>
+                        <small id="categoryCodeHelp" class="form-text text-danger"><%= errors.code %></small>
                     <% } %>
                 </div>
                 <div class="form-check">

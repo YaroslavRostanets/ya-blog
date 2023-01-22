@@ -5,7 +5,7 @@
     <div class="body widget">
         <ul class="list-unstyled categories-clouds m-b-0">
             <% categories.forEach(function(category){ %>
-                <li><a href="/blog/<%= category.label.toLowerCase() %>"><%= category.label %></a></li>
+                <li><a href="/blog/<%= category.code.toLowerCase() %>"><%= category.label %></a></li>
             <% }); %>
         </ul>
     </div>

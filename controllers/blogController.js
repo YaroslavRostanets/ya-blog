@@ -26,7 +26,7 @@ const getList = async (req, res) => {
   const categoryDict = await CategoryDictionary.findOne({
     attributes: ['id'],
     where: {
-      label: category,
+      code: category,
       published: true
     }
   });
@@ -35,7 +35,9 @@ const getList = async (req, res) => {
     where: {
       categoryDictionaryId: categoryDict.id
     }}] : [];
-  // ToDo model method
+
+  console.log('cats: ', categoryInclude);
+
   let list = await Post.findAll({
     attributes: ['id', 'title', 'announcement', 'body', 'previewId', 'furl', 'views', 'createdAt'],
     order: [['id', 'DESC']],
@@ -62,7 +64,7 @@ const getList = async (req, res) => {
     include: [{
       model: CategoryDictionary,
       required: false,
-      attributes: ['label']
+      attributes: ['label', 'code']
     }],
   });
   list = list.map(item => ({
@@ -233,7 +235,7 @@ const updatePost = async (req, res) => {
       return acc;
     }, {});
     const categories = await CategoryDictionary.findAll({
-      attributes: ['id', 'label'],
+      attributes: ['id', 'label', 'code'],
       raw: true
     });
     const cat = req.body.categories
@@ -300,7 +302,7 @@ const detail = async (req, res) => {
     include: [{
       model: CategoryDictionary,
       required: false,
-      attributes: ['label']
+      attributes: ['label', 'code']
     }],
   });
 

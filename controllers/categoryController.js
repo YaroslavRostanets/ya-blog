@@ -64,11 +64,12 @@ const editCategory = async (req, res) => {
   let category = {
     id: '',
     label: '',
+    code: '',
     published: true
   };
   if (categoryId) {
     category = await CategoryDictionary.findOne({
-      attributes: ['id', 'label', 'published'],
+      attributes: ['id', 'label', 'code', 'published'],
       raw: true,
       where: {
         id: categoryId
@@ -88,6 +89,7 @@ const updateCategory = async (req, res) => {
   const schema = Joi.object({
     id: Joi.string().min(0),
     label: Joi.string().min(3).required(),
+    code: Joi.string().min(3).required(),
     published: Joi.string().valid('on')
   });
   const {value, error} = schema.validate(req.body, {abortEarly: false});
@@ -109,7 +111,8 @@ const updateCategory = async (req, res) => {
     if (req.params.categoryId) {
       await CategoryDictionary.update({
         published: req.body.published === 'on',
-        label: req.body.label
+        label: req.body.label,
+        code: req.body.code
       }, {
         where: {
           id: req.body.id
@@ -118,7 +121,8 @@ const updateCategory = async (req, res) => {
     } else {
       await CategoryDictionary.create({
         published: req.body.published === 'on',
-        label: req.body.label
+        label: req.body.label,
+        code: req.body.code
       });
     }
     res.redirect('/admin/category');

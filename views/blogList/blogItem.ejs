@@ -1,9 +1,9 @@
 <div class="card single_post">
     <div class="body">
-        <div class="img-post">
+        <a href="/blog/detail/<%= item.furl %>" class="img-post">
             <img class="d-block img-fluid" src="<%= item.previewSrc%>" alt="preview">
-        </div>
-        <h3><a href="blog-details.html"><%= item.title %></a></h3>
+        </a>
+        <h2><a href="/blog/detail/<%= item.furl %>"><%= item.title %></a></h2>
         <p><%= item.announcement %></p>
     </div>
     <div class="footer">
@@ -12,7 +12,7 @@
         </div>
         <ul class="stats">
             <% item.categories.forEach(function(category){ %>
-                <li><a href="javascript:void(0);"><%= category['CategoryDictionary.label'] %></a></li>
+                <li><a href="/blog/<%= category['CategoryDictionary.code'].toLowerCase() %>>"><%= category['CategoryDictionary.label'] %></a></li>
             <% }); %>
             <li><a href="javascript:void(0);" class="fa fa-eye"><%= item.views %></a></li>
         </ul>

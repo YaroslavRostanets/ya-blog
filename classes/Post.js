@@ -29,9 +29,13 @@ class PostClass {
   }
 
   static async removeFileByPath(transaction, filePath) {
-    const resolvedFilePath = path.join(__dirname, '../files', filePath);
-    await File.rmByPath(transaction, filePath);
-    await fs.rm(resolvedFilePath);
+    try {
+      const resolvedFilePath = path.join(__dirname, '../files', filePath);
+      await File.rmByPath(transaction, filePath);
+      await fs.rm(resolvedFilePath);
+    } catch (err) {
+      console.log('RM_FILE: ', err);
+    }
   }
 
   async #mvEditorFiles() {
@@ -195,6 +199,7 @@ class PostClass {
           id: this.postId
         }
       });
+      await FtpManager.uploadDir(`post_${this.postId}`, 5);
       await transaction.commit();
       // post_${postId}
     } catch (err) {

@@ -14,6 +14,11 @@ const CategoryDictionary = database.define('CategoryDictionary', {
     type: DataTypes.STRING(128),
     allowNull: false
   },
+  code: {
+    type: DataTypes.STRING(128),
+    allowNull: false,
+    defaultValue: ''
+  },
   published: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
@@ -34,7 +39,7 @@ const CategoryDictionary = database.define('CategoryDictionary', {
 
 CategoryDictionary.getActiveCategories = ids => {
   return CategoryDictionary.findAll({
-    attributes: ['label'],
+    attributes: ['label', 'code'],
     where: {
       published: true,
       id: ids
