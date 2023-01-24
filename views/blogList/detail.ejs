@@ -272,6 +272,7 @@
     }
 </style>
 <link rel="stylesheet" href="/trumbowyg/prism.css">
+<link rel="stylesheet" href="/stylesheets/simplebox.min.css">
 
 <div id="main-content" class="blog-page">
     <div class="container">
@@ -315,5 +316,12 @@
 
     </div>
 </div>
+<script src="/javascripts/simplebox.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // $('.post-body img').topbox();
+        $('.post-body img').simplebox();
+    });
+</script>
 
 <%- include('../layout/footer'); %>
