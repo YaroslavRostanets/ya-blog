@@ -22,6 +22,7 @@ const uploadDir = async (dirName, count= 5) => {
   try {
     await client.access(options);
     console.log(await client.list())
+    console.log(fs.readdirSync('/files/posts'));
     await client.uploadFromDir(path.join(__dirname, '../files/posts', dirName), `/files/posts/${dirName}`);
   } catch(err) {
     console.log(err);
@@ -42,7 +43,8 @@ const downloadPostDir = async (dirName, count = 5) => {
   client.ftp.verbose = true;
   try {
     await client.access(options);
-    console.log(await client.list())
+    console.log(await client.list());
+    console.log(fs.readdirSync('/files/posts'));
     await client.downloadToDir(path.join(__dirname, '../files/posts', dirName), `/files/posts/${dirName}`);
   } catch(err) {
     console.log(err);
