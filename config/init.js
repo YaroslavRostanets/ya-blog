@@ -41,11 +41,11 @@ const autoPing = () => {
 };
 
 module.exports = async function () {
-  // ToDo скачування файлів з ftp
   await modelSync();
   await setModelRelations();
   createDir(path.join(__dirname, '../files/uploads'));
   createDir(path.join(__dirname, '../files/posts'));
+  console.log('READ_DIR: ', path.join(__dirname, '../files/posts'));
   downLoadPostDirs();
   autoPing();
 };

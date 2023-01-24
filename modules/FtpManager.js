@@ -44,7 +44,7 @@ const downloadPostDir = async (dirName, count = 5) => {
   try {
     await client.access(options);
     console.log(await client.list());
-    console.log(fs.readdirSync('/files/posts'));
+    console.log(fs.readdirSync('/files'));
     await client.downloadToDir(path.join(__dirname, '../files/posts', dirName), `/files/posts/${dirName}`);
   } catch(err) {
     console.log(err);
