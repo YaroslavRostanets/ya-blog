@@ -43,9 +43,12 @@ const autoPing = () => {
 module.exports = async function () {
   await modelSync();
   await setModelRelations();
+  console.log('LS: ', path.join(__dirname, '../'));
   createDir(path.join(__dirname, '../files/uploads'));
   createDir(path.join(__dirname, '../files/posts'));
   console.log('READ_DIR: ', path.join(__dirname, '../files/posts'));
+  console.log('LS1: ', fs.readdirSync(path.join(__dirname, '../')));
+  console.log('LS2: ', fs.readdirSync(path.join(__dirname, '../files/posts')));
   downLoadPostDirs();
   autoPing();
 };
