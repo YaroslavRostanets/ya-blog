@@ -41,6 +41,7 @@ const autoPing = () => {
 };
 
 module.exports = async function () {
+  console.log('INIT');
   await modelSync();
   await setModelRelations();
   console.log('LS: ', path.join(__dirname, '../'));
