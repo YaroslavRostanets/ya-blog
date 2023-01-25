@@ -32,10 +32,6 @@ app.use('/posts', express.static(path.join(__dirname, 'files/posts')));
 
 
 require('./routes')(app);
-console.log('INIT');
-setInterval(() => {
-    console.log('TEST')
-}, 10000)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

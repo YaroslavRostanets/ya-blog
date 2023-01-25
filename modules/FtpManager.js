@@ -22,7 +22,7 @@ const uploadDir = async (dirName, count= 5) => {
   try {
     await client.access(options);
     console.log(await client.list())
-    console.log(fs.readdirSync('/files/posts'));
+    console.log(fs.readdirSync(path.join(__dirname, '../files/posts')));
     await client.uploadFromDir(path.join(__dirname, '../files/posts', dirName), `/files/posts/${dirName}`);
   } catch(err) {
     console.log(err);
@@ -44,7 +44,7 @@ const downloadPostDir = async (dirName, count = 5) => {
   try {
     await client.access(options);
     console.log(await client.list());
-    console.log(fs.readdirSync('/files'));
+    console.log(fs.readdirSync(path.join(__dirname, '../files/posts')));
     await client.downloadToDir(path.join(__dirname, '../files/posts', dirName), `/files/posts/${dirName}`);
   } catch(err) {
     console.log(err);
