@@ -147,7 +147,7 @@ const getListAll = async (req, res) => {
   });
 
   res.render('admin/list', {
-    title: 'Post list',
+    title: 'Всі публікації',
     fields: ['id', 'title', 'img', 'published', 'createdAt', 'edit', 'delete'],
     items: catItems,
     pagination: {
@@ -156,6 +156,13 @@ const getListAll = async (req, res) => {
       count: count,
       pages: Math.ceil(count / perPage),
       baseUrl: `/admin/post`
+    },
+    meta: {
+      type: 'website',
+      title: 'Всі публікації блогу',
+      description: 'Мій особистий блог. DIY, архітектура, подорожі, політика і все, що мене цікавить',
+      url: req.protocol + '://' + req.get('host') + '/blog/',
+      image: req.protocol + '://' + req.get('host') + preview.path
     }
   });
 };
@@ -319,9 +326,10 @@ const detail = async (req, res) => {
     createdAt: moment(post.createdAt).format('DD.MM.YYYY'),
     instagram: req.instagram,
     meta: {
+      type: 'article',
       title: post.title,
       description: post.announcement,
-      url: req.protocol + '://' + req.get('host'),
+      url: req.protocol + '://' + req.get('host') + '/blog/' + post.furl,
       image: req.protocol + '://' + req.get('host') + preview.path
     }
   });
