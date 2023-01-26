@@ -7,7 +7,11 @@ const options = {
   port: process.env.FTP_PORT,
   user: process.env.FTP_USER,
   password: process.env.FTP_PASSWORD,
-  secure: true
+  secure: true,
+  secureOptions: {
+    ca: [ fs.readFileSync('ca.pem') ],
+    rejectUnauthorized: false
+  }
 };
 
 const uploadDir = async (dirName, count= 5) => {
@@ -26,6 +30,9 @@ const uploadDir = async (dirName, count= 5) => {
     await client.uploadFromDir(path.join(__dirname, '../files/posts', dirName), `/files/posts/${dirName}`);
   } catch(err) {
     console.log(err);
+    if (count === 1) {
+      throw err;
+    }
     await uploadDir(dirName, count - 1);
   } finally {
     client.close();
@@ -48,6 +55,9 @@ const downloadPostDir = async (dirName, count = 5) => {
     await client.downloadToDir(path.join(__dirname, '../files/posts', dirName), `/files/posts/${dirName}`);
   } catch(err) {
     console.log(err);
+    if (count === 1) {
+      throw err;
+    }
     await uploadDir(dirName, count - 1);
   } finally {
     client.close();
