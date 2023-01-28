@@ -329,7 +329,7 @@ const detail = async (req, res) => {
       type: 'article',
       title: post.title,
       description: post.announcement,
-      url: req.protocol + '://' + req.get('host') + '/blog/' + post.furl,
+      url: req.protocol + '://' + req.get('host') + '/blog/detail/' + post.furl,
       image: req.protocol + '://' + req.get('host') + preview.path
     }
   });
