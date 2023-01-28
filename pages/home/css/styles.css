@@ -199,3 +199,48 @@ form.submitting .wpcf7-spinner {
 	left: -2px;
 }
 
+.instagram-plugin {
+	display: flex;
+	justify-content: center;
+}
+
+@media (max-width: 992px) {
+	.instagram-plugin {
+		display: flex;
+		justify-content: center;
+	}
+	#about .title-lg {
+		margin-bottom: 25px;
+	}
+	#skills .text-center:last-child {
+		margin-bottom: 0;
+	}
+	.crt-container-sm .crt-paper-cont {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	.section .clear-mrg.languages {
+		margin-bottom: 15px;
+	}
+	#skills .additional {
+		margin-bottom: 0;
+	}
+	.crt-container-sm .common-papper-pad {
+		padding-bottom: 0;
+	}
+	#interests .title-lg {
+		margin-bottom: 25px;
+	}
+	#interests .clear-mrg {
+		margin-bottom: 0;
+	}
+	.crt-icon-list-col3 li:last-child {
+		margin-bottom: 0;
+	}
+	#blog .title-lg {
+		margin-bottom: 25px;
+	}
+	.title-lg {
+		text-align: center;
+	}
+}
