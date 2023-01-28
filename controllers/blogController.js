@@ -162,7 +162,7 @@ const getListAll = async (req, res) => {
       title: 'Всі публікації блогу',
       description: 'Мій особистий блог. DIY, архітектура, подорожі, політика і все, що мене цікавить',
       url: req.protocol + '://' + req.get('host') + '/blog/',
-      image: req.protocol + '://' + req.get('host') + preview.path
+      image: req.protocol + '://' + req.get('host') + '/home/img/avatar.jpg'
     }
   });
 };
