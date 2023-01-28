@@ -87,6 +87,13 @@ const getList = async (req, res) => {
       count: count,
       pages: Math.ceil(count / perPage),
       baseUrl: `/blog` + (category ? `/${category}` : '')
+    },
+    meta: {
+      type: 'website',
+      title: 'Всі публікації блогу',
+      description: 'Мій особистий блог. DIY, архітектура, подорожі, політика і все, що мене цікавить',
+      url: req.protocol + '://' + req.get('host') + '/blog/',
+      image: req.protocol + '://' + req.get('host') + '/home/img/avatar.jpg'
     }
   });
 };
@@ -157,13 +164,6 @@ const getListAll = async (req, res) => {
       pages: Math.ceil(count / perPage),
       baseUrl: `/admin/post`
     },
-    meta: {
-      type: 'website',
-      title: 'Всі публікації блогу',
-      description: 'Мій особистий блог. DIY, архітектура, подорожі, політика і все, що мене цікавить',
-      url: req.protocol + '://' + req.get('host') + '/blog/',
-      image: req.protocol + '://' + req.get('host') + '/home/img/avatar.jpg'
-    }
   });
 };
 
