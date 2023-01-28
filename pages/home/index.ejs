@@ -111,6 +111,15 @@
     <link rel='stylesheet' id='plugin-styles-css' href='<%= basePath %>css/plugins.min.css' type='text/css'
           media='all'/>
     <link rel='stylesheet' id='certy-styles-css' href='<%= basePath %>css/style2.min.css' type='text/css' media='all'/>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1TC3SGTLPW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1TC3SGTLPW');
+    </script>
     <script type='text/javascript' src="<%= basePath %>js/jquery-3.6.1.min.js"></script>
     <script type='text/javascript' src='<%= basePath %>js/jquery-migrate.min.js?ver=3.3.2'
             id='jquery-migrate-js'></script>
