@@ -246,6 +246,14 @@
             padding: 30px
         }
     }
+    .js-sticky-block {
+        position: sticky;
+        bottom: 0;
+    }
+    .right-box {
+        display: flex;
+        align-items: flex-end;
+    }
 </style>
 
 
@@ -262,15 +270,19 @@
 
             </div>
             <div class="col-lg-4 col-md-12 right-box">
-                <%- include('./search'); %>
-                <%- include('./categories'); %>
-                <%- include('./popularPosts'); %>
-                <%- include('../partials/instagram'); %>
-                <%- include('./email'); %>
+                <div class="js-sticky-block">
+                    <%- include('./search'); %>
+                    <%- include('./categories'); %>
+                    <%- include('./popularPosts'); %>
+                    <%- include('../partials/instagram'); %>
+                    <%- include('./email'); %>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
+
+<scritp src="/javascripts/float-side.js"></scritp>
 
 <%- include('../layout/footer'); %>
