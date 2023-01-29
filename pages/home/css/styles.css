@@ -204,6 +204,11 @@ form.submitting .wpcf7-spinner {
 	justify-content: center;
 }
 
+.js-form-message {
+	margin-bottom: 20px;
+	display: block;
+}
+
 @media (max-width: 992px) {
 	.instagram-plugin {
 		display: flex;
@@ -242,5 +247,18 @@ form.submitting .wpcf7-spinner {
 	}
 	.title-lg {
 		text-align: center;
+	}
+	#blog .clear-mrg {
+		margin-bottom: 0;
+	}
+	.js-contact-form-wrap .title-lg {
+		margin-bottom: 25px;
+	}
+	.js-form-message {
+		display: block;
+		margin: 0 auto;
+	}
+	.crt-head-inner {
+		display: none;
 	}
 }

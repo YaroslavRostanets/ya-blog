@@ -188,3 +188,8 @@ a {
   display: none;
 }
 
+@media (max-width: 768px) {
+  body {
+    padding: 0 5px 50px 5px;
+  }
+}
