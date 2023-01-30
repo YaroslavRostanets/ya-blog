@@ -291,6 +291,20 @@
         display: flex;
         align-items: flex-end;
     }
+    @media (max-width: 768px) {
+        .single_post .d-flex {
+            flex-wrap: wrap;
+        }
+        .single_post .stats li {
+            width: 100%;
+            padding: 0;
+            border-left: 0;
+            margin: 0;
+        }
+        .fa-eye {
+            display: none !important;
+        }
+    }
 </style>
 <link rel="stylesheet" href="/trumbowyg/prism.css">
 <link rel="stylesheet" href="/stylesheets/simplebox.min.css">

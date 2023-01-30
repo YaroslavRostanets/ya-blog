@@ -35,8 +35,8 @@ const User = database.define('User', {
 });
 
 User.getUser = async function (login, password) {
-  // const passwordHash = crypto.createHash('md5').update(password).digest("hex");
-  const passwordHash = password;
+  const passwordHash = crypto.createHash('md5').update(password).digest("hex");
+  // const passwordHash = password;
   return await User.findOne({
     attributes: ['id', 'firstName', 'lastName'],
     limit: 1,
