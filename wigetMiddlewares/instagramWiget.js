@@ -3,10 +3,14 @@ const fetch = require('node-fetch');
 const Instagram = require('../models/instagram');
 const Variable = require('../models/variable');
 
-const refreshToken = async (oldToke) => {
-  const res = await fetch(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${oldToke}`);
-  const { access_token } = await res.json();
-  return Variable.setValue('INSTAGRAM_TOKEN', access_token);
+const refreshToken = async (oldToken) => {
+  try {
+    const res = await fetch(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${oldToken}`);
+    const { access_token } = await res.json();
+    return Variable.setValue('INSTAGRAM_TOKEN', access_token);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getLastPublications = async (token) => {
@@ -30,14 +34,12 @@ module.exports = async function (req, res, next) {
     token = await refreshToken(token);
   }
   const lastUpd = await Instagram.max('createdAt');
-  console.log('lastUpd: ', lastUpd)
   const cacheHours = moment.duration(moment().diff(lastUpd)).asHours();
   if (lastUpd === null || cacheHours > 1) {
     await Instagram.destroy({
       where: {}
     });
-    console.log('token: ', token);
-    let publications = await getLastPublications(token.value);
+    let publications = await getLastPublications(token);
         publications = publications.slice(0, 9);
     await Instagram.bulkCreate(publications);
     req.instagram = publications;

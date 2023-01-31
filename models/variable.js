@@ -29,13 +29,14 @@ const Variable = database.define('Variable', {
 });
 
 Variable.getValue = async function (key) {
-  return await Variable.findOne({
+  const res = await Variable.findOne({
     attributes: ['value', 'updatedAt'],
     where: {
       key
     },
     raw: true
-  })
+  });
+  return res ? res.value : null;
 };
 
 Variable.setValue = async function (key, value) {
