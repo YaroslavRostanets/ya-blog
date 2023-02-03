@@ -183,6 +183,7 @@ const editPost = async (req, res) => {
       id: post.id,
       title: post.title,
       furl: post.furl,
+      keywords: post.keywords,
       categories: cat,
       preview: JSON.stringify({ name, size, file: preview.path}),
       announcement: post.announcement,
@@ -195,6 +196,7 @@ const editPost = async (req, res) => {
       id: '',
       title: '',
       furl: '',
+      keywords: '',
       categories,
       preview: '',
       announcement: '',
@@ -227,13 +229,14 @@ const updatePost = async (req, res) => {
       }
       return value;
     }).required(),
+    keywords: Joi.string().required(),
     announcement: Joi.string().required(),
     editor: Joi.string().required(),
     categories: Joi.alternatives().try(Joi.array().items(Joi.string()).required(), Joi.string().required()),
     published: Joi.string().valid('on')
   });
   req.body.categories = Array.isArray(req.body.categories) ? req.body.categories : [req.body.categories];
-  const {id, title, preview, announcement, editor, published, categories, furl} = req.body;
+  const {id, title, preview, announcement, editor, published, categories, furl, keywords} = req.body;
   const {value, error} = schema.validate(req.body, {abortEarly: false});
   if (error) {
     console.log('ERROR: ', error);
@@ -252,6 +255,7 @@ const updatePost = async (req, res) => {
       ...req.body,
       title: title,
       furl: req.body.furl,
+      keywords: req.body.keywords,
       announcement: req.body.announcement,
       published: req.body.published === 'on',
       editor: req.body.editor,
@@ -259,7 +263,7 @@ const updatePost = async (req, res) => {
       errors: errors
     });
   } else {
-    const post = new PostClass(id, preview, title, editor, announcement, published, categories, furl, req.session.userId);
+    const post = new PostClass(id, preview, title, editor, announcement, published, categories, furl, keywords, req.session.userId);
     console.log('post: ', post);
     if (req.body.id) {
       await post.update();
@@ -328,6 +332,7 @@ const detail = async (req, res) => {
     meta: {
       type: 'article',
       title: post.title,
+      keywords: post.keywords,
       description: post.announcement,
       url: req.protocol + '://' + req.get('host') + '/blog/detail/' + post.furl,
       image: req.protocol + '://' + req.get('host') + preview.path

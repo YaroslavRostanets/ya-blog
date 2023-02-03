@@ -25,6 +25,10 @@ const Post = database.define('Post', {
     type: DataTypes.STRING(64),
     unique: true
   },
+  keywords: {
+    type: DataTypes.STRING(1024),
+    unique: true
+  },
   views: {
     type: DataTypes.INTEGER,
     allowNull: false,

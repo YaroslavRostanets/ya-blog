@@ -36,7 +36,7 @@ const autoPing = () => {
   if (process.env.SELF_URL) {
     setInterval(async () => {
       const response = await fetch(`${process.env.SELF_URL}/ping`);
-    }, 59000);
+    }, 150000);
   }
 };
 

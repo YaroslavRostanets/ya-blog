@@ -2,9 +2,11 @@
 <html>
 <head>
     <title><%= title %></title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% if(typeof(meta) !== "undefined" ){ %>
         <meta name="description" content="<%= meta.description%>" />
+        <meta name="keywords" content="<%= meta.keywords %>">
         <meta property="og:type" content="<%= meta.type %>" />
         <meta property="og:title" content="<%= meta.title %>" />
         <meta property="og:url" content="<%= meta.url %>">

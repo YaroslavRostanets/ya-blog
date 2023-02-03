@@ -16,7 +16,7 @@ const FtpManager = require('../modules/FtpManager');
 
 
 class PostClass {
-  constructor(id, preview, title, editor, announcement, published, categories, furl, userId) {
+  constructor(id, preview, title, editor, announcement, published, categories, furl, keywords, userId) {
     this.postId = id;
     this.categories = categories;
     this.title = title;
@@ -25,6 +25,7 @@ class PostClass {
     this.preview = JSON.parse(preview);
     this.published = published;
     this.furl = furl;
+    this.keywords = keywords;
     this.userId = userId;
   }
 
@@ -188,7 +189,8 @@ class PostClass {
         announcement: this.announcement,
         body: this.editor,
         published: this.published,
-        furl: this.furl
+        furl: this.furl,
+        keywords: this.keywords
       };
       if (savedPreview.length) {
         updPost.previewId = savedPreview[0].id
@@ -222,7 +224,8 @@ class PostClass {
         previewId: savedFiles[0].id,
         body: this.editor,
         published: this.published,
-        furl: this.furl
+        furl: this.furl,
+        keywords: this.keywords
       }, {
         transaction,
         where: {
