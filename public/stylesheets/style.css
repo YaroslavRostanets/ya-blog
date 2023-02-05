@@ -226,6 +226,9 @@ a {
   .body iframe {
     height: 315px;
   }
+  .single_post .stats {
+    width: 100%;
+  }
 }
 @media (max-width: 560px) {
   .body iframe {
