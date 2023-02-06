@@ -325,7 +325,7 @@
                             <span><%= createdAt %></span>
                             <ul class="stats">
                                 <% postCategories.forEach(function(category){ %>
-                                    <li><a href="/blog/<%= category['CategoryDictionary.label'] %>"><%= category['CategoryDictionary.label'] %></a></li>
+                                    <li><a href="/blog/<%= category['CategoryDictionary.code'] %>"><%= category['CategoryDictionary.label'] %></a></li>
                                 <% }); %>
                                 <li class="fa fa-eye"><%= views %></li>
                             </ul>
