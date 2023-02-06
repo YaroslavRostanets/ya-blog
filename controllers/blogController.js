@@ -31,10 +31,6 @@ const getList = async (req, res) => {
     }
   });
 
-  if (!categoryDict) {
-    return res.status(404).send('Not found');
-  }
-
   const categoryInclude = categoryDict ? [{
     model: CategoryToPost,
     where: {
