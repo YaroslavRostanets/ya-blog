@@ -9,7 +9,7 @@ const db = require('../config/database');
 const PostClass = require('../classes/Post');
 const File = require('../models/file');
 
-const getList = async (req, res) => {
+const getList = async (req, res, next) => {
   const perPage = 4;
   const title = 'Blog';
   let page = 1;
@@ -31,13 +31,15 @@ const getList = async (req, res) => {
     }
   });
 
+  if (category && !categoryDict) {
+    return next();
+  }
+
   const categoryInclude = categoryDict ? [{
     model: CategoryToPost,
     where: {
       categoryDictionaryId: categoryDict.id
     }}] : [];
-
-  console.log('cats: ', categoryInclude);
 
   let list = await Post.findAll({
     attributes: ['id', 'title', 'announcement', 'body', 'previewId', 'furl', 'views', 'createdAt'],

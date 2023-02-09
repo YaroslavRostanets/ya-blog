@@ -51,9 +51,5 @@ module.exports = function(app) {
   });
   /* GET home page. */
 
-  app.get('/:page', function(req, res, next) {
-    res.send(0);
-  });
-
   app.get('/', [instagramWidget, homeController.getIndex]);
 }
