@@ -76,7 +76,14 @@ const getList = async (req, res, next) => {
     previewSrc: previews.find(pr => String(pr.id) === String(item.previewId)).path
   }));
 
-  const count = await Post.count();
+  const count = await Post.count({
+    where: {
+      published: true
+    },
+    include: categoryInclude
+  });
+
+  console.log('COUNT: ', count);
 
   res.render('blogList/index', {
     title,

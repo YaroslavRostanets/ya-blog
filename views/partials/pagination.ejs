@@ -2,10 +2,11 @@
     const { pages, current, baseUrl } = pagination;
 %>
 <% if(pages > 1){ %>
+    <%= JSON.stringify(pagination) %>
     <ul class="pagination pagination-primary">
 
-        <% if(pages > 1){ %>
-            <li class="page-item"><a class="page-link" href="<%= baseUrl + `/page${current - 1}` %>">Назад</a></li>
+        <% if(current > 1){ %>
+            <li class="page-item"><a class="page-link" href="<%= current === 2 ? baseUrl : baseUrl + `/page${current - 1}` %>">Назад</a></li>
         <% } %>
 
         <% for (let i = 1; i <= current;  i++ ) { %>
@@ -19,7 +20,7 @@
             <% } %>
             
             <li class="page-item <%= current === i ? 'active' : '' %>">
-                <a class="page-link" href="<%= baseUrl + `/page${i}` %>">
+                <a class="page-link" href="<%= i === 1 ? baseUrl : baseUrl + `/page${i}` %>">
                     <%= i %>
                 </a>
             </li>

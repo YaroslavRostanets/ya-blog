@@ -41,7 +41,7 @@ class PostClass {
 
   async #mvEditorFiles() {
     const files = [];
-    const editorImages = this.editor.match(/\/uploads\/.*\.(?:png|jpg)/g);
+    const editorImages = this.editor.match(/\/uploads\/.*\.(?:png|jpg )/g);
     if (editorImages) {
       const promises = editorImages.map(async filePath => {
         const fileName = path.basename(filePath);
@@ -121,7 +121,7 @@ class PostClass {
     };
     files.push(newPreviewPath);
 
-    const editorImages = editor.match(/\/uploads\/.*\.(?:png|jpg)/g);
+    const editorImages = editor.match(/\/uploads\/.*\.(?:png|jpg )/g);
     if (editorImages) {
       const promises = editorImages.map(async filePath => {
         const fileName = path.basename(filePath);
