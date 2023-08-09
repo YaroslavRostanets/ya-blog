@@ -47,8 +47,11 @@ module.exports = async function (req, res, next) {
     req.instagram = await Instagram.findAll({
       attributes: ['media_url'],
       order: [['timestamp', 'DESC']],
-      limit: 9
+      limit: 9,
+      raw: true
     });
   }
+  req.instagram.forEach(item => item.ext = item.media_url.split(/[#?]/)[0].split('.').pop().trim());
+
   next();
 }

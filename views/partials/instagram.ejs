@@ -15,32 +15,38 @@
         align-items: center;
         justify-content: center;
     }
+
     .instagram-plugin a {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     .instagram-plugin img {
         max-width: 100%;
         max-height: 100%;
     }
+
     @media (max-width: 1230px) {
         .instagram-plugin li {
             width: 33%;
             height: 98px;
         }
     }
+
     @media (max-width: 1200px) {
         .instagram-plugin li {
             width: 33%;
             height: 80px;
         }
     }
+
     @media (max-width: 992px) {
         .instagram-plugin li {
             height: 197px;
         }
     }
+
     @media (max-width: 768px) {
         .instagram-plugin li {
             width: 33% !important;
@@ -58,12 +64,17 @@
             <% instagram.forEach(function(post){ %>
                 <li>
                     <a href="https://www.instagram.com/yaroslav_r/">
-                        <img src="<%= post.media_url %>"
-                             alt="instagram post">
+                        <% if(post.ext === 'mp4'){ %>
+                            <video autoplay muted>
+                                <source src="<%= post.media_url %>" type="video/mp4">
+                            </video>
+                        <% } else { %>
+                            <img src="<%= post.media_url %>"
+                                 alt="instagram post">
+                        <% } %>
                     </a>
                 </li>
             <% }); %>
-
         </ul>
     </div>
 </div>
