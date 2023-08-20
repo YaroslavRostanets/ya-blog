@@ -41,7 +41,10 @@ class PostClass {
 
   async #mvEditorFiles() {
     const files = [];
-    const editorImages = this.editor.match(/\/uploads\/.*\.(?:png|jpg )/g);
+    const editorImages = this.editor.match(/\/uploads\/[^"]+\.(jpg|png)/g);
+    console.log('EDITOR: ', this.editor);
+    console.log('EDITOR_IMG: ', editorImages);
+    // process.exit(1);
     if (editorImages) {
       const promises = editorImages.map(async filePath => {
         const fileName = path.basename(filePath);
@@ -106,6 +109,7 @@ class PostClass {
     const newSrcs = Array.from(newImages)
       .map(img => img.getAttribute('src'))
       .filter(checkSelfPath);
+    console.log('NEW_SRC: ', newSrcs);
     const removed = oldSrcs.filter(oldSrc => !newSrcs.some(newSrcs => newSrcs === oldSrc));
     await mapLimit(removed, 1, PostClass.removeFileByPath.bind(PostClass, transaction))
     return await this.#mvEditorFiles();
@@ -180,8 +184,11 @@ class PostClass {
     const transaction = await db.transaction();
     try {
       const post = await Post.getById(this.postId);
+      console.log('POST: ', post);
       const savedPreview = await this.#updatePreview(transaction, post);
+      console.log('savedPreview: ');
       const savedImgFiles = await this.#updateEditorImg(transaction, post);
+      console.log('savedImgFiles: ', savedImgFiles);
       await this.#saveFilesDb(transaction, [...savedPreview, ...savedImgFiles]);
       await this.#setCategories(transaction);
       const updPost = {
