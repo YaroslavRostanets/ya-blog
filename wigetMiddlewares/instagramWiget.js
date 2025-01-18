@@ -25,33 +25,12 @@ const getLastPublications = async (token) => {
 };
 
 module.exports = async function (req, res, next) {
-  // let token = await Variable.getValue('INSTAGRAM_TOKEN');
-  // if (!token) {
-  //   token = await refreshToken(process.env.INSTAGRAM_TOKEN);
-  // }
-  // const tokenDays = moment.duration(moment().diff(token.updatedAt)).asDays();
-  // if (tokenDays >= 10) {
-  //   token = await refreshToken(token);
-  // }
-  // const lastUpd = await Instagram.max('createdAt');
-  // const cacheHours = moment.duration(moment().diff(lastUpd)).asHours();
-  // if (lastUpd === null || cacheHours > 1) {
-  //   await Instagram.destroy({
-  //     where: {}
-  //   });
-  //   let publications = await getLastPublications(token);
-  //       publications = publications.slice(0, 9);
-  //   await Instagram.bulkCreate(publications);
-  //   req.instagram = publications;
-  // } else {
-  //   req.instagram = await Instagram.findAll({
-  //     attributes: ['media_url'],
-  //     order: [['timestamp', 'DESC']],
-  //     limit: 9,
-  //     raw: true
-  //   });
-  // }
-  // req.instagram.forEach(item => item.ext = item.media_url.split(/[#?]/)[0].split('.').pop().trim());
+  req.instagram = await Instagram.findAll({
+    attributes: ['media_url'],
+    order: [['timestamp', 'DESC']],
+    limit: 9,
+    raw: true
+  });
 
   next();
 }
