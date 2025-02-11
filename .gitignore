@@ -1,5 +1,6 @@
 .env.development
 .env.production
+.env.production2
 /node_modules
 package-lock.json
 /files/posts/

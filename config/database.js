@@ -8,11 +8,17 @@ const config = {
   dialect: 'postgres',
   database: process.env.PGDATABASE,
   pool: {
-    max: 2,
+    max: 18,
     min: 1,
     acquire: 30000,
     idle: 10000,
   },
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 };
 
 const db = new Sequelize(config);
