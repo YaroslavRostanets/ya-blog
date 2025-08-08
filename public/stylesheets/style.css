@@ -235,3 +235,6 @@ a {
     height: 178px;
   }
 }
+semantics > :not(:first-child) {
+  display: block math;
+}
