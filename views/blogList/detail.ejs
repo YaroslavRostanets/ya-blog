@@ -331,8 +331,6 @@
             display: none !important;
         }
     }
-    math { display: inline-block; }
-    math[display="block"] { display: block; margin: .6em 0; }
 </style>
 <link rel="stylesheet" href="/trumbowyg/prism.css">
 <link rel="stylesheet" href="/stylesheets/simplebox.min.css">
@@ -396,16 +394,5 @@
     _client.addMiningNotification("Bottom", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 20, "#3d3d3d");
 
 </script>
-<script>
-  window.MathJax = {
-    loader: {load: ['input/mml', 'output/svg']},
-    options: {
-      renderActions: { // вимикаємо пошук TeX, ми рендеримо лише MathML
-        findScript: [0, null, null],
-        findMathML: [10, (doc)=>{ /* стандартний рендер MathML */ }]
-      }
-    }
-  };
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"></script>
+
 <%- include('../layout/footer'); %>
