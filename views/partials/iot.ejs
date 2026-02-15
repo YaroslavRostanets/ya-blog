@@ -1,0 +1,34 @@
+<style>
+.iot-plugin-wrap .fa {
+    color: #c0e3e7;
+}
+</style>
+<div class="card iot-plugin-wrap">
+    <div class="header">
+        <h2>Погода на кухні</h2>
+    </div>
+    <div class="body widget">
+        <div class="d-flex">
+            <h4 class="mr-3">
+                <i class="fa fa-thermometer-half" aria-hidden="true"></i>
+                <span>
+                <span class="js-iot-temperature">25.5</span>°C
+            </span>
+            </h4>
+            <h4>
+                <i class="fa fa-tint" aria-hidden="true"></i>
+                <span class="js-iot-humidity">36.0</span>%
+            </span>
+            </h4>
+        </div>
+    </div>
+</div>
+<script>
+    const evtSource = new EventSource("/iot-subscribe");
+
+    evtSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        document.querySelector(".js-iot-temperature").innerText = data.temp;
+        document.querySelector(".js-iot-humidity").innerText = data.hum;
+    };
+</script>

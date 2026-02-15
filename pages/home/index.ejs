@@ -30,7 +30,7 @@
             padding: 0 !important;
         }
     </style>
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel='stylesheet' id='bootstrap-apcal-css' href='<%= basePath %>css/bootstrap-apcal.css?ver=5.9.5'
           type='text/css'
           media='all'/>
@@ -87,19 +87,33 @@
             text-align: right;
         }
 
-        .instagram-plugin-wrap .widget {
+        .iot-plugin-wrap .widget, .instagram-plugin-wrap .widget {
             padding: 10px !important;
+        }
+
+        .iot-plugin-wrap .d-flex {
+            display: flex;
         }
 
         .instagram-plugin li {
             max-width: 90px;
             max-height: 90px;
         }
-        .instagram-plugin-wrap h2 {
+        .iot-plugin-wrap h2, .instagram-plugin-wrap h2 {
             padding: 15px 10px 5px 10px;
             text-align: center;
             text-transform: uppercase;
             margin-bottom: 0;
+        }
+        .iot-plugin-wrap h4 {
+            margin-bottom: 8px;
+            margin-top: 0;
+        }
+        .iot-plugin-wrap .mr-3 {
+            margin-right: 1rem !important;
+        }
+        .iot-plugin-wrap .d-flex {
+            justify-content: center;
         }
     </style>
     <link rel='stylesheet' id='contact-form-7-css' href='<%= basePath %>css/styles.css?ver=5.5.4' type='text/css'
@@ -558,6 +572,7 @@
                     </aside>
                 </div>
                 <%- include('../../views/partials/instagram'); %>
+                <%- include('../../views/partials/iot'); %>
             </div>
         </div>
 

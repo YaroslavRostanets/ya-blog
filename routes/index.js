@@ -9,6 +9,7 @@ const multer  = require('multer');
 const checkAuth = require('../middlewares/checkAuth');
 const homeController = require('../controllers/homeController');
 const instagramWidget = require('../wigetMiddlewares/instagramWiget');
+const iotController = require('../controllers/iotController');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,6 +25,7 @@ const upload = multer({ storage: storage })
 
 module.exports = function(app) {
   app.get('/ping', (req, res) => res.send(''));
+  app.get('/iot-subscribe', iotController.iotSubscribe);
   app.use('/blog', blog);
   app.use('/admin', [checkAuth, admin]);
   app.use('/contact', contact);
