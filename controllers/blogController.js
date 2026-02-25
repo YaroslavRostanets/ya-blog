@@ -188,14 +188,14 @@ const editPost = async (req, res) => {
     const preview = await File.getById(post.previewId);
     const postCategories = await CategoryToPost.getByPostId(post.id);
     const cat = categories.map(cat => ({... cat, selected: postCategories.some(postCat => postCat.categoryDictionaryId === cat.id)}));
-    const { name, size } = preview;
+    const { name, size } = preview || {name: '', size: 0};
     res.render('admin/editPost', {
       id: post.id,
       title: post.title,
       furl: post.furl,
       keywords: post.keywords,
       categories: cat,
-      preview: JSON.stringify({ name, size, file: preview.path}),
+      preview: JSON.stringify({ name, size, file: preview && preview.path}),
       announcement: post.announcement,
       editor: post.body,
       published: post.published,
