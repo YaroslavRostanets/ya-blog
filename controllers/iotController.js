@@ -36,6 +36,19 @@ const toggleMQTT = (action) => {
     }
 };
 
+const initMQTTData = () => {
+    console.log('📦 Fetching initial data on startup...');
+
+    activeClients++;
+    toggleMQTT('connect');
+
+    sensorEvents.once('newData', (data) => {
+        console.log('✅ Initial data received and saved.');
+        activeClients--;
+        toggleMQTT('disconnect');
+    });
+};
+
 const iotSubscribe = async (req, res) => {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
@@ -64,4 +77,5 @@ const iotSubscribe = async (req, res) => {
 
 module.exports = {
     iotSubscribe,
+    initMQTTData
 }

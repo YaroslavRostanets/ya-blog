@@ -5,6 +5,7 @@ const { mapLimit } = require('async');
 const FtpManager = require('../modules/FtpManager');
 const modelSync = require('../config/modelSync');
 const setModelRelations = require('../config/modelRelations');
+const {initMQTTData} = require('../controllers/iotController');
 
 
 const Post = require('../models/post');
@@ -50,6 +51,7 @@ module.exports = async function () {
   console.log('READ_DIR: ', path.join(__dirname, '../files/posts'));
   console.log('LS1: ', fs.readdirSync(path.join(__dirname, '../')));
   console.log('LS2: ', fs.readdirSync(path.join(__dirname, '../files/posts')));
+  initMQTTData();
   downLoadPostDirs();
   autoPing();
 };
