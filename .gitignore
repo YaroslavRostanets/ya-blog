@@ -3,6 +3,6 @@
 .env.production2
 /node_modules
 package-lock.json
-/files/posts/
+
 /files/uploads/
 /sessions/*

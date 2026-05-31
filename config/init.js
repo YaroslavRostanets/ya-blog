@@ -52,6 +52,6 @@ module.exports = async function () {
   console.log('LS1: ', fs.readdirSync(path.join(__dirname, '../')));
   console.log('LS2: ', fs.readdirSync(path.join(__dirname, '../files/posts')));
   initMQTTData();
-  downLoadPostDirs();
+  // downLoadPostDirs();
   autoPing();
 };
